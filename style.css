@@ -1,0 +1,497 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at 20% 10%, rgba(80, 80, 180, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 40%, rgba(120, 60, 180, 0.12), transparent 30%),
+        #05050c;
+
+    color: white;
+
+    font-family: "Inter", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   STAR BACKGROUND
+========================= */
+
+.stars,
+.stars2,
+.stars3 {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1px);
+
+    background-size: 120px 120px;
+
+    opacity: 0.25;
+
+    animation: drift 80s linear infinite;
+
+    z-index: -1;
+}
+
+.stars2 {
+    background-size: 190px 190px;
+    opacity: 0.15;
+    animation-duration: 120s;
+}
+
+.stars3 {
+    background-size: 260px 260px;
+    opacity: 0.1;
+    animation-duration: 160s;
+}
+
+@keyframes drift {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-120px);
+    }
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    width: min(900px, calc(100% - 32px));
+
+    margin: auto;
+
+    padding: 70px 0 50px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+.eyebrow {
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    opacity: 0.55;
+
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: clamp(42px, 8vw, 82px);
+
+    line-height: 0.9;
+
+    font-weight: 800;
+
+    letter-spacing: -4px;
+}
+
+h1 span {
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #9ea8ff,
+        #d3a6ff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    margin-top: 25px;
+
+    color: #9999ad;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   TODAY
+========================= */
+
+.today-section {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.date-label {
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #8888a0;
+}
+
+.today-date {
+    font-size: clamp(26px, 5vw, 42px);
+
+    font-weight: 700;
+
+    margin-top: 8px;
+}
+
+.day-number {
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 6px 12px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 100px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+    color: #a8a8bd;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background: rgba(15, 15, 27, 0.75);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 22px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.25);
+
+    padding: 30px;
+}
+
+
+/* =========================
+   DISCOVERY
+========================= */
+
+.discovery-card {
+    margin-bottom: 45px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.discovery-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    background: #776cff;
+
+    filter: blur(100px);
+
+    opacity: 0.12;
+
+    top: -100px;
+    right: -100px;
+}
+
+.card-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #a6a6bc;
+}
+
+.card-top span:first-child {
+    font-size: 20px;
+}
+
+.discovery-card h2 {
+    font-size: clamp(24px, 4vw, 34px);
+
+    margin-top: 22px;
+
+    line-height: 1.15;
+}
+
+.discovery-card p {
+    color: #a6a6b8;
+
+    line-height: 1.7;
+
+    margin-top: 15px;
+
+    font-size: 15px;
+}
+
+.divider {
+    height: 1px;
+
+    background: rgba(255,255,255,0.08);
+
+    margin: 25px 0;
+}
+
+.pun-label {
+    font-family: "Space Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #8888a0;
+}
+
+.pun {
+    color: white !important;
+
+    font-size: 17px !important;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+.events-section {
+    margin-bottom: 45px;
+}
+
+.section-title {
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    color: #9b9bad;
+
+    margin-bottom: 18px;
+}
+
+.events {
+    display: grid;
+
+    gap: 10px;
+}
+
+.event {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 20px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    border-radius: 14px;
+
+    transition: 0.2s;
+}
+
+.event:hover {
+    background: rgba(255,255,255,0.07);
+
+    transform: translateY(-2px);
+}
+
+.event-name {
+    font-weight: 600;
+
+    font-size: 14px;
+}
+
+.event-date {
+    font-family: "Space Mono", monospace;
+
+    color: #85859a;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+.countdown {
+    text-align: right;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    color: #b9b2ff;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   MOON
+========================= */
+
+.moon-card {
+    margin-bottom: 60px;
+}
+
+.moon-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.small-label {
+    font-family: "Space Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #85859a;
+}
+
+.moon-card h2 {
+    margin-top: 10px;
+
+    font-size: 25px;
+}
+
+.moon-card p {
+    color: #85859a;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+}
+
+.moon {
+    font-size: 70px;
+
+    filter: drop-shadow(0 0 25px rgba(255,255,255,0.15));
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    color: #666678;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+.footer-line {
+    width: 40px;
+
+    height: 1px;
+
+    background: #444452;
+
+    margin: 0 auto 20px;
+}
+
+footer span {
+    display: block;
+
+    margin-top: 12px;
+
+    opacity: 0.5;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    main {
+        padding-top: 45px;
+    }
+
+    header {
+        margin-bottom: 45px;
+    }
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .event {
+        align-items: flex-start;
+    }
+
+    .countdown {
+        margin-left: 15px;
+    }
+
+    .moon {
+        font-size: 55px;
+    }
+
+}
