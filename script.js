@@ -1,11 +1,14 @@
-/* =====================================
+```javascript
+/* ==========================================
    KRISH'S COSMIC CALENDAR
-===================================== */
+   Time zone: Markham, Ontario
+   IANA timezone: America/Toronto
+========================================== */
 
 
-/* =====================================
-   DAILY FACTS
-===================================== */
+/* ==========================================
+   DAILY DISCOVERIES
+========================================== */
 
 const dailyFacts = [
 
@@ -44,7 +47,7 @@ const dailyFacts = [
     {
         category: "MOON",
         icon: "🌙",
-        title: "The Moon is slowly leaving us.",
+        title: "The Moon is slowly moving away from Earth.",
         text: "The Moon moves away from Earth by roughly 3.8 centimetres every year.",
         pun: "It just needs some space."
     },
@@ -53,7 +56,7 @@ const dailyFacts = [
         category: "ROCKETS",
         icon: "🚀",
         title: "Rockets don't need air to fly.",
-        text: "A rocket accelerates by throwing exhaust gases backward, allowing it to work in the vacuum of space.",
+        text: "Rockets accelerate by throwing exhaust gases backward, allowing them to work in the vacuum of space.",
         pun: "Newton really launched that idea."
     },
 
@@ -68,8 +71,8 @@ const dailyFacts = [
     {
         category: "STARS",
         icon: "⭐",
-        title: "Some stars are gigantic.",
-        text: "Some known red supergiants are hundreds of times wider than our Sun.",
+        title: "Some stars are absolutely gigantic.",
+        text: "Some red supergiants are hundreds of times wider than our Sun.",
         pun: "That's one stellar growth spurt."
     },
 
@@ -85,15 +88,15 @@ const dailyFacts = [
         category: "SPACE",
         icon: "🌌",
         title: "Space isn't completely silent.",
-        text: "Sound can't travel through the vacuum of space, but scientists can convert other space signals into sounds we can hear.",
+        text: "Sound cannot travel through the vacuum of space, but scientists can convert other space signals into sounds we can hear.",
         pun: "The universe just needed a microphone."
     },
 
     {
         category: "AVIATION",
         icon: "🛫",
-        title: "Planes can fly incredibly high.",
-        text: "Commercial airliners commonly cruise around 10–12 kilometres above Earth's surface.",
+        title: "Commercial planes fly surprisingly high.",
+        text: "Most airliners cruise around 10–12 kilometres above Earth's surface.",
         pun: "Talk about rising to the occasion."
     },
 
@@ -101,148 +104,618 @@ const dailyFacts = [
         category: "BLACK HOLES",
         icon: "🕳️",
         title: "Black holes aren't cosmic vacuum cleaners.",
-        text: "A black hole's gravity works like any other object's gravity at the same distance.",
+        text: "A black hole's gravity behaves like any other object's gravity at the same distance.",
         pun: "No need to suck it up."
     },
 
     {
-        category: "SPACE",
-        icon: "🚀",
-        title: "There are more stars than you can imagine.",
-        text: "Our Milky Way galaxy alone is estimated to contain hundreds of billions of stars.",
-        pun: "That's a lot of star power."
+        category: "GALAXIES",
+        icon: "🌌",
+        title: "The Milky Way is enormous.",
+        text: "Our galaxy is roughly 100,000 light-years across.",
+        pun: "That's one seriously long commute."
     }
 
 ];
 
 
-/* =====================================
+/* ==========================================
    ASTRONOMICAL EVENTS
-===================================== */
+   Dates are stored as local calendar dates
+   rather than UTC timestamps.
+========================================== */
 
-const events = [
+const astronomyEvents = [
 
     {
+        date: "2026-08-27",
         name: "Partial Lunar Eclipse",
         emoji: "🌑",
-        date: "2026-08-28"
+        type: "eclipse",
+        description: "A partial lunar eclipse is visible from much of North America."
     },
 
     {
+        date: "2026-08-28",
+        name: "Partial Lunar Eclipse",
+        emoji: "🌑",
+        type: "eclipse",
+        description: "The August lunar eclipse continues into August 28."
+    },
+
+    {
+        date: "2026-09-23",
+        name: "September Equinox",
+        emoji: "🍂",
+        type: "season",
+        description: "The Sun crosses the celestial equator."
+    },
+
+    {
+        date: "2026-10-07",
+        name: "Full Moon",
+        emoji: "🌕",
+        type: "moon",
+        description: "A full Moon lights up the night sky."
+    },
+
+    {
+        date: "2026-10-21",
         name: "Orionid Meteor Shower",
         emoji: "☄️",
-        date: "2026-10-21"
+        type: "meteor",
+        description: "The Orionids reach their peak."
     },
 
     {
+        date: "2026-11-17",
         name: "Leonid Meteor Shower",
         emoji: "☄️",
-        date: "2026-11-17"
+        type: "meteor",
+        description: "The Leonids reach their peak."
     },
 
     {
+        date: "2026-11-24",
         name: "Supermoon",
         emoji: "🌕",
-        date: "2026-11-24"
+        type: "moon",
+        description: "A full Moon occurs close to the Moon's closest approach to Earth."
     },
 
     {
+        date: "2026-12-13",
         name: "Geminid Meteor Shower",
         emoji: "☄️",
-        date: "2026-12-13"
+        type: "meteor",
+        description: "The Geminids reach their peak."
+    },
+
+    {
+        date: "2026-12-21",
+        name: "December Solstice",
+        emoji: "❄️",
+        type: "season",
+        description: "Winter officially begins in the Northern Hemisphere."
     }
 
 ];
 
 
-/* =====================================
-   GET TODAY
-===================================== */
+/* ==========================================
+   MARKHAM DATE
+========================================== */
 
-const today = new Date();
-
-const startOfYear = new Date(today.getFullYear(), 0, 0);
-
-const diff =
-    today - startOfYear;
-
-const oneDay =
-    1000 * 60 * 60 * 24;
-
-const dayOfYear =
-    Math.floor(diff / oneDay);
+const TIME_ZONE = "America/Toronto";
 
 
-/* =====================================
-   DISPLAY DATE
-===================================== */
+function getMarkhamDateParts(date = new Date()) {
 
-const dateFormatter =
-    new Intl.DateTimeFormat(
-        "en-US",
+    const parts = new Intl.DateTimeFormat(
+        "en-CA",
         {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric"
+            timeZone: TIME_ZONE,
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
         }
+    ).formatToParts(date);
+
+    const result = {};
+
+    parts.forEach(part => {
+        if (part.type !== "literal") {
+            result[part.type] = part.value;
+        }
+    });
+
+    return {
+        year: Number(result.year),
+        month: Number(result.month),
+        day: Number(result.day)
+    };
+}
+
+
+const markhamToday =
+    getMarkhamDateParts();
+
+
+/* ==========================================
+   DATE HELPERS
+========================================== */
+
+function dateKey(year, month, day) {
+
+    return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+}
+
+
+function daysBetween(dateA, dateB) {
+
+    const a = Date.UTC(
+        dateA.year,
+        dateA.month - 1,
+        dateA.day
     );
 
-document.getElementById("todayDate").textContent =
-    dateFormatter.format(today);
+    const b = Date.UTC(
+        dateB.year,
+        dateB.month - 1,
+        dateB.day
+    );
 
-document.getElementById("dayNumber").textContent =
-    `DAY ${dayOfYear}`;
+    return Math.round(
+        (b - a) / 86400000
+    );
 
-
-/* =====================================
-   DAILY FACT
-===================================== */
-
-const fact =
-    dailyFacts[(dayOfYear - 1) % dailyFacts.length];
-
-document.getElementById("factIcon").textContent =
-    fact.icon;
-
-document.getElementById("factCategory").textContent =
-    fact.category;
-
-document.getElementById("factTitle").textContent =
-    fact.title;
-
-document.getElementById("factText").textContent =
-    fact.text;
-
-document.getElementById("punText").textContent =
-    fact.pun;
+}
 
 
-/* =====================================
+/* ==========================================
+   CURRENT MONTH
+========================================== */
+
+let displayedYear =
+    markhamToday.year;
+
+let displayedMonth =
+    markhamToday.month - 1;
+
+
+/* ==========================================
+   CALENDAR ELEMENTS
+========================================== */
+
+const calendar =
+    document.getElementById("calendar");
+
+const monthTitle =
+    document.getElementById("monthTitle");
+
+
+/* ==========================================
+   FIND EVENT
+========================================== */
+
+function getEventsForDate(key) {
+
+    return astronomyEvents.filter(
+        event => event.date === key
+    );
+
+}
+
+
+/* ==========================================
+   DRAW CALENDAR
+========================================== */
+
+function renderCalendar() {
+
+    calendar.innerHTML = "";
+
+    const firstDay =
+        new Date(
+            displayedYear,
+            displayedMonth,
+            1
+        ).getDay();
+
+    const daysInMonth =
+        new Date(
+            displayedYear,
+            displayedMonth + 1,
+            0
+        ).getDate();
+
+
+    const monthName =
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                month: "long",
+                year: "numeric"
+            }
+        ).format(
+            new Date(
+                displayedYear,
+                displayedMonth,
+                1
+            )
+        );
+
+    monthTitle.textContent =
+        monthName;
+
+
+    /* Empty cells before day 1 */
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "day empty";
+
+        calendar.appendChild(empty);
+
+    }
+
+
+    /* Actual days */
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const cell =
+            document.createElement("div");
+
+        cell.className =
+            "day";
+
+
+        const key =
+            dateKey(
+                displayedYear,
+                displayedMonth + 1,
+                day
+            );
+
+
+        const number =
+            document.createElement("div");
+
+        number.className =
+            "day-number";
+
+        number.textContent =
+            day;
+
+        cell.appendChild(number);
+
+
+        /* Today */
+
+        if (
+            displayedYear === markhamToday.year &&
+            displayedMonth === markhamToday.month - 1 &&
+            day === markhamToday.day
+        ) {
+
+            cell.classList.add("today");
+
+        }
+
+
+        /* Events */
+
+        const events =
+            getEventsForDate(key);
+
+        if (events.length > 0) {
+
+            const dot =
+                document.createElement("div");
+
+            dot.className =
+                "event-dot";
+
+            if (
+                events.some(
+                    event => event.type === "eclipse"
+                )
+            ) {
+
+                dot.classList.add("eclipse");
+
+            }
+
+            cell.appendChild(dot);
+
+        }
+
+
+        /* Click */
+
+        cell.addEventListener(
+            "click",
+            () => showSelectedDate(
+                displayedYear,
+                displayedMonth,
+                day
+            )
+        );
+
+
+        calendar.appendChild(cell);
+
+    }
+
+}
+
+
+/* ==========================================
+   SHOW SELECTED DATE
+========================================== */
+
+function showSelectedDate(
+    year,
+    month,
+    day
+) {
+
+    const selectedKey =
+        dateKey(
+            year,
+            month + 1,
+            day
+        );
+
+    const events =
+        getEventsForDate(
+            selectedKey
+        );
+
+
+    const title =
+        document.getElementById(
+            "factTitle"
+        );
+
+    const text =
+        document.getElementById(
+            "factText"
+        );
+
+    const icon =
+        document.getElementById(
+            "factIcon"
+        );
+
+    const category =
+        document.getElementById(
+            "factCategory"
+        );
+
+    const pun =
+        document.getElementById(
+            "punText"
+        );
+
+
+    /* Pick daily fact */
+
+    const dayIndex =
+        Math.floor(
+            (
+                Date.UTC(
+                    year,
+                    month,
+                    day
+                )
+                -
+                Date.UTC(
+                    year,
+                    0,
+                    1
+                )
+            )
+            /
+            86400000
+        );
+
+
+    const fact =
+        dailyFacts[
+            Math.abs(dayIndex)
+            % dailyFacts.length
+        ];
+
+
+    icon.textContent =
+        fact.icon;
+
+    category.textContent =
+        fact.category;
+
+    title.textContent =
+        fact.title;
+
+    text.textContent =
+        fact.text;
+
+    pun.textContent =
+        fact.pun;
+
+
+    /* If there is an event, prioritize it */
+
+    if (events.length > 0) {
+
+        const event =
+            events[0];
+
+        icon.textContent =
+            event.emoji;
+
+        category.textContent =
+            "ASTRONOMICAL EVENT";
+
+        title.textContent =
+            event.name;
+
+        text.textContent =
+            event.description;
+
+        pun.textContent =
+            getEventPun(event.type);
+
+    }
+
+
+    const selectedDate =
+        new Date(
+            year,
+            month,
+            day
+        );
+
+
+    document.getElementById(
+        "todayDate"
+    ).textContent =
+        selectedDate.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+}
+
+
+/* ==========================================
+   EVENT PUNS
+========================================== */
+
+function getEventPun(type) {
+
+    const puns = {
+
+        eclipse:
+            "Looks like the Moon is trying to steal the spotlight.",
+
+        meteor:
+            "These rocks are really making an entrance.",
+
+        moon:
+            "That's one small step for the Moon...",
+
+        season:
+            "The Earth is really changing its angle on things."
+
+    };
+
+    return puns[type]
+        || "That's out of this world.";
+
+}
+
+
+/* ==========================================
    UPCOMING EVENTS
-===================================== */
+========================================== */
 
-const eventsContainer =
-    document.getElementById("eventsContainer");
+function renderUpcomingEvents() {
 
-events
-    .filter(event => {
-        return new Date(event.date) >= today;
-    })
-    .slice(0, 5)
-    .forEach(event => {
+    const container =
+        document.getElementById(
+            "eventsContainer"
+        );
+
+    container.innerHTML = "";
+
+
+    const today =
+        markhamToday;
+
+
+    const upcoming =
+        astronomyEvents
+            .map(event => {
+
+                const [year, month, day] =
+                    event.date
+                        .split("-")
+                        .map(Number);
+
+                return {
+                    ...event,
+                    difference:
+                        daysBetween(
+                            today,
+                            {
+                                year,
+                                month,
+                                day
+                            }
+                        )
+                };
+
+            })
+            .filter(
+                event => event.difference >= 0
+            )
+            .slice(0, 5);
+
+
+    upcoming.forEach(event => {
+
+        const element =
+            document.createElement("div");
+
+        element.className =
+            "event";
+
+
+        let countdown;
+
+        if (event.difference === 0) {
+
+            countdown = "TODAY";
+
+        } else if (
+            event.difference === 1
+        ) {
+
+            countdown = "TOMORROW";
+
+        } else {
+
+            countdown =
+                `${event.difference} DAYS`;
+
+        }
+
 
         const eventDate =
-            new Date(event.date);
-
-        const difference =
-            eventDate - today;
-
-        const days =
-            Math.ceil(
-                difference /
-                (1000 * 60 * 60 * 24)
+            new Date(
+                `${event.date}T12:00:00`
             );
+
 
         const formattedDate =
             eventDate.toLocaleDateString(
@@ -253,32 +726,14 @@ events
                 }
             );
 
-        let countdown;
-
-        if (days === 0) {
-            countdown = "TODAY";
-        }
-
-        else if (days === 1) {
-            countdown = "TOMORROW";
-        }
-
-        else {
-            countdown = `${days} DAYS`;
-        }
-
-
-        const element =
-            document.createElement("div");
-
-        element.className = "event";
 
         element.innerHTML = `
 
             <div>
 
                 <div class="event-name">
-                    ${event.emoji} ${event.name}
+                    ${event.emoji}
+                    ${event.name}
                 </div>
 
                 <div class="event-date">
@@ -293,83 +748,176 @@ events
 
         `;
 
-        eventsContainer.appendChild(element);
+
+        container.appendChild(element);
 
     });
-
-
-/* =====================================
-   MOON PHASE
-===================================== */
-
-function getMoonPhase(date) {
-
-    const knownNewMoon =
-        new Date("2000-01-06T18:14:00Z");
-
-    const synodicMonth =
-        29.530588853;
-
-    const days =
-        (date - knownNewMoon) /
-        (1000 * 60 * 60 * 24);
-
-    const phase =
-        ((days % synodicMonth) +
-        synodicMonth) %
-        synodicMonth;
-
-    return phase;
 
 }
 
 
-function moonInfo(date) {
+/* ==========================================
+   MOON PHASE
+========================================== */
+
+function getMoonPhase(date) {
+
+    const knownNewMoon =
+        Date.UTC(
+            2000,
+            0,
+            6,
+            18,
+            14
+        );
+
+    const synodicMonth =
+        29.530588853;
+
+    const current =
+        Date.UTC(
+            date.year,
+            date.month - 1,
+            date.day
+        );
+
+    const days =
+        (
+            current -
+            knownNewMoon
+        )
+        /
+        86400000;
+
+    return (
+        (
+            days %
+            synodicMonth
+        )
+        +
+        synodicMonth
+    )
+    %
+    synodicMonth;
+
+}
+
+
+function getMoonInfo(date) {
 
     const phase =
         getMoonPhase(date);
 
-    if (phase < 1.85) {
+
+    if (phase < 1.85)
         return ["🌑", "New Moon"];
-    }
 
-    if (phase < 7.38) {
+    if (phase < 7.38)
         return ["🌒", "Waxing Crescent"];
-    }
 
-    if (phase < 9.23) {
+    if (phase < 9.23)
         return ["🌓", "First Quarter"];
-    }
 
-    if (phase < 14.77) {
+    if (phase < 14.77)
         return ["🌔", "Waxing Gibbous"];
-    }
 
-    if (phase < 16.61) {
+    if (phase < 16.61)
         return ["🌕", "Full Moon"];
-    }
 
-    if (phase < 22.15) {
+    if (phase < 22.15)
         return ["🌖", "Waning Gibbous"];
-    }
 
-    if (phase < 24.00) {
+    if (phase < 24.00)
         return ["🌗", "Last Quarter"];
-    }
 
     return ["🌘", "Waning Crescent"];
 
 }
 
 
-const moon =
-    moonInfo(today);
+function renderMoon() {
 
-document.getElementById("moonPhase").textContent =
-    `${moon[0]} ${moon[1]}`;
+    const moon =
+        getMoonInfo(
+            markhamToday
+        );
 
-document.getElementById("moonVisual").textContent =
-    moon[0];
 
-document.getElementById("moonDescription").textContent =
-    "The Moon is constantly changing as it orbits Earth.";
+    document.getElementById(
+        "moonPhase"
+    ).textContent =
+        `${moon[0]} ${moon[1]}`;
+
+
+    document.getElementById(
+        "moonVisual"
+    ).textContent =
+        moon[0];
+
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+document
+    .getElementById("previousMonth")
+    .addEventListener(
+        "click",
+        () => {
+
+            displayedMonth--;
+
+            if (displayedMonth < 0) {
+
+                displayedMonth = 11;
+
+                displayedYear--;
+
+            }
+
+            renderCalendar();
+
+        }
+    );
+
+
+document
+    .getElementById("nextMonth")
+    .addEventListener(
+        "click",
+        () => {
+
+            displayedMonth++;
+
+            if (displayedMonth > 11) {
+
+                displayedMonth = 0;
+
+                displayedYear++;
+
+            }
+
+            renderCalendar();
+
+        }
+    );
+
+
+/* ==========================================
+   START
+========================================== */
+
+renderCalendar();
+
+showSelectedDate(
+    markhamToday.year,
+    markhamToday.month - 1,
+    markhamToday.day
+);
+
+renderUpcomingEvents();
+
+renderMoon();
+```
