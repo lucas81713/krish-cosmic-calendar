@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Krish's Cosmic Calendar</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Animated stars -->
+    <div class="stars"></div>
+    <div class="stars stars2"></div>
+    <div class="stars stars3"></div>
+
+    <main>
+
+        <!-- Header -->
+        <header>
+            <div class="eyebrow">THE DAILY UNIVERSE</div>
+
+            <h1>KRISH'S<br><span>COSMIC CALENDAR</span></h1>
+
+            <p class="subtitle">
+                A little piece of the universe, every day.
+            </p>
+        </header>
+
+
+        <!-- Today's date -->
+        <section class="today-section">
+
+            <div class="date-label">TODAY</div>
+
+            <div id="todayDate" class="today-date">
+                Loading...
+            </div>
+
+            <div id="dayNumber" class="day-number">
+                DAY 1
+            </div>
+
+        </section>
+
+
+        <!-- Daily discovery -->
+        <section class="card discovery-card">
+
+            <div class="card-top">
+                <span id="factIcon">🔭</span>
+                <span id="factCategory">SPACE</span>
+            </div>
+
+            <h2 id="factTitle">
+                Loading today's discovery...
+            </h2>
+
+            <p id="factText">
+                The universe is preparing something interesting.
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="pun-label">
+                💬 COSMIC PUN
+            </div>
+
+            <p id="punText" class="pun">
+                Loading...
+            </p>
+
+        </section>
+
+
+        <!-- Upcoming events -->
+        <section class="events-section">
+
+            <div class="section-title">
+                <span>🚀</span>
+                UPCOMING EVENTS
+            </div>
+
+            <div id="eventsContainer" class="events">
+                <!-- JavaScript adds events here -->
+            </div>
+
+        </section>
+
+
+        <!-- Moon -->
+        <section class="card moon-card">
+
+            <div class="moon-info">
+
+                <div>
+                    <div class="small-label">TODAY'S MOON</div>
+
+                    <h2 id="moonPhase">
+                        🌙 Loading...
+                    </h2>
+
+                    <p id="moonDescription">
+                        Checking the Moon...
+                    </p>
+                </div>
+
+                <div id="moonVisual" class="moon">
+                    🌙
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <div class="footer-line"></div>
+
+            <p>
+                KEEP LOOKING UP.
+            </p>
+
+            <span>
+                KRISH // COSMIC CALENDAR
+            </span>
+
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
