@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,112 +12,152 @@
 
 <body>
 
-    <!-- Animated stars -->
     <div class="stars"></div>
-    <div class="stars stars2"></div>
-    <div class="stars stars3"></div>
+    <div class="stars stars-two"></div>
+    <div class="stars stars-three"></div>
 
     <main>
 
-        <!-- Header -->
+        <!-- HEADER -->
         <header>
             <div class="eyebrow">THE DAILY UNIVERSE</div>
 
-            <h1>KRISH'S<br><span>COSMIC CALENDAR</span></h1>
+            <h1>
+                KRISH'S
+                <span>COSMIC CALENDAR</span>
+            </h1>
 
-            <p class="subtitle">
-                A little piece of the universe, every day.
+            <p>
+                One small discovery. Every day.
             </p>
         </header>
 
 
-        <!-- Today's date -->
+        <!-- CALENDAR -->
+        <section class="calendar-card">
+
+            <div class="calendar-header">
+
+                <button id="previousMonth" class="month-button">
+                    ←
+                </button>
+
+                <div>
+                    <div class="month-title" id="monthTitle">
+                        August 2026
+                    </div>
+
+                    <div class="location">
+                        📍 MARKHAM · EST
+                    </div>
+                </div>
+
+                <button id="nextMonth" class="month-button">
+                    →
+                </button>
+
+            </div>
+
+
+            <div class="weekdays">
+                <div>SUN</div>
+                <div>MON</div>
+                <div>TUE</div>
+                <div>WED</div>
+                <div>THU</div>
+                <div>FRI</div>
+                <div>SAT</div>
+            </div>
+
+
+            <div id="calendar" class="calendar">
+                <!-- JavaScript generates this -->
+            </div>
+
+        </section>
+
+
+        <!-- TODAY -->
         <section class="today-section">
 
-            <div class="date-label">TODAY</div>
+            <div class="today-label">
+                TODAY'S DISCOVERY
+            </div>
 
-            <div id="todayDate" class="today-date">
+            <div class="today-date" id="todayDate">
                 Loading...
             </div>
 
-            <div id="dayNumber" class="day-number">
-                DAY 1
+            <div class="discovery-card">
+
+                <div class="discovery-top">
+                    <span id="factIcon">🔭</span>
+                    <span id="factCategory">SPACE</span>
+                </div>
+
+                <h2 id="factTitle">
+                    Loading...
+                </h2>
+
+                <p id="factText">
+                    Loading today's discovery...
+                </p>
+
+                <div class="divider"></div>
+
+                <div class="pun-label">
+                    💬 COSMIC PUN
+                </div>
+
+                <p id="punText" class="pun">
+                    Loading...
+                </p>
+
             </div>
 
         </section>
 
 
-        <!-- Daily discovery -->
-        <section class="card discovery-card">
-
-            <div class="card-top">
-                <span id="factIcon">🔭</span>
-                <span id="factCategory">SPACE</span>
-            </div>
-
-            <h2 id="factTitle">
-                Loading today's discovery...
-            </h2>
-
-            <p id="factText">
-                The universe is preparing something interesting.
-            </p>
-
-            <div class="divider"></div>
-
-            <div class="pun-label">
-                💬 COSMIC PUN
-            </div>
-
-            <p id="punText" class="pun">
-                Loading...
-            </p>
-
-        </section>
-
-
-        <!-- Upcoming events -->
-        <section class="events-section">
+        <!-- UPCOMING -->
+        <section class="upcoming-section">
 
             <div class="section-title">
                 <span>🚀</span>
-                UPCOMING EVENTS
+                UPCOMING
             </div>
 
-            <div id="eventsContainer" class="events">
-                <!-- JavaScript adds events here -->
+            <div id="eventsContainer" class="events"></div>
+
+        </section>
+
+
+        <!-- MOON -->
+        <section class="moon-card">
+
+            <div>
+
+                <div class="small-label">
+                    TODAY'S MOON
+                </div>
+
+                <h2 id="moonPhase">
+                    🌙 Loading...
+                </h2>
+
+                <p>
+                    The Moon changes appearance as it travels around Earth.
+                </p>
+
+            </div>
+
+            <div id="moonVisual" class="moon">
+                🌙
             </div>
 
         </section>
 
 
-        <!-- Moon -->
-        <section class="card moon-card">
-
-            <div class="moon-info">
-
-                <div>
-                    <div class="small-label">TODAY'S MOON</div>
-
-                    <h2 id="moonPhase">
-                        🌙 Loading...
-                    </h2>
-
-                    <p id="moonDescription">
-                        Checking the Moon...
-                    </p>
-                </div>
-
-                <div id="moonVisual" class="moon">
-                    🌙
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Footer -->
+        <!-- FOOTER -->
         <footer>
 
             <div class="footer-line"></div>
@@ -137,3 +178,4 @@
 
 </body>
 </html>
+```
