@@ -1,0 +1,25 @@
+{
+    "name": "Krish's Cosmic Calendar",
+    "short_name": "Cosmic Calendar",
+
+    "description": "A cosmic calendar made for Krish's 13th birthday.",
+
+    "start_url": "./",
+
+    "display": "standalone",
+
+    "background_color": "#05050b",
+
+    "theme_color": "#05050b",
+
+    "orientation": "portrait-primary",
+
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
