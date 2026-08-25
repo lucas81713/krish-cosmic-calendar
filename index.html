@@ -14,10 +14,9 @@
 
 
     <!-- =========================================
-         APP / WEBSITE ICONS
+         ICONS / PWA
          ========================================= -->
 
-    <!-- Chrome / PWA -->
     <link
         rel="icon"
         type="image/png"
@@ -32,17 +31,11 @@
         href="icon-512.png"
     >
 
-    <!-- iPhone / iPad -->
     <link
         rel="apple-touch-icon"
         sizes="180x180"
         href="icon-180.png"
     >
-
-
-    <!-- =========================================
-         PWA
-         ========================================= -->
 
     <link
         rel="manifest"
@@ -51,11 +44,6 @@
 
     <meta
         name="theme-color"
-        content="#05050b"
-    >
-
-    <meta
-        name="background-color"
         content="#05050b"
     >
 
@@ -76,8 +64,27 @@
 
 
     <!-- =========================================
-         CSS
+         FONT
          ========================================= -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- CSS -->
 
     <link
         rel="stylesheet"
@@ -91,51 +98,68 @@
 
 
     <!-- =========================================
+         TOP BAR
+         ========================================= -->
+
+    <div class="top-bar">
+
+        <span>
+            Krish's Cosmic Calendar
+        </span>
+
+        <span class="top-menu">
+            ⋮
+        </span>
+
+    </div>
+
+
+
+    <!-- =========================================
          HEADER
          ========================================= -->
 
-    <header class="header">
+    <header class="hero">
 
-        <div class="header-icon">
-            🚀
-        </div>
+        <h1>
+            Krish's Cosmic Calendar
+        </h1>
 
-        <div>
-
-            <h1>
-                Krish's Cosmic Calendar
-            </h1>
-
-            <p>
-                Your universe of discoveries.
-            </p>
-
-        </div>
+        <p>
+            Your universe of discoveries.
+        </p>
 
     </header>
 
 
 
     <!-- =========================================
-         MAIN CONTENT
+         MAIN
          ========================================= -->
 
     <main class="container">
 
 
         <!-- =====================================
-             TODAY
+             DAILY FACT
              ===================================== -->
 
         <section class="today-card">
 
+
             <div class="today-header">
 
-                <span id="factIcon">
-                    🌌
-                </span>
 
-                <div>
+                <div
+                    class="fact-icon"
+                    id="factIcon"
+                >
+                    🌌
+                </div>
+
+
+                <div class="fact-heading">
+
 
                     <div
                         id="factCategory"
@@ -144,23 +168,29 @@
                         LOADING
                     </div>
 
+
                     <h2 id="factTitle">
                         Loading...
                     </h2>
 
+
                 </div>
+
 
             </div>
 
 
-            <p id="factText">
+            <p
+                id="factText"
+                class="fact-text"
+            >
                 Loading today's cosmic discovery...
             </p>
 
 
             <div class="pun">
 
-                <span>
+                <span class="pun-icon">
                     💬
                 </span>
 
@@ -170,19 +200,22 @@
 
             </div>
 
+
         </section>
 
 
 
         <!-- =====================================
-             DATE
+             TODAY'S DATE
              ===================================== -->
 
         <section class="date-section">
 
+
             <div class="date-icon">
                 📅
             </div>
+
 
             <div>
 
@@ -196,6 +229,7 @@
 
             </div>
 
+
         </section>
 
 
@@ -208,6 +242,7 @@
 
 
             <div class="calendar-header">
+
 
                 <button
                     id="previousMonth"
@@ -231,11 +266,10 @@
                     →
                 </button>
 
+
             </div>
 
 
-
-            <!-- Weekday names -->
 
             <div class="weekdays">
 
@@ -250,8 +284,6 @@
             </div>
 
 
-
-            <!-- JavaScript creates calendar days here -->
 
             <div
                 id="calendar"
@@ -268,6 +300,7 @@
              ===================================== -->
 
         <section class="events-card">
+
 
             <div class="section-title">
 
@@ -293,6 +326,7 @@
 
             </div>
 
+
         </section>
 
 
@@ -302,6 +336,7 @@
              ===================================== -->
 
         <section class="moon-card">
+
 
             <div class="moon-visual">
 
@@ -327,15 +362,17 @@
 
             </div>
 
+
         </section>
 
 
 
         <!-- =====================================
-             BIRTHDAY MESSAGE
+             KRISH-13
              ===================================== -->
 
         <section class="mission-card">
+
 
             <div class="mission-icon">
                 🛰️
@@ -358,6 +395,7 @@
                 </p>
 
             </div>
+
 
         </section>
 
@@ -384,16 +422,12 @@
 
 
 
-    <!-- =========================================
-         JAVASCRIPT
-         ========================================= -->
+    <!-- JAVASCRIPT -->
 
     <script src="script.js"></script>
 
 
-    <!-- =========================================
-         SERVICE WORKER
-         ========================================= -->
+    <!-- SERVICE WORKER -->
 
     <script>
 
