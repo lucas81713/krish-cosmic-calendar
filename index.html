@@ -1,1136 +1,313 @@
-/* =========================================
-   KRISH'S COSMIC CALENDAR
-   SIMPLE STARFIELD VERSION
-   ========================================= */
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-
-    color: #f5f5fa;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-
-    /* Deep space */
-    background:
-        radial-gradient(
-            ellipse at 20% 20%,
-            rgba(55, 35, 110, 0.22),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            ellipse at 80% 70%,
-            rgba(25, 55, 130, 0.18),
-            transparent 40%
-        ),
-
-        radial-gradient(
-            ellipse at 45% 100%,
-            rgba(55, 30, 110, 0.15),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            145deg,
-            #090a18,
-            #03040b 50%,
-            #010207
-        );
-
-    background-attachment: fixed;
-}
-
-
-/* =========================================
-   RANDOM-LOOKING STAR FIELD
-   ========================================= */
-
-body::before {
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: -1;
-
-    pointer-events: none;
-
-    background-image:
-
-        /* Tiny stars */
-
-        radial-gradient(
-            1px 1px at 3% 7%,
-            rgba(255,255,255,.9),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 7% 34%,
-            rgba(190,210,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 11% 78%,
-            rgba(255,255,255,.75),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 16% 16%,
-            rgba(255,225,200,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 20% 56%,
-            rgba(190,205,255,.85),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 24% 91%,
-            rgba(255,255,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 29% 31%,
-            rgba(255,255,255,.9),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 34% 70%,
-            rgba(200,220,255,.75),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 38% 12%,
-            rgba(255,230,210,.85),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 42% 45%,
-            rgba(255,255,255,.85),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 47% 83%,
-            rgba(190,210,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 52% 22%,
-            rgba(255,255,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 57% 64%,
-            rgba(255,225,200,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 61% 5%,
-            rgba(200,215,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 66% 39%,
-            rgba(255,255,255,.9),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 70% 88%,
-            rgba(200,215,255,.75),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 75% 18%,
-            rgba(255,235,220,.85),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 79% 53%,
-            rgba(255,255,255,.85),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 84% 8%,
-            rgba(200,220,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 88% 72%,
-            rgba(255,255,255,.85),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 93% 42%,
-            rgba(255,225,205,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 97% 91%,
-            rgba(210,220,255,.8),
-            transparent
-        ),
-
-
-        /* Medium stars */
-
-        radial-gradient(
-            2px 2px at 8% 15%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 18% 42%,
-            rgba(220,230,255,.95),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 31% 8%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 45% 58%,
-            rgba(255,245,235,.9),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 58% 31%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 72% 67%,
-            rgba(215,225,255,.95),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 87% 25%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 95% 61%,
-            rgba(255,240,225,.9),
-            transparent
-        ),
-
-
-        /* Bright stars */
-
-        radial-gradient(
-            3px 3px at 13% 52%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            3px 3px at 36% 87%,
-            rgba(210,225,255,1),
-            transparent
-        ),
-
-        radial-gradient(
-            3px 3px at 63% 14%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            3px 3px at 91% 84%,
-            rgba(255,235,220,1),
-            transparent
-        );
-
-    animation: starsTwinkle 9s ease-in-out infinite;
-}
-
-
-@keyframes starsTwinkle {
-
-    0% {
-        opacity: 0.65;
-    }
-
-    50% {
-        opacity: 1;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    100% {
-        opacity: 0.65;
-    }
-}
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-/* =========================================
-   TOP BAR
-   ========================================= */
+    <meta
+        name="theme-color"
+        content="#03040b"
+    >
 
-.top-bar {
-    position: sticky;
+    <!-- iPhone / iPad Home Screen -->
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="icon-180.png"
+    >
 
-    top: 0;
+    <!-- Chrome / Android -->
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="icon-192.png"
+    >
 
-    z-index: 20;
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href="icon-512.png"
+    >
 
-    height: 52px;
+    <title>Krish's Cosmic Calendar 🚀</title>
 
-    padding: 0 28px;
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
 
-    display: flex;
 
-    align-items: center;
+<body>
 
-    justify-content: space-between;
+    <!-- =====================================
+         TOP BAR
+         ===================================== -->
 
-    background:
-        rgba(2, 3, 8, 0.78);
+    <header class="top-bar">
 
-    border-bottom:
-        1px solid rgba(255,255,255,.06);
+        <div class="top-title">
+            🚀 KRISH'S COSMIC CALENDAR
+        </div>
 
-    backdrop-filter:
-        blur(18px);
+        <div class="top-location">
+            MARKHAM, ONTARIO • EARTH
+        </div>
 
-    -webkit-backdrop-filter:
-        blur(18px);
+    </header>
 
-    font-size: 13px;
-}
 
 
-.top-title {
-    font-weight: 700;
-    letter-spacing: .3px;
-}
+    <!-- =====================================
+         HERO
+         ===================================== -->
 
+    <section class="hero">
 
-.top-location {
-    color: #747d93;
-    font-size: 12px;
-}
+        <h1>
+            KRISH'S<br>
+            COSMIC CALENDAR
+        </h1>
 
+        <p>
+            A new little piece of the universe
+            every day. 🌌
+        </p>
 
-/* =========================================
-   HERO
-   ========================================= */
+    </section>
 
-.hero {
-    width:
-        min(
-            1100px,
-            calc(100% - 40px)
-        );
 
-    margin: auto;
 
-    padding-top: 48px;
+    <!-- =====================================
+         MAIN
+         ===================================== -->
 
-    text-align: center;
-}
+    <main class="container">
 
 
-.hero h1 {
-    margin: 0;
+        <!-- =====================================
+             TODAY'S FACT
+             ===================================== -->
 
-    font-size:
-        clamp(
-            52px,
-            7vw,
-            86px
-        );
+        <section class="today-card">
 
-    line-height: .95;
+            <div class="today-header">
 
-    font-weight: 750;
+                <div
+                    class="fact-icon"
+                    id="factIcon"
+                >
+                    🔭
+                </div>
 
-    letter-spacing: -4px;
-}
 
+                <div>
 
-.hero p {
-    margin-top: 25px;
+                    <div
+                        class="fact-category"
+                        id="factCategory"
+                    >
+                        SPACE
+                    </div>
 
-    color: #888fa4;
 
-    font-size: 16px;
+                    <h2
+                        class="fact-title"
+                        id="factTitle"
+                    >
+                        Loading today's fact...
+                    </h2>
 
-    line-height: 1.5;
-}
+                </div>
 
+            </div>
 
-/* =========================================
-   MAIN CONTAINER
-   ========================================= */
 
-.container {
-    width:
-        min(
-            1100px,
-            calc(100% - 40px)
-        );
+            <p
+                class="fact-text"
+                id="factText"
+            >
+                Loading...
+            </p>
 
-    margin: auto;
 
-    padding:
-        90px 0 70px;
-}
+            <div
+                class="pun"
+                id="punText"
+            >
+                Loading cosmic pun...
+            </div>
 
+        </section>
 
-/* =========================================
-   CARDS
-   ========================================= */
 
-.today-card,
-.calendar-card,
-.events-card,
-.moon-card {
 
-    background:
-        rgba(7, 9, 18, .82);
+        <!-- =====================================
+             CALENDAR TITLE
+             ===================================== -->
 
-    border:
-        1px solid
-        rgba(255,255,255,.09);
+        <div class="section-heading">
 
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.35);
+            <div class="section-heading-icon">
+                📅
+            </div>
 
-    backdrop-filter:
-        blur(18px);
+            <h2>
+                Cosmic Calendar
+            </h2>
 
-    -webkit-backdrop-filter:
-        blur(18px);
-}
+        </div>
 
 
-/* =========================================
-   DAILY FACT
-   ========================================= */
 
-.today-card {
-    padding: 30px;
-    border-radius: 20px;
-}
+        <!-- =====================================
+             CALENDAR
+             ===================================== -->
 
+        <section class="calendar-card">
 
-.today-header {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
 
+            <div class="calendar-header">
 
-.fact-icon {
-    width: 58px;
-    height: 58px;
+                <button
+                    id="previousMonth"
+                    aria-label="Previous month"
+                >
+                    ‹
+                </button>
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    flex-shrink: 0;
+                <h2 id="monthTitle">
+                    Loading...
+                </h2>
 
-    border-radius: 50%;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(80,110,220,.35),
-            rgba(20,30,70,.15)
-        );
+                <button
+                    id="nextMonth"
+                    aria-label="Next month"
+                >
+                    ›
+                </button>
 
-    border:
-        1px solid
-        rgba(120,150,255,.18);
+            </div>
 
-    font-size: 27px;
-}
 
 
-.fact-category {
-    margin-bottom: 6px;
+            <!-- DAYS OF WEEK -->
 
-    color: #83a9ff;
+            <div class="weekdays">
 
-    font-size: 12px;
+                <div>SUN</div>
+                <div>MON</div>
+                <div>TUE</div>
+                <div>WED</div>
+                <div>THU</div>
+                <div>FRI</div>
+                <div>SAT</div>
 
-    font-weight: 700;
+            </div>
 
-    letter-spacing: 1.1px;
-}
 
 
-.fact-title {
-    margin: 0;
+            <!-- JAVASCRIPT GENERATES DAYS HERE -->
 
-    font-size:
-        clamp(
-            24px,
-            3vw,
-            34px
-        );
+            <div
+                class="calendar"
+                id="calendar"
+            ></div>
 
-    letter-spacing: -.7px;
-}
 
+        </section>
 
-.fact-text {
-    margin:
-        25px 0 18px;
 
-    color: #bfc5d4;
 
-    font-size: 16px;
+        <!-- =====================================
+             UPCOMING EVENTS
+             ===================================== -->
 
-    line-height: 1.65;
-}
+        <section class="events-card">
 
+            <div class="section-title">
+                ☄️ Upcoming Cosmic Events
+            </div>
 
-.pun {
-    color: #bca9ff;
 
-    font-size: 15px;
+            <div id="eventsContainer">
 
-    font-style: italic;
-}
+                <div class="loading">
+                    Loading astronomical events...
+                </div>
 
+            </div>
 
-/* =========================================
-   SECTION HEADING
-   ========================================= */
+        </section>
 
-.section-heading {
-    display: flex;
 
-    align-items: center;
 
-    gap: 12px;
+        <!-- =====================================
+             MOON PHASE
+             ===================================== -->
 
-    margin:
-        40px 0 18px;
-}
+        <section class="moon-card">
 
+            <div
+                class="moon-visual"
+                id="moonVisual"
+            >
+                🌕
+            </div>
 
-.section-heading h2 {
-    margin: 0;
-    font-size: 24px;
-}
 
+            <div class="moon-info">
 
-.section-heading-icon {
-    font-size: 22px;
-}
+                <div class="fact-category">
+                    TODAY'S MOON
+                </div>
 
 
-/* =========================================
-   CALENDAR
-   ========================================= */
+                <h2 id="moonPhase">
+                    Loading moon phase...
+                </h2>
 
-.calendar-card {
-    padding: 25px;
-    border-radius: 20px;
-}
+            </div>
 
+        </section>
 
-.calendar-header {
-    display: grid;
 
-    grid-template-columns:
-        45px 1fr 45px;
+    </main>
 
-    align-items: center;
 
-    margin-bottom: 22px;
-}
 
+    <!-- =====================================
+         FOOTER
+         ===================================== -->
 
-.calendar-header h2 {
-    margin: 0;
+    <footer>
 
-    text-align: center;
+        Made for Krish's 13th birthday 🚀
 
-    font-size: 24px;
-}
+        <br>
 
+        From Markham, Ontario
+        to the rest of the universe. 🌎✨
 
-.calendar-header button {
-    width: 38px;
-    height: 38px;
+    </footer>
 
-    border:
-        1px solid
-        rgba(255,255,255,.08);
 
-    border-radius: 10px;
 
-    background:
-        rgba(255,255,255,.05);
+    <!-- =====================================
+         JAVASCRIPT
+         ===================================== -->
 
-    color: white;
+    <script src="script.js"></script>
 
-    font-size: 20px;
+</body>
 
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-
-.calendar-header button:hover {
-    background:
-        rgba(100,120,255,.18);
-
-    transform:
-        translateY(-1px);
-}
-
-
-.weekdays,
-.calendar {
-    display: grid;
-
-    grid-template-columns:
-        repeat(7,1fr);
-}
-
-
-.weekdays {
-    margin-bottom: 5px;
-}
-
-
-.weekdays div {
-    padding: 10px;
-
-    text-align: center;
-
-    color: #6f7689;
-
-    font-size: 10px;
-
-    letter-spacing: 1.3px;
-}
-
-
-.calendar {
-    border-top:
-        1px solid
-        rgba(255,255,255,.06);
-
-    border-left:
-        1px solid
-        rgba(255,255,255,.06);
-
-    border-radius: 10px;
-
-    overflow: hidden;
-}
-
-
-.day {
-    position: relative;
-
-    min-height: 88px;
-
-    padding: 13px;
-
-    border-right:
-        1px solid
-        rgba(255,255,255,.06);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
-
-    cursor: pointer;
-
-    transition:
-        background .2s;
-}
-
-
-.day:hover {
-    background:
-        rgba(100,120,255,.08);
-}
-
-
-.day.empty {
-    cursor: default;
-
-    background:
-        rgba(255,255,255,.005);
-}
-
-
-.day-number {
-    color: #d9dcea;
-    font-size: 15px;
-}
-
-
-.day.today {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(105,75,220,.42),
-            rgba(55,65,150,.28)
-        );
-
-    box-shadow:
-        inset 0 0 0 1px
-        rgba(130,110,255,.7);
-}
-
-
-.day.today .day-number {
-    color: white;
-    font-weight: 700;
-}
-
-
-/* =========================================
-   EVENT DOT
-   ========================================= */
-
-.event-dot {
-    position: absolute;
-
-    left: 50%;
-    bottom: 11px;
-
-    width: 6px;
-    height: 6px;
-
-    transform:
-        translateX(-50%);
-
-    border-radius: 50%;
-
-    background: #9270ff;
-
-    box-shadow:
-        0 0 10px
-        rgba(140,100,255,.8);
-}
-
-
-.event-dot.eclipse {
-    background: #ff6565;
-
-    box-shadow:
-        0 0 10px
-        rgba(255,70,70,.8);
-}
-
-
-/* =========================================
-   UPCOMING EVENTS
-   ========================================= */
-
-.events-card {
-    margin-top: 30px;
-
-    padding: 25px;
-
-    border-radius: 20px;
-}
-
-
-.section-title {
-    margin-bottom: 18px;
-
-    font-size: 22px;
-
-    font-weight: 700;
-}
-
-
-.event {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    padding: 16px 4px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
-}
-
-
-.event:last-child {
-    border-bottom: none;
-}
-
-
-.event-name {
-    color: #edf0f8;
-
-    font-weight: 650;
-}
-
-
-.event-date {
-    margin-top: 5px;
-
-    color: #70788d;
-
-    font-size: 13px;
-}
-
-
-.countdown {
-    color: #7fa8ff;
-
-    font-weight: 700;
-
-    font-size: 13px;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================
-   MOON
-   ========================================= */
-
-.moon-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-
-    margin-top: 30px;
-
-    padding: 28px;
-
-    border-radius: 20px;
-}
-
-
-.moon-visual {
-    width: 100px;
-    height: 100px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #ffffff,
-            #c9c9c9 35%,
-            #666666 65%,
-            #111111 72%
-        );
-
-    box-shadow:
-        0 0 35px
-        rgba(255,255,255,.13);
-}
-
-
-.moon-visual span {
-    font-size: 65px;
-}
-
-
-.moon-info h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-
-/* =========================================
-   FOOTER
-   ========================================= */
-
-footer {
-    padding:
-        35px 20px 50px;
-
-    text-align: center;
-
-    color: #687084;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-}
-
-
-/* =========================================
-   LOADING
-   ========================================= */
-
-.loading {
-    color: #747d93;
-
-    padding:
-        10px 0;
-}
-
-
-/* =========================================
-   SCROLLBAR
-   ========================================= */
-
-::-webkit-scrollbar {
-    width: 9px;
-}
-
-
-::-webkit-scrollbar-track {
-    background: #010205;
-}
-
-
-::-webkit-scrollbar-thumb {
-    background:
-        rgba(100,110,140,.35);
-
-    border-radius: 20px;
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 650px) {
-
-    .top-bar {
-        height: 48px;
-        padding: 0 16px;
-    }
-
-
-    .top-location {
-        display: none;
-    }
-
-
-    .hero {
-        width:
-            calc(100% - 28px);
-
-        padding-top: 40px;
-    }
-
-
-    .hero h1 {
-        font-size: 47px;
-
-        letter-spacing:
-            -2.5px;
-    }
-
-
-    .hero p {
-        font-size: 14px;
-    }
-
-
-    .container {
-        width:
-            calc(100% - 22px);
-
-        padding-top: 60px;
-    }
-
-
-    .today-card,
-    .calendar-card,
-    .events-card,
-    .moon-card {
-        border-radius: 16px;
-    }
-
-
-    .today-card {
-        padding: 22px;
-    }
-
-
-    .today-header {
-        gap: 13px;
-    }
-
-
-    .fact-icon {
-        width: 48px;
-        height: 48px;
-
-        font-size: 22px;
-    }
-
-
-    .fact-title {
-        font-size: 22px;
-    }
-
-
-    .fact-text {
-        font-size: 15px;
-    }
-
-
-    .calendar-card {
-        padding: 12px;
-    }
-
-
-    .calendar-header h2 {
-        font-size: 20px;
-    }
-
-
-    .calendar-header button {
-        width: 35px;
-        height: 35px;
-    }
-
-
-    .day {
-        min-height: 58px;
-
-        padding:
-            8px 6px;
-    }
-
-
-    .day-number {
-        font-size: 12px;
-    }
-
-
-    .event-dot {
-        bottom: 7px;
-
-        width: 5px;
-        height: 5px;
-    }
-
-
-    .weekdays div {
-        padding:
-            8px 2px;
-
-        font-size: 8px;
-
-        letter-spacing:
-            .5px;
-    }
-
-
-    .moon-card {
-        padding: 20px;
-
-        gap: 18px;
-    }
-
-
-    .moon-visual {
-        width: 75px;
-        height: 75px;
-    }
-
-
-    .moon-visual span {
-        font-size: 50px;
-    }
-
-}
-
-
-/* =========================================
-   SMALL PHONES
-   ========================================= */
-
-@media (max-width: 400px) {
-
-    .hero h1 {
-        font-size: 40px;
-    }
-
-
-    .container {
-        width:
-            calc(100% - 16px);
-    }
-
-
-    .day {
-        min-height: 50px;
-
-        padding:
-            6px 4px;
-    }
-
-
-    .calendar-card {
-        padding: 8px;
-    }
-
-}
+</html>
