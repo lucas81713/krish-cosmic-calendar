@@ -3,7 +3,6 @@
 // Markham, Ontario
 // =========================================
 
-
 const TIME_ZONE = "America/Toronto";
 
 
@@ -209,29 +208,20 @@ function getMarkhamDate() {
         }
     ).formatToParts(new Date());
 
-
     const result = {};
-
 
     parts.forEach(part => {
 
         if (part.type !== "literal") {
-
             result[part.type] = part.value;
-
         }
 
     });
 
-
     return {
-
         year: Number(result.year),
-
         month: Number(result.month),
-
         day: Number(result.day)
-
     };
 
 }
@@ -239,9 +229,7 @@ function getMarkhamDate() {
 
 const today = getMarkhamDate();
 
-
 let displayedYear = today.year;
-
 let displayedMonth = today.month - 1;
 
 
@@ -285,7 +273,7 @@ function renderCalendar() {
         document.getElementById("calendar");
 
     const monthTitle =
-        document.getElementById("monthTitle");
+        document.getElementById("calendarMonth");
 
 
     if (!calendar || !monthTitle) {
@@ -388,14 +376,9 @@ function renderCalendar() {
         // Today
 
         if (
-
             displayedYear === today.year &&
-
-            displayedMonth ===
-                today.month - 1 &&
-
+            displayedMonth === today.month - 1 &&
             day === today.day
-
         ) {
 
             cell.classList.add("today");
@@ -484,22 +467,28 @@ function showDate(year, month, day) {
         );
 
 
+    // Date
+
     const todayDateElement =
         document.getElementById(
             "todayDate"
         );
 
 
-    todayDateElement.textContent =
-        date.toLocaleDateString(
-            "en-US",
-            {
-                weekday: "long",
-                month: "long",
-                day: "numeric",
-                year: "numeric"
-            }
-        );
+    if (todayDateElement) {
+
+        todayDateElement.textContent =
+            date.toLocaleDateString(
+                "en-US",
+                {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric"
+                }
+            );
+
+    }
 
 
     // Day of year
@@ -527,37 +516,82 @@ function showDate(year, month, day) {
         ];
 
 
-    document.getElementById(
-        "factIcon"
-    ).textContent =
-        fact.icon;
+    // Fact icon
+
+    const factIcon =
+        document.getElementById(
+            "factIcon"
+        );
+
+    if (factIcon) {
+
+        factIcon.textContent =
+            fact.icon;
+
+    }
 
 
-    document.getElementById(
-        "factCategory"
-    ).textContent =
-        fact.category;
+    // Fact category
+
+    const factCategory =
+        document.getElementById(
+            "factCategory"
+        );
+
+    if (factCategory) {
+
+        factCategory.textContent =
+            fact.category;
+
+    }
 
 
-    document.getElementById(
-        "factTitle"
-    ).textContent =
-        fact.title;
+    // Fact title
+
+    const factTitle =
+        document.getElementById(
+            "factTitle"
+        );
+
+    if (factTitle) {
+
+        factTitle.textContent =
+            fact.title;
+
+    }
 
 
-    document.getElementById(
-        "factText"
-    ).textContent =
-        fact.text;
+    // Fact text
+
+    const factText =
+        document.getElementById(
+            "factText"
+        );
+
+    if (factText) {
+
+        factText.textContent =
+            fact.text;
+
+    }
 
 
-    document.getElementById(
-        "punText"
-    ).textContent =
-        fact.pun;
+    // Pun
+
+    const punText =
+        document.getElementById(
+            "punText"
+        );
+
+    if (punText) {
+
+        punText.textContent =
+            fact.pun;
+
+    }
 
 
-    // Astronomy event overrides fact
+    // Astronomy event override
 
     if (events.length > 0) {
 
@@ -565,36 +599,46 @@ function showDate(year, month, day) {
             events[0];
 
 
-        document.getElementById(
-            "factIcon"
-        ).textContent =
-            event.emoji;
+        if (factIcon) {
+
+            factIcon.textContent =
+                event.emoji;
+
+        }
 
 
-        document.getElementById(
-            "factCategory"
-        ).textContent =
-            "ASTRONOMICAL EVENT";
+        if (factCategory) {
+
+            factCategory.textContent =
+                "ASTRONOMICAL EVENT";
+
+        }
 
 
-        document.getElementById(
-            "factTitle"
-        ).textContent =
-            event.name;
+        if (factTitle) {
+
+            factTitle.textContent =
+                event.name;
+
+        }
 
 
-        document.getElementById(
-            "factText"
-        ).textContent =
-            event.description;
+        if (factText) {
+
+            factText.textContent =
+                event.description;
+
+        }
 
 
-        document.getElementById(
-            "punText"
-        ).textContent =
-            getEventPun(
-                event.type
-            );
+        if (punText) {
+
+            punText.textContent =
+                getEventPun(
+                    event.type
+                );
+
+        }
 
     }
 
@@ -698,11 +742,8 @@ function renderUpcomingEvents() {
 
 
                 return {
-
                     ...event,
-
                     difference
-
                 };
 
             })
@@ -713,6 +754,19 @@ function renderUpcomingEvents() {
             )
 
             .slice(0, 5);
+
+
+    if (upcoming.length === 0) {
+
+        container.innerHTML = `
+            <div class="loading">
+                No upcoming events have been added yet.
+            </div>
+        `;
+
+        return;
+
+    }
 
 
     upcoming.forEach(event => {
@@ -917,18 +971,34 @@ function renderMoon() {
         getMoonInfo();
 
 
-    document.getElementById(
-        "moonPhase"
-    ).textContent =
-        moon[0] +
-        " " +
-        moon[1];
+    const moonPhase =
+        document.getElementById(
+            "moonPhase"
+        );
 
 
-    document.getElementById(
-        "moonVisual"
-    ).textContent =
-        moon[0];
+    const moonVisual =
+        document.getElementById(
+            "moonIcon"
+        );
+
+
+    if (moonPhase) {
+
+        moonPhase.textContent =
+            moon[0] +
+            " " +
+            moon[1];
+
+    }
+
+
+    if (moonVisual) {
+
+        moonVisual.textContent =
+            moon[0];
+
+    }
 
 }
 
@@ -937,11 +1007,15 @@ function renderMoon() {
 // MONTH BUTTONS
 // =========================================
 
-document
-    .getElementById(
+const previousMonth =
+    document.getElementById(
         "previousMonth"
-    )
-    .addEventListener(
+    );
+
+
+if (previousMonth) {
+
+    previousMonth.addEventListener(
         "click",
         function () {
 
@@ -964,12 +1038,18 @@ document
         }
     );
 
+}
 
-document
-    .getElementById(
+
+const nextMonth =
+    document.getElementById(
         "nextMonth"
-    )
-    .addEventListener(
+    );
+
+
+if (nextMonth) {
+
+    nextMonth.addEventListener(
         "click",
         function () {
 
@@ -991,6 +1071,8 @@ document
 
         }
     );
+
+}
 
 
 // =========================================
