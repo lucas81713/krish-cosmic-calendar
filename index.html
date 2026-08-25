@@ -1,181 +1,434 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Krish's Cosmic Calendar</title>
 
-    <link rel="stylesheet" href="style.css">
+
+    <!-- =========================================
+         APP / WEBSITE ICONS
+         ========================================= -->
+
+    <!-- Chrome / PWA -->
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="icon-192.png"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href="icon-512.png"
+    >
+
+    <!-- iPhone / iPad -->
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="icon-180.png"
+    >
+
+
+    <!-- =========================================
+         PWA
+         ========================================= -->
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <meta
+        name="theme-color"
+        content="#05050b"
+    >
+
+    <meta
+        name="background-color"
+        content="#05050b"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="Cosmic Calendar"
+    >
+
+
+    <!-- =========================================
+         CSS
+         ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <div class="stars"></div>
-    <div class="stars stars-two"></div>
-    <div class="stars stars-three"></div>
 
-    <main>
+    <!-- =========================================
+         HEADER
+         ========================================= -->
 
-        <!-- HEADER -->
-        <header>
-            <div class="eyebrow">THE DAILY UNIVERSE</div>
+    <header class="header">
+
+        <div class="header-icon">
+            🚀
+        </div>
+
+        <div>
 
             <h1>
-                KRISH'S
-                <span>COSMIC CALENDAR</span>
+                Krish's Cosmic Calendar
             </h1>
 
             <p>
-                One small discovery. Every day.
+                Your universe of discoveries.
             </p>
-        </header>
+
+        </div>
+
+    </header>
 
 
-        <!-- CALENDAR -->
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main class="container">
+
+
+        <!-- =====================================
+             TODAY
+             ===================================== -->
+
+        <section class="today-card">
+
+            <div class="today-header">
+
+                <span id="factIcon">
+                    🌌
+                </span>
+
+                <div>
+
+                    <div
+                        id="factCategory"
+                        class="category"
+                    >
+                        LOADING
+                    </div>
+
+                    <h2 id="factTitle">
+                        Loading...
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <p id="factText">
+                Loading today's cosmic discovery...
+            </p>
+
+
+            <div class="pun">
+
+                <span>
+                    💬
+                </span>
+
+                <span id="punText">
+                    Loading cosmic pun...
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             DATE
+             ===================================== -->
+
+        <section class="date-section">
+
+            <div class="date-icon">
+                📅
+            </div>
+
+            <div>
+
+                <div class="category">
+                    TODAY
+                </div>
+
+                <h2 id="todayDate">
+                    Loading date...
+                </h2>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CALENDAR
+             ===================================== -->
+
         <section class="calendar-card">
+
 
             <div class="calendar-header">
 
-                <button id="previousMonth" class="month-button">
+                <button
+                    id="previousMonth"
+                    type="button"
+                    aria-label="Previous month"
+                >
                     ←
                 </button>
 
-                <div>
-                    <div class="month-title" id="monthTitle">
-                        August 2026
-                    </div>
 
-                    <div class="location">
-                        📍 MARKHAM · EST
-                    </div>
-                </div>
+                <h2 id="monthTitle">
+                    Loading...
+                </h2>
 
-                <button id="nextMonth" class="month-button">
+
+                <button
+                    id="nextMonth"
+                    type="button"
+                    aria-label="Next month"
+                >
                     →
                 </button>
 
             </div>
 
 
+
+            <!-- Weekday names -->
+
             <div class="weekdays">
-                <div>SUN</div>
-                <div>MON</div>
-                <div>TUE</div>
-                <div>WED</div>
-                <div>THU</div>
-                <div>FRI</div>
-                <div>SAT</div>
+
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+
             </div>
 
 
-            <div id="calendar" class="calendar">
-                <!-- JavaScript generates this -->
-            </div>
+
+            <!-- JavaScript creates calendar days here -->
+
+            <div
+                id="calendar"
+                class="calendar"
+            ></div>
+
 
         </section>
 
 
-        <!-- TODAY -->
-        <section class="today-section">
 
-            <div class="today-label">
-                TODAY'S DISCOVERY
-            </div>
+        <!-- =====================================
+             UPCOMING EVENTS
+             ===================================== -->
 
-            <div class="today-date" id="todayDate">
-                Loading...
-            </div>
-
-            <div class="discovery-card">
-
-                <div class="discovery-top">
-                    <span id="factIcon">🔭</span>
-                    <span id="factCategory">SPACE</span>
-                </div>
-
-                <h2 id="factTitle">
-                    Loading...
-                </h2>
-
-                <p id="factText">
-                    Loading today's discovery...
-                </p>
-
-                <div class="divider"></div>
-
-                <div class="pun-label">
-                    💬 COSMIC PUN
-                </div>
-
-                <p id="punText" class="pun">
-                    Loading...
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- UPCOMING -->
-        <section class="upcoming-section">
+        <section class="events-card">
 
             <div class="section-title">
-                <span>🚀</span>
-                UPCOMING
+
+                <span>
+                    ☄️
+                </span>
+
+                <h2>
+                    Upcoming Events
+                </h2>
+
             </div>
 
-            <div id="eventsContainer" class="events"></div>
+
+            <div
+                id="eventsContainer"
+                class="events-container"
+            >
+
+                <div class="loading">
+                    Loading astronomical events...
+                </div>
+
+            </div>
 
         </section>
 
 
-        <!-- MOON -->
+
+        <!-- =====================================
+             MOON
+             ===================================== -->
+
         <section class="moon-card">
 
-            <div>
+            <div class="moon-visual">
 
-                <div class="small-label">
+                <div
+                    id="moonVisual"
+                    class="moon-icon"
+                >
+                    🌙
+                </div>
+
+            </div>
+
+
+            <div class="moon-info">
+
+                <div class="category">
                     TODAY'S MOON
                 </div>
 
                 <h2 id="moonPhase">
-                    🌙 Loading...
+                    Loading...
                 </h2>
 
-                <p>
-                    The Moon changes appearance as it travels around Earth.
-                </p>
-
-            </div>
-
-            <div id="moonVisual" class="moon">
-                🌙
             </div>
 
         </section>
 
 
-        <!-- FOOTER -->
-        <footer>
 
-            <div class="footer-line"></div>
+        <!-- =====================================
+             BIRTHDAY MESSAGE
+             ===================================== -->
 
-            <p>
-                KEEP LOOKING UP.
-            </p>
+        <section class="mission-card">
 
-            <span>
-                KRISH // COSMIC CALENDAR
-            </span>
+            <div class="mission-icon">
+                🛰️
+            </div>
 
-        </footer>
+
+            <div>
+
+                <div class="category">
+                    MISSION STATUS
+                </div>
+
+                <h2>
+                    KRISH-13
+                </h2>
+
+                <p>
+                    Mission continues.
+                    Keep looking up. 🚀
+                </p>
+
+            </div>
+
+        </section>
+
 
     </main>
 
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer>
+
+        <p>
+            🌌 Made for Krish's 13th birthday
+        </p>
+
+        <p>
+            Markham, Ontario, Canada 🇨🇦
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
     <script src="script.js"></script>
 
+
+    <!-- =========================================
+         SERVICE WORKER
+         ========================================= -->
+
+    <script>
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener(
+                "load",
+                function () {
+
+                    navigator.serviceWorker
+                        .register("sw.js")
+                        .then(function () {
+
+                            console.log(
+                                "🚀 Cosmic Calendar service worker registered!"
+                            );
+
+                        })
+                        .catch(function (error) {
+
+                            console.error(
+                                "Service worker registration failed:",
+                                error
+                            );
+
+                        });
+
+                }
+            );
+
+        }
+
+    </script>
+
+
 </body>
+
 </html>
-```
