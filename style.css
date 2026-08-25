@@ -1,471 +1,382 @@
-/* =========================================
-   GLOBAL
-   ========================================= */
+/* =========================================================
+   KRISH'S COSMIC CALENDAR
+   SPACE / BLACK HOLE THEME
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
+
     margin: 0;
+
     min-height: 100vh;
-
-    color: #ffffff;
-
-    font-family:
-        "Inter",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    -webkit-font-smoothing: antialiased;
-
-    position: relative;
 
     overflow-x: hidden;
 
+    color: #f5f5fa;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+
+    /* =====================================================
+       SPACE BACKGROUND
+       ===================================================== */
+
     background:
+
+        /* BLACK HOLE OUTER GLOW */
+
         radial-gradient(
-            ellipse at 75% 25%,
-            rgba(45, 25, 85, 0.22),
+            ellipse 480px 180px
+            at 82% 24%,
+
+            rgba(255, 70, 15, 0.12),
+
+            transparent 65%
+        ),
+
+
+        /* BLACK HOLE ACCRETION DISK */
+
+        radial-gradient(
+            ellipse 330px 115px
+            at 82% 24%,
+
+            transparent 35%,
+
+            rgba(255, 220, 150, 0.18) 42%,
+
+            rgba(255, 130, 35, 0.42) 50%,
+
+            rgba(255, 45, 10, 0.35) 57%,
+
+            transparent 72%
+        ),
+
+
+        /* HOT INNER DISK */
+
+        radial-gradient(
+            ellipse 220px 72px
+            at 82% 24%,
+
+            transparent 42%,
+
+            rgba(255, 245, 205, 0.95) 52%,
+
+            rgba(255, 155, 55, 0.85) 60%,
+
+            rgba(255, 60, 15, 0.55) 68%,
+
+            transparent 80%
+        ),
+
+
+        /* EVENT HORIZON */
+
+        radial-gradient(
+            circle 82px
+            at 82% 24%,
+
+            #000000 0%,
+
+            #000000 58%,
+
+            rgba(0, 0, 0, 0.98) 68%,
+
+            rgba(0, 0, 0, 0.65) 77%,
+
+            transparent 88%
+        ),
+
+
+        /* PURPLE NEBULA */
+
+        radial-gradient(
+            ellipse
+            at 8% 30%,
+
+            rgba(100, 45, 180, 0.18),
+
+            transparent 32%
+        ),
+
+
+        /* BLUE NEBULA */
+
+        radial-gradient(
+            ellipse
+            at 90% 75%,
+
+            rgba(45, 65, 180, 0.15),
+
+            transparent 36%
+        ),
+
+
+        /* LOWER NEBULA */
+
+        radial-gradient(
+            ellipse
+            at 30% 90%,
+
+            rgba(35, 85, 180, 0.12),
+
             transparent 35%
         ),
+
+
+        /* MAIN SPACE */
+
         radial-gradient(
-            ellipse at 15% 65%,
-            rgba(25, 35, 90, 0.18),
-            transparent 35%
-        ),
-        radial-gradient(
-            ellipse at center,
-            #0a0b18 0%,
-            #05060d 45%,
-            #020308 100%
+            ellipse
+            at 50% 10%,
+
+            #111329 0%,
+
+            #080914 40%,
+
+            #030408 75%,
+
+            #010205 100%
         );
+
+
+    background-attachment: fixed;
+
 }
 
 
-/* =========================================
-   RANDOM STAR FIELD
-   ========================================= */
+
+/* =========================================================
+   STAR FIELD
+   ========================================================= */
 
 body::before {
+
     content: "";
 
     position: fixed;
 
     inset: 0;
-
-    pointer-events: none;
 
     z-index: -2;
 
+    pointer-events: none;
+
+    opacity: 0.9;
+
+
     background-image:
 
         radial-gradient(
-            1px 1px at 3% 8%,
-            rgba(255,255,255,.8),
+            1px 1px at 4% 9%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 7% 42%,
-            rgba(255,255,255,.65),
+            1px 1px at 9% 63%,
+            rgba(190, 210, 255, 0.9),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 11% 17%,
-            rgba(255,255,255,.9),
+            1.5px 1.5px at 14% 27%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 14% 76%,
-            rgba(255,255,255,.55),
+            1px 1px at 18% 81%,
+            rgba(255, 220, 190, 0.8),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 18% 55%,
-            rgba(255,255,255,.8),
+            2px 2px at 23% 14%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 22% 9%,
-            rgba(255,255,255,.7),
+            1px 1px at 28% 48%,
+            rgba(180, 200, 255, 0.8),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 25% 36%,
-            rgba(255,255,255,.55),
+            1.5px 1.5px at 33% 91%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 29% 82%,
-            rgba(255,255,255,.8),
+            1px 1px at 39% 23%,
+            rgba(255, 230, 210, 0.8),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 33% 19%,
-            rgba(255,255,255,.7),
+            2px 2px at 44% 72%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 37% 67%,
-            rgba(255,255,255,.9),
+            1px 1px at 49% 8%,
+            rgba(180, 205, 255, 0.9),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 41% 4%,
-            rgba(255,255,255,.6),
+            1.5px 1.5px at 54% 42%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 44% 48%,
-            rgba(255,255,255,.75),
+            1px 1px at 59% 88%,
+            rgba(255, 220, 190, 0.8),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 48% 91%,
-            rgba(255,255,255,.65),
+            2px 2px at 64% 17%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 52% 22%,
-            rgba(255,255,255,.85),
+            1px 1px at 69% 58%,
+            rgba(185, 205, 255, 0.8),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 56% 59%,
-            rgba(255,255,255,.6),
+            1.5px 1.5px at 74% 91%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 60% 12%,
-            rgba(255,255,255,.8),
+            1px 1px at 79% 10%,
+            rgba(255, 225, 200, 0.8),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 64% 74%,
-            rgba(255,255,255,.65),
+            2px 2px at 84% 48%,
+            white,
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 68% 38%,
-            rgba(255,255,255,.9),
+            1px 1px at 89% 78%,
+            rgba(180, 205, 255, 0.9),
             transparent
         ),
 
         radial-gradient(
-            1px 1px at 72% 6%,
-            rgba(255,255,255,.7),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 76% 55%,
-            rgba(255,255,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 80% 87%,
-            rgba(255,255,255,.6),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 84% 31%,
-            rgba(255,255,255,.9),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 88% 68%,
-            rgba(255,255,255,.7),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 92% 15%,
-            rgba(255,255,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 96% 48%,
-            rgba(255,255,255,.6),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 9% 88%,
-            rgba(255,255,255,.95),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 31% 48%,
-            rgba(210,220,255,.9),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 57% 84%,
-            rgba(255,255,255,.9),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 74% 18%,
-            rgba(220,220,255,.95),
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 93% 79%,
-            rgba(255,255,255,.85),
+            1.5px 1.5px at 95% 21%,
+            white,
             transparent
         );
 
-    opacity: .85;
+    animation:
+        starTwinkle 8s ease-in-out infinite;
+
 }
 
 
-/* =========================================
-   EXTRA STAR LAYER
-   ========================================= */
+
+@keyframes starTwinkle {
+
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+
+}
+
+
+
+/* =========================================================
+   NEBULA GLOW
+   ========================================================= */
 
 body::after {
+
     content: "";
 
     position: fixed;
 
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: -3;
-
-    background-image:
-
-        radial-gradient(
-            1px 1px at 5% 25%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 13% 63%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 20% 93%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 27% 14%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 35% 91%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 43% 28%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 50% 70%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 63% 47%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 70% 92%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 78% 65%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 86% 5%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 98% 91%,
-            white,
-            transparent
-        );
-
-    opacity: .45;
-}
-
-
-/* =========================================
-   BLACK HOLE
-   ========================================= */
-
-.black-hole {
-    position: fixed;
-
-    width: 240px;
-    height: 240px;
-
-    right: -70px;
-    top: 28%;
-
-    border-radius: 50%;
-
-    pointer-events: none;
+    inset: -20%;
 
     z-index: -1;
 
+    pointer-events: none;
+
+    filter: blur(50px);
+
+
     background:
 
         radial-gradient(
-            circle,
-            #000000 0%,
-            #000000 27%,
-            transparent 29%
+            ellipse at 15% 25%,
+            rgba(90, 50, 150, 0.13),
+            transparent 30%
         ),
 
-        conic-gradient(
-            from 20deg,
-            transparent 0deg,
-            rgba(255,160,70,.75) 45deg,
-            rgba(255,210,120,.9) 75deg,
-            rgba(180,100,255,.6) 120deg,
-            transparent 175deg,
-            rgba(100,120,255,.45) 240deg,
-            transparent 300deg
-        );
-
-    filter:
-        blur(.2px)
-        drop-shadow(
-            0 0 25px
-            rgba(255,150,80,.25)
-        );
-
-    opacity: .65;
-
-    transform:
-        rotate(-18deg);
-}
-
-
-/* =========================================
-   BLACK HOLE OUTER GLOW
-   ========================================= */
-
-.black-hole::before {
-    content: "";
-
-    position: absolute;
-
-    inset: -35px;
-
-    border-radius: 50%;
-
-    background:
         radial-gradient(
-            circle,
-            transparent 38%,
-            rgba(255,140,60,.08) 48%,
-            rgba(130,80,255,.05) 58%,
-            transparent 72%
+            ellipse at 75% 75%,
+            rgba(70, 40, 130, 0.11),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            ellipse at 40% 90%,
+            rgba(30, 70, 150, 0.08),
+            transparent 30%
         );
+
 }
 
 
-/* =========================================
-   BLACK HOLE RING
-   ========================================= */
 
-.black-hole::after {
-    content: "";
-
-    position: absolute;
-
-    width: 270px;
-    height: 90px;
-
-    left: -15px;
-    top: 75px;
-
-    border-radius: 50%;
-
-    border:
-        4px solid
-        rgba(255,170,100,.35);
-
-    box-shadow:
-
-        0 0 15px
-        rgba(255,140,70,.3),
-
-        0 0 35px
-        rgba(150,80,255,.2);
-
-    transform:
-        rotate(-12deg);
-}
-
-
-/* =========================================
+/* =========================================================
    TOP BAR
-   ========================================= */
+   ========================================================= */
 
 .top-bar {
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
 
     position: sticky;
 
@@ -473,807 +384,1005 @@ body::after {
 
     z-index: 20;
 
-    background:
-        rgba(2, 3, 7, 0.88);
+    height: 52px;
 
-    border-bottom:
-        1px solid
-        rgba(255, 255, 255, 0.04);
+    padding: 0 28px;
 
-    backdrop-filter: blur(15px);
-
-    font-size: 12px;
-
-    color:
-        rgba(255, 255, 255, 0.9);
-}
-
-.top-menu {
-    position: absolute;
-
-    right: 15px;
-
-    font-size: 20px;
-
-    color:
-        rgba(255, 255, 255, 0.35);
-}
-
-
-/* =========================================
-   HERO
-   ========================================= */
-
-.hero {
-    max-width: 1000px;
-
-    margin: 0 auto;
-
-    padding:
-        45px
-        20px
-        115px;
-
-    text-align: center;
-}
-
-.hero h1 {
-    margin: 0;
-
-    font-size:
-        clamp(42px, 7vw, 78px);
-
-    line-height: 0.98;
-
-    font-weight: 800;
-
-    letter-spacing: -4px;
-}
-
-.hero p {
-    margin-top: 45px;
-
-    margin-bottom: 0;
-
-    color:
-        rgba(255, 255, 255, 0.48);
-
-    font-size: 14px;
-}
-
-
-/* =========================================
-   MAIN CONTAINER
-   ========================================= */
-
-.container {
-    width:
-        min(
-            900px,
-            calc(100% - 40px)
-        );
-
-    margin: 0 auto;
-}
-
-
-/* =========================================
-   CATEGORY
-   ========================================= */
-
-.category {
-    color:
-        rgba(255, 255, 255, 0.48);
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================================
-   DAILY FACT CARD
-   ========================================= */
-
-.today-card {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20, 21, 38, 0.82),
-            rgba(9, 10, 18, 0.72)
-        );
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.09);
-
-    border-radius: 22px;
-
-    padding: 30px;
-
-    margin-bottom: 28px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0, 0, 0, 0.22);
-
-    backdrop-filter: blur(18px);
-}
-
-.today-header {
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    margin-bottom: 22px;
-}
-
-.fact-icon {
-    width: 58px;
-    height: 58px;
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 16px;
-
-    background:
-        rgba(255, 255, 255, 0.065);
-
-    font-size: 31px;
-}
-
-.fact-heading {
-    min-width: 0;
-}
-
-#factTitle {
-    margin:
-        5px
-        0
-        0;
-
-    font-size: 24px;
-
-    line-height: 1.25;
-
-    font-weight: 700;
-
-    letter-spacing: -0.5px;
-}
-
-
-/* =========================================
-   FACT DESCRIPTION
-   ========================================= */
-
-.fact-text {
-    margin:
-        0
-        0
-        22px;
-
-    color:
-        rgba(255, 255, 255, 0.68);
-
-    font-size: 15px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================
-   PUN
-   ========================================= */
-
-.pun {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    min-height: 48px;
-
-    padding:
-        12px
-        15px;
-
-    border-radius: 13px;
-
-    background:
-        rgba(255, 255, 255, 0.045);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.045);
-
-    color:
-        rgba(255, 255, 255, 0.82);
-
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-.pun-icon {
-    flex-shrink: 0;
-
-    font-size: 18px;
-}
-
-
-/* =========================================
-   DATE SECTION
-   ========================================= */
-
-.date-section {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin-bottom: 22px;
-}
-
-.date-icon {
-    font-size: 25px;
-}
-
-.date-section h2 {
-    margin:
-        5px
-        0
-        0;
-
-    font-size: 23px;
-
-    letter-spacing: -0.5px;
-}
-
-
-/* =========================================
-   CALENDAR
-   ========================================= */
-
-.calendar-card {
-    padding: 30px;
-
-    background:
-        rgba(13, 14, 24, 0.75);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.09);
-
-    border-radius: 22px;
-
-    margin-bottom: 30px;
-
-    backdrop-filter: blur(18px);
-}
-
-.calendar-header {
-    display: grid;
-
-    grid-template-columns:
-        40px 1fr 40px;
-
-    align-items: center;
-
-    margin-bottom: 28px;
-}
-
-.calendar-header h2 {
-    margin: 0;
-
-    text-align: center;
-
-    font-size: 23px;
-}
-
-.calendar-header button {
-    width: 34px;
-    height: 34px;
-
-    border: 0;
-
-    border-radius: 9px;
-
-    background:
-        rgba(255, 255, 255, 0.08);
-
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s,
-        transform 0.2s;
-}
-
-.calendar-header button:hover {
-    background:
-        rgba(255, 255, 255, 0.15);
-
-    transform: scale(1.05);
-}
-
-.weekdays {
-    display: grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    margin-bottom: 8px;
-}
-
-.weekdays div {
-    text-align: center;
-
-    color:
-        rgba(255, 255, 255, 0.35);
-
-    font-size: 9px;
-
-    font-weight: 600;
-
-    letter-spacing: 1px;
-}
-
-.calendar {
-    display: grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    gap: 5px;
-}
-
-.day {
-    min-height: 58px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: flex-start;
-
-    padding-top: 12px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    position: relative;
-
-    transition:
-        background 0.2s,
-        transform 0.15s;
-}
-
-.day:hover {
-    background:
-        rgba(255, 255, 255, 0.06);
-
-    transform: scale(1.03);
-}
-
-.day.empty {
-    pointer-events: none;
-}
-
-.day-number {
-    font-size: 12px;
-
-    color:
-        rgba(255, 255, 255, 0.75);
-}
-
-.day.today {
-    background:
-        rgba(120, 100, 255, 0.17);
-
-    box-shadow:
-        inset 0 0 0 1px
-        rgba(150, 130, 255, 0.25);
-}
-
-.day.today .day-number {
-    color: white;
-
-    font-weight: 800;
-}
-
-.event-dot {
-    width: 5px;
-    height: 5px;
-
-    border-radius: 50%;
-
-    background: #b9a9ff;
-
-    margin-top: 7px;
-}
-
-.event-dot.eclipse {
-    background: #e8d8ff;
-
-    box-shadow:
-        0 0 8px
-        rgba(220, 200, 255, 0.8);
-}
-
-
-/* =========================================
-   EVENTS
-   ========================================= */
-
-.events-card {
-    padding: 28px;
-
-    background:
-        rgba(13, 14, 24, 0.72);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.08);
-
-    border-radius: 22px;
-
-    margin-bottom: 30px;
-}
-
-.section-title {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-}
-
-.section-title span {
-    font-size: 23px;
-}
-
-.section-title h2 {
-    margin: 0;
-
-    font-size: 21px;
-}
-
-.events-container {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-}
-
-.event {
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
 
-    gap: 15px;
-
-    padding:
-        14px
-        16px;
-
-    border-radius: 12px;
-
     background:
-        rgba(255, 255, 255, 0.035);
+        rgba(2, 3, 8, 0.78);
 
-    transition:
-        background 0.2s;
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    font-size: 13px;
+
 }
 
-.event:hover {
-    background:
-        rgba(255, 255, 255, 0.07);
-}
 
-.event-name {
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-.event-date {
-    margin-top: 4px;
-
-    color:
-        rgba(255, 255, 255, 0.4);
-
-    font-size: 11px;
-}
-
-.countdown {
-    flex-shrink: 0;
-
-    color:
-        rgba(255, 255, 255, 0.55);
-
-    font-size: 10px;
+.top-title {
 
     font-weight: 700;
 
-    letter-spacing: 0.8px;
-}
+    letter-spacing: 0.3px;
 
-.loading {
-    color:
-        rgba(255, 255, 255, 0.4);
-
-    font-size: 13px;
 }
 
 
-/* =========================================
-   MOON
-   ========================================= */
+.top-location {
 
+    color: #747d93;
+
+    font-size: 12px;
+
+}
+
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+
+    width:
+        min(
+            1100px,
+            calc(100% - 40px)
+        );
+
+    margin: auto;
+
+    padding-top: 48px;
+
+    text-align: center;
+
+}
+
+
+.hero h1 {
+
+    margin: 0;
+
+    font-size:
+        clamp(
+            52px,
+            7vw,
+            86px
+        );
+
+    line-height: 0.95;
+
+    font-weight: 750;
+
+    letter-spacing: -4px;
+
+}
+
+
+.hero p {
+
+    margin-top: 25px;
+
+    color: #888fa4;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+}
+
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+
+    width:
+        min(
+            1100px,
+            calc(100% - 40px)
+        );
+
+    margin: auto;
+
+    padding:
+        90px 0 70px;
+
+}
+
+
+
+/* =========================================================
+   GLASS CARDS
+   ========================================================= */
+
+.today-card,
+.calendar-card,
+.events-card,
 .moon-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 22px;
-
-    padding: 28px;
-
-    margin-bottom: 30px;
-
-    border-radius: 22px;
 
     background:
-        rgba(13, 14, 24, 0.72);
+        rgba(7, 9, 18, 0.80);
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.08);
+        rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.35);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
 }
 
-.moon-visual {
-    width: 65px;
-    height: 65px;
+
+
+/* =========================================================
+   TODAY CARD
+   ========================================================= */
+
+.today-card {
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+}
+
+
+.today-header {
 
     display: flex;
 
     align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.fact-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
     justify-content: center;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 
     background:
-        rgba(255, 255, 255, 0.05);
-}
-
-.moon-icon {
-    font-size: 36px;
-}
-
-.moon-info h2 {
-    margin:
-        5px
-        0
-        0;
-
-    font-size: 20px;
-}
-
-
-/* =========================================
-   MISSION
-   ========================================= */
-
-.mission-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    padding: 28px;
-
-    margin-bottom: 50px;
-
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(24, 23, 48, 0.75),
-            rgba(10, 11, 19, 0.75)
+        radial-gradient(
+            circle,
+            rgba(80, 110, 220, 0.35),
+            rgba(20, 30, 70, 0.15)
         );
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.08);
+        rgba(120, 150, 255, 0.18);
+
+    font-size: 27px;
+
 }
 
-.mission-icon {
-    width: 60px;
-    height: 60px;
+
+.fact-category {
+
+    margin-bottom: 6px;
+
+    color: #83a9ff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.1px;
+
+}
+
+
+.fact-title {
+
+    margin: 0;
+
+    font-size:
+        clamp(
+            24px,
+            3vw,
+            34px
+        );
+
+    letter-spacing: -0.7px;
+
+}
+
+
+.fact-text {
+
+    margin:
+        25px 0 18px;
+
+    color: #bfc5d4;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+}
+
+
+.pun {
+
+    color: #bca9ff;
+
+    font-size: 15px;
+
+    font-style: italic;
+
+}
+
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.section-heading {
 
     display: flex;
 
     align-items: center;
-    justify-content: center;
 
-    border-radius: 16px;
+    gap: 12px;
 
-    background:
-        rgba(255, 255, 255, 0.06);
-
-    font-size: 30px;
-}
-
-.mission-card h2 {
     margin:
-        5px
-        0
-        4px;
+        40px 0 18px;
 
-    font-size: 21px;
 }
 
-.mission-card p {
+
+.section-heading h2 {
+
     margin: 0;
 
-    color:
-        rgba(255, 255, 255, 0.5);
+    font-size: 24px;
 
-    font-size: 13px;
 }
 
 
-/* =========================================
-   FOOTER
-   ========================================= */
+.section-heading-icon {
 
-footer {
-    padding:
-        25px
-        20px
-        45px;
+    font-size: 22px;
+
+}
+
+
+
+/* =========================================================
+   CALENDAR
+   ========================================================= */
+
+.calendar-card {
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+}
+
+
+.calendar-header {
+
+    display: grid;
+
+    grid-template-columns:
+        45px 1fr 45px;
+
+    align-items: center;
+
+    margin-bottom: 22px;
+
+}
+
+
+.calendar-header h2 {
+
+    margin: 0;
 
     text-align: center;
 
-    color:
-        rgba(255, 255, 255, 0.3);
+    font-size: 24px;
 
-    font-size: 11px;
-
-    line-height: 1.8;
 }
 
 
-/* =========================================
-   MOBILE
-   ========================================= */
+.calendar-header button {
 
-@media (max-width: 600px) {
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.calendar-header button:hover {
+
+    background:
+        rgba(100, 120, 255, 0.18);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.weekdays,
+.calendar {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+}
+
+
+.weekdays {
+
+    margin-bottom: 5px;
+
+}
+
+
+.weekdays div {
+
+    padding: 10px;
+
+    text-align: center;
+
+    color: #6f7689;
+
+    font-size: 10px;
+
+    letter-spacing: 1.3px;
+
+}
+
+
+.calendar {
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    border-left:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+
+.day {
+
+    position: relative;
+
+    min-height: 88px;
+
+    padding: 13px;
+
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s;
+
+}
+
+
+.day:hover {
+
+    background:
+        rgba(100, 120, 255, 0.08);
+
+}
+
+
+.day.empty {
+
+    cursor: default;
+
+    background:
+        rgba(255, 255, 255, 0.005);
+
+}
+
+
+.day-number {
+
+    color: #d9dcea;
+
+    font-size: 15px;
+
+}
+
+
+.day.today {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(105, 75, 220, 0.42),
+            rgba(55, 65, 150, 0.28)
+        );
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(130, 110, 255, 0.7);
+
+}
+
+
+.day.today .day-number {
+
+    color: white;
+
+    font-weight: 700;
+
+}
+
+
+
+/* =========================================================
+   EVENT DOT
+   ========================================================= */
+
+.event-dot {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 11px;
+
+    width: 6px;
+
+    height: 6px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #9270ff;
+
+    box-shadow:
+        0 0 10px
+        rgba(140, 100, 255, 0.8);
+
+}
+
+
+.event-dot.eclipse {
+
+    background: #ff6565;
+
+    box-shadow:
+        0 0 10px
+        rgba(255, 70, 70, 0.8);
+
+}
+
+
+
+/* =========================================================
+   UPCOMING EVENTS
+   ========================================================= */
+
+.events-card {
+
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+}
+
+
+.section-title {
+
+    margin-bottom: 18px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+}
+
+
+.event {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px 4px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+}
+
+
+.event:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.event-name {
+
+    color: #edf0f8;
+
+    font-weight: 650;
+
+}
+
+
+.event-date {
+
+    margin-top: 5px;
+
+    color: #70788d;
+
+    font-size: 13px;
+
+}
+
+
+.countdown {
+
+    color: #7fa8ff;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+
+
+/* =========================================================
+   MOON CARD
+   ========================================================= */
+
+.moon-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-top: 30px;
+
+    padding: 28px;
+
+    border-radius: 20px;
+
+}
+
+
+.moon-visual {
+
+    width: 100px;
+
+    height: 100px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #c9c9c9 35%,
+            #666666 65%,
+            #111111 72%
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(255, 255, 255, 0.13);
+
+}
+
+
+.moon-visual span {
+
+    font-size: 65px;
+
+}
+
+
+.moon-info h2 {
+
+    margin: 0;
+
+    font-size: 24px;
+
+}
+
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    padding:
+        35px 20px 50px;
+
+    text-align: center;
+
+    color: #687084;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+}
+
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading {
+
+    color: #747d93;
+
+    padding:
+        10px 0;
+
+}
+
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 9px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #010205;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(100, 110, 140, 0.35);
+
+    border-radius: 20px;
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .top-bar {
+
+        height: 48px;
+
+        padding:
+            0 16px;
+
+    }
+
+
+    .top-location {
+
+        display: none;
+
+    }
+
 
     .hero {
-        padding:
-            40px
-            15px
-            70px;
+
+        width:
+            calc(100% - 28px);
+
+        padding-top: 40px;
+
     }
+
 
     .hero h1 {
-        font-size: 43px;
+
+        font-size: 47px;
 
         letter-spacing: -2.5px;
+
     }
+
 
     .hero p {
-        margin-top: 25px;
+
+        font-size: 14px;
+
     }
 
+
     .container {
+
         width:
-            calc(100% - 24px);
+            calc(100% - 22px);
+
+        padding-top: 60px;
+
     }
+
 
     .today-card,
     .calendar-card,
     .events-card,
-    .moon-card,
-    .mission-card {
-        border-radius: 17px;
+    .moon-card {
+
+        border-radius: 16px;
+
     }
+
 
     .today-card {
+
         padding: 22px;
+
     }
+
 
     .today-header {
+
         gap: 13px;
+
     }
+
 
     .fact-icon {
+
         width: 48px;
+
         height: 48px;
 
-        font-size: 25px;
+        font-size: 22px;
+
     }
 
-    #factTitle {
-        font-size: 19px;
+
+    .fact-title {
+
+        font-size: 22px;
+
     }
+
 
     .fact-text {
-        font-size: 14px;
+
+        font-size: 15px;
+
     }
+
 
     .calendar-card {
-        padding: 18px;
+
+        padding: 12px;
+
     }
+
+
+    .calendar-header h2 {
+
+        font-size: 20px;
+
+    }
+
+
+    .calendar-header button {
+
+        width: 35px;
+
+        height: 35px;
+
+    }
+
 
     .day {
-        min-height: 50px;
+
+        min-height: 58px;
+
+        padding:
+            8px 6px;
+
     }
+
 
     .day-number {
-        font-size: 11px;
+
+        font-size: 12px;
+
     }
 
-    .event {
-        padding: 12px;
+
+    .event-dot {
+
+        bottom: 7px;
+
+        width: 5px;
+
+        height: 5px;
+
     }
 
-    .black-hole {
-        width: 150px;
-        height: 150px;
 
-        right: -70px;
-        top: 20%;
+    .weekdays div {
 
-        opacity: .35;
+        padding:
+            8px 2px;
+
+        font-size: 8px;
+
+        letter-spacing: 0.5px;
+
     }
 
-    .black-hole::after {
-        width: 175px;
-        height: 55px;
 
-        left: -12px;
-        top: 48px;
+    .moon-card {
+
+        padding: 20px;
+
+        gap: 18px;
+
     }
+
+
+    .moon-visual {
+
+        width: 75px;
+
+        height: 75px;
+
+    }
+
+
+    .moon-visual span {
+
+        font-size: 50px;
+
+    }
+
 }
 
 
-/* =========================================
-   REDUCE MOTION
-   ========================================= */
 
-@media (prefers-reduced-motion: reduce) {
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
 
-    * {
-        scroll-behavior: auto !important;
+@media (max-width: 400px) {
 
-        transition: none !important;
+    .hero h1 {
+
+        font-size: 40px;
+
     }
+
+
+    .container {
+
+        width:
+            calc(100% - 16px);
+
+    }
+
+
+    .day {
+
+        min-height: 50px;
+
+        padding:
+            6px 4px;
+
+    }
+
+
+    .calendar-card {
+
+        padding: 8px;
+
+    }
+
 }
