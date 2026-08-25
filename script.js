@@ -1,16 +1,18 @@
-// ===============================
+// =========================================
 // KRISH'S COSMIC CALENDAR
-// Markham, Ontario — America/Toronto
-// ===============================
+// Markham, Ontario
+// =========================================
+
 
 const TIME_ZONE = "America/Toronto";
 
 
-// ===============================
+// =========================================
 // DAILY FACTS
-// ===============================
+// =========================================
 
 const dailyFacts = [
+
     {
         category: "SPACE",
         icon: "🔭",
@@ -114,20 +116,22 @@ const dailyFacts = [
         text: "Our galaxy is roughly 100,000 light-years across.",
         pun: "That's one seriously long commute."
     }
+
 ];
 
 
-// ===============================
+// =========================================
 // ASTRONOMICAL EVENTS
-// ===============================
+// =========================================
 
 const astronomyEvents = [
+
     {
         date: "2026-08-27",
         name: "Partial Lunar Eclipse",
         emoji: "🌑",
         type: "eclipse",
-        description: "A partial lunar eclipse is visible from much of North America."
+        description: "A partial lunar eclipse occurs."
     },
 
     {
@@ -135,7 +139,7 @@ const astronomyEvents = [
         name: "Partial Lunar Eclipse",
         emoji: "🌑",
         type: "eclipse",
-        description: "The lunar eclipse continues into August 28."
+        description: "The lunar eclipse continues."
     },
 
     {
@@ -185,52 +189,65 @@ const astronomyEvents = [
         type: "season",
         description: "Winter officially begins in the Northern Hemisphere."
     }
+
 ];
 
 
-// ===============================
+// =========================================
 // GET MARKHAM DATE
-// ===============================
+// =========================================
 
 function getMarkhamDate() {
 
-    const parts = new Intl.DateTimeFormat("en-CA", {
-        timeZone: TIME_ZONE,
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-    }).formatToParts(new Date());
+    const parts = new Intl.DateTimeFormat(
+        "en-CA",
+        {
+            timeZone: TIME_ZONE,
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }
+    ).formatToParts(new Date());
+
 
     const result = {};
 
+
     parts.forEach(part => {
+
         if (part.type !== "literal") {
+
             result[part.type] = part.value;
+
         }
+
     });
 
+
     return {
+
         year: Number(result.year),
+
         month: Number(result.month),
+
         day: Number(result.day)
+
     };
+
 }
 
 
 const today = getMarkhamDate();
 
 
-// ===============================
-// CURRENT CALENDAR MONTH
-// ===============================
-
 let displayedYear = today.year;
+
 let displayedMonth = today.month - 1;
 
 
-// ===============================
+// =========================================
 // DATE KEY
-// ===============================
+// =========================================
 
 function dateKey(year, month, day) {
 
@@ -245,9 +262,9 @@ function dateKey(year, month, day) {
 }
 
 
-// ===============================
+// =========================================
 // FIND EVENTS
-// ===============================
+// =========================================
 
 function getEventsForDate(key) {
 
@@ -258,33 +275,47 @@ function getEventsForDate(key) {
 }
 
 
-// ===============================
-// RENDER CALENDAR
-// ===============================
+// =========================================
+// CALENDAR
+// =========================================
 
 function renderCalendar() {
 
-    const calendar = document.getElementById("calendar");
-    const monthTitle = document.getElementById("monthTitle");
+    const calendar =
+        document.getElementById("calendar");
+
+    const monthTitle =
+        document.getElementById("monthTitle");
+
 
     if (!calendar || !monthTitle) {
-        console.error("Calendar elements were not found.");
+
+        console.error(
+            "Calendar elements were not found."
+        );
+
         return;
+
     }
+
 
     calendar.innerHTML = "";
 
-    const firstDay = new Date(
-        displayedYear,
-        displayedMonth,
-        1
-    ).getDay();
 
-    const daysInMonth = new Date(
-        displayedYear,
-        displayedMonth + 1,
-        0
-    ).getDate();
+    const firstDay =
+        new Date(
+            displayedYear,
+            displayedMonth,
+            1
+        ).getDay();
+
+
+    const daysInMonth =
+        new Date(
+            displayedYear,
+            displayedMonth + 1,
+            0
+        ).getDate();
 
 
     monthTitle.textContent =
@@ -292,53 +323,79 @@ function renderCalendar() {
             displayedYear,
             displayedMonth,
             1
-        ).toLocaleDateString("en-US", {
-            month: "long",
-            year: "numeric"
-        });
+        ).toLocaleDateString(
+            "en-US",
+            {
+                month: "long",
+                year: "numeric"
+            }
+        );
 
 
-    // Empty spaces before first day
-    for (let i = 0; i < firstDay; i++) {
+    // Empty cells
 
-        const empty = document.createElement("div");
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
 
-        empty.className = "day empty";
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "day empty";
 
         calendar.appendChild(empty);
 
     }
 
 
-    // Actual days
-    for (let day = 1; day <= daysInMonth; day++) {
+    // Days
 
-        const cell = document.createElement("div");
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const cell =
+            document.createElement("div");
 
         cell.className = "day";
 
 
-        const number = document.createElement("div");
+        const number =
+            document.createElement("div");
 
-        number.className = "day-number";
+        number.className =
+            "day-number";
 
-        number.textContent = day;
+        number.textContent =
+            day;
 
         cell.appendChild(number);
 
 
-        const key = dateKey(
-            displayedYear,
-            displayedMonth + 1,
-            day
-        );
+        const key =
+            dateKey(
+                displayedYear,
+                displayedMonth + 1,
+                day
+            );
 
 
-        // Highlight today
+        // Today
+
         if (
+
             displayedYear === today.year &&
-            displayedMonth === today.month - 1 &&
+
+            displayedMonth ===
+                today.month - 1 &&
+
             day === today.day
+
         ) {
 
             cell.classList.add("today");
@@ -346,38 +403,52 @@ function renderCalendar() {
         }
 
 
-        // Event dot
-        const events = getEventsForDate(key);
+        // Events
+
+        const events =
+            getEventsForDate(key);
+
 
         if (events.length > 0) {
 
-            const dot = document.createElement("div");
+            const dot =
+                document.createElement("div");
 
-            dot.className = "event-dot";
+            dot.className =
+                "event-dot";
+
 
             if (
                 events.some(
-                    event => event.type === "eclipse"
+                    event =>
+                        event.type === "eclipse"
                 )
             ) {
-                dot.classList.add("eclipse");
+
+                dot.classList.add(
+                    "eclipse"
+                );
+
             }
+
 
             cell.appendChild(dot);
 
         }
 
 
-        // Click
-        cell.addEventListener("click", function () {
+        cell.addEventListener(
+            "click",
+            function () {
 
-            showDate(
-                displayedYear,
-                displayedMonth,
-                day
-            );
+                showDate(
+                    displayedYear,
+                    displayedMonth,
+                    day
+                );
 
-        });
+            }
+        );
 
 
         calendar.appendChild(cell);
@@ -387,198 +458,310 @@ function renderCalendar() {
 }
 
 
-// ===============================
+// =========================================
 // SHOW DATE
-// ===============================
+// =========================================
 
 function showDate(year, month, day) {
 
-    const key = dateKey(
-        year,
-        month + 1,
-        day
-    );
-
-    const events = getEventsForDate(key);
-
-
-    const date = new Date(
-        year,
-        month,
-        day
-    );
+    const key =
+        dateKey(
+            year,
+            month + 1,
+            day
+        );
 
 
-    document.getElementById("todayDate").textContent =
-        date.toLocaleDateString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        });
+    const events =
+        getEventsForDate(key);
 
 
-    // Determine day number in year
-    const start = new Date(year, 0, 1);
+    const date =
+        new Date(
+            year,
+            month,
+            day
+        );
+
+
+    const todayDateElement =
+        document.getElementById(
+            "todayDate"
+        );
+
+
+    todayDateElement.textContent =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+
+    // Day of year
+
+    const start =
+        new Date(
+            year,
+            0,
+            1
+        );
+
 
     const dayNumber =
         Math.floor(
-            (date - start) / 86400000
+            (
+                date - start
+            ) / 86400000
         );
 
 
     const fact =
         dailyFacts[
-            Math.abs(dayNumber) % dailyFacts.length
+            Math.abs(dayNumber) %
+            dailyFacts.length
         ];
 
 
-    document.getElementById("factIcon").textContent =
+    document.getElementById(
+        "factIcon"
+    ).textContent =
         fact.icon;
 
-    document.getElementById("factCategory").textContent =
+
+    document.getElementById(
+        "factCategory"
+    ).textContent =
         fact.category;
 
-    document.getElementById("factTitle").textContent =
+
+    document.getElementById(
+        "factTitle"
+    ).textContent =
         fact.title;
 
-    document.getElementById("factText").textContent =
+
+    document.getElementById(
+        "factText"
+    ).textContent =
         fact.text;
 
-    document.getElementById("punText").textContent =
+
+    document.getElementById(
+        "punText"
+    ).textContent =
         fact.pun;
 
 
-    // Astronomy event takes priority
+    // Astronomy event overrides fact
+
     if (events.length > 0) {
 
-        const event = events[0];
+        const event =
+            events[0];
 
-        document.getElementById("factIcon").textContent =
+
+        document.getElementById(
+            "factIcon"
+        ).textContent =
             event.emoji;
 
-        document.getElementById("factCategory").textContent =
+
+        document.getElementById(
+            "factCategory"
+        ).textContent =
             "ASTRONOMICAL EVENT";
 
-        document.getElementById("factTitle").textContent =
+
+        document.getElementById(
+            "factTitle"
+        ).textContent =
             event.name;
 
-        document.getElementById("factText").textContent =
+
+        document.getElementById(
+            "factText"
+        ).textContent =
             event.description;
 
-        document.getElementById("punText").textContent =
-            getEventPun(event.type);
+
+        document.getElementById(
+            "punText"
+        ).textContent =
+            getEventPun(
+                event.type
+            );
 
     }
 
 }
 
 
-// ===============================
+// =========================================
 // EVENT PUNS
-// ===============================
+// =========================================
 
 function getEventPun(type) {
 
     if (type === "eclipse") {
+
         return "Looks like the Moon is trying to steal the spotlight.";
+
     }
+
 
     if (type === "meteor") {
+
         return "These rocks are really making an entrance.";
+
     }
+
 
     if (type === "moon") {
+
         return "That's one small step for the Moon...";
+
     }
 
+
     if (type === "season") {
+
         return "The Earth is really changing its angle on things.";
+
     }
+
 
     return "That's out of this world.";
 
 }
 
 
-// ===============================
+// =========================================
 // UPCOMING EVENTS
-// ===============================
+// =========================================
 
 function renderUpcomingEvents() {
 
     const container =
-        document.getElementById("eventsContainer");
+        document.getElementById(
+            "eventsContainer"
+        );
+
 
     if (!container) {
+
         return;
+
     }
+
 
     container.innerHTML = "";
 
 
-    const todayDate = new Date(
-        today.year,
-        today.month - 1,
-        today.day
-    );
+    const todayDate =
+        new Date(
+            today.year,
+            today.month - 1,
+            today.day
+        );
 
 
-    const upcoming = astronomyEvents
-        .map(event => {
+    const upcoming =
+        astronomyEvents
+            .map(event => {
 
-            const parts =
-                event.date.split("-").map(Number);
+                const parts =
+                    event.date
+                        .split("-")
+                        .map(Number);
 
-            const eventDate = new Date(
-                parts[0],
-                parts[1] - 1,
-                parts[2]
-            );
 
-            const difference = Math.ceil(
-                (eventDate - todayDate) /
-                86400000
-            );
+                const eventDate =
+                    new Date(
+                        parts[0],
+                        parts[1] - 1,
+                        parts[2]
+                    );
 
-            return {
-                ...event,
-                difference
-            };
 
-        })
-        .filter(
-            event => event.difference >= 0
-        )
-        .slice(0, 5);
+                const difference =
+                    Math.ceil(
+                        (
+                            eventDate -
+                            todayDate
+                        ) / 86400000
+                    );
+
+
+                return {
+
+                    ...event,
+
+                    difference
+
+                };
+
+            })
+
+            .filter(
+                event =>
+                    event.difference >= 0
+            )
+
+            .slice(0, 5);
 
 
     upcoming.forEach(event => {
 
         const element =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        element.className = "event";
+
+        element.className =
+            "event";
 
 
         let countdown;
 
-        if (event.difference === 0) {
-            countdown = "TODAY";
+
+        if (
+            event.difference === 0
+        ) {
+
+            countdown =
+                "TODAY";
+
         }
 
-        else if (event.difference === 1) {
-            countdown = "TOMORROW";
+        else if (
+            event.difference === 1
+        ) {
+
+            countdown =
+                "TOMORROW";
+
         }
 
         else {
+
             countdown =
-                event.difference + " DAYS";
+                event.difference +
+                " DAYS";
+
         }
 
 
         const parts =
-            event.date.split("-").map(Number);
+            event.date
+                .split("-")
+                .map(Number);
+
 
         const date =
             new Date(
@@ -589,44 +772,71 @@ function renderUpcomingEvents() {
 
 
         const formatted =
-            date.toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric"
-            });
+            date.toLocaleDateString(
+                "en-US",
+                {
+                    month: "short",
+                    day: "numeric"
+                }
+            );
 
 
         element.innerHTML = `
+
             <div>
+
                 <div class="event-name">
-                    ${event.emoji} ${event.name}
+
+                    ${event.emoji}
+                    ${event.name}
+
                 </div>
 
                 <div class="event-date">
+
                     ${formatted}
+
                 </div>
+
             </div>
 
             <div class="countdown">
+
                 ${countdown}
+
             </div>
+
         `;
 
 
-        container.appendChild(element);
+        container.appendChild(
+            element
+        );
 
     });
 
 }
 
 
-// ===============================
+// =========================================
 // MOON PHASE
-// ===============================
+// =========================================
 
-function getMoonPhase(year, month, day) {
+function getMoonPhase(
+    year,
+    month,
+    day
+) {
 
     const knownNewMoon =
-        Date.UTC(2000, 0, 6, 18, 14);
+        Date.UTC(
+            2000,
+            0,
+            6,
+            18,
+            14
+        );
+
 
     const current =
         Date.UTC(
@@ -635,15 +845,23 @@ function getMoonPhase(year, month, day) {
             day
         );
 
+
     const synodicMonth =
         29.530588853;
 
+
     const days =
-        (current - knownNewMoon) /
-        86400000;
+        (
+            current -
+            knownNewMoon
+        ) / 86400000;
+
 
     return (
-        (days % synodicMonth) +
+        (
+            days %
+            synodicMonth
+        ) +
         synodicMonth
     ) % synodicMonth;
 
@@ -652,33 +870,41 @@ function getMoonPhase(year, month, day) {
 
 function getMoonInfo() {
 
-    const phase = getMoonPhase(
-        today.year,
-        today.month,
-        today.day
-    );
+    const phase =
+        getMoonPhase(
+            today.year,
+            today.month,
+            today.day
+        );
 
 
     if (phase < 1.85)
         return ["🌑", "New Moon"];
 
+
     if (phase < 7.38)
         return ["🌒", "Waxing Crescent"];
+
 
     if (phase < 9.23)
         return ["🌓", "First Quarter"];
 
+
     if (phase < 14.77)
         return ["🌔", "Waxing Gibbous"];
+
 
     if (phase < 16.61)
         return ["🌕", "Full Moon"];
 
+
     if (phase < 22.15)
         return ["🌖", "Waning Gibbous"];
 
+
     if (phase < 24)
         return ["🌗", "Last Quarter"];
+
 
     return ["🌘", "Waning Crescent"];
 
@@ -687,60 +913,97 @@ function getMoonInfo() {
 
 function renderMoon() {
 
-    const moon = getMoonInfo();
+    const moon =
+        getMoonInfo();
 
-    document.getElementById("moonPhase").textContent =
-        moon[0] + " " + moon[1];
 
-    document.getElementById("moonVisual").textContent =
+    document.getElementById(
+        "moonPhase"
+    ).textContent =
+        moon[0] +
+        " " +
+        moon[1];
+
+
+    document.getElementById(
+        "moonVisual"
+    ).textContent =
         moon[0];
 
 }
 
 
-// ===============================
+// =========================================
 // MONTH BUTTONS
-// ===============================
+// =========================================
 
 document
-    .getElementById("previousMonth")
-    .addEventListener("click", function () {
+    .getElementById(
+        "previousMonth"
+    )
+    .addEventListener(
+        "click",
+        function () {
 
-        displayedMonth--;
+            displayedMonth--;
 
-        if (displayedMonth < 0) {
-            displayedMonth = 11;
-            displayedYear--;
+
+            if (
+                displayedMonth < 0
+            ) {
+
+                displayedMonth = 11;
+
+                displayedYear--;
+
+            }
+
+
+            renderCalendar();
+
         }
-
-        renderCalendar();
-
-    });
+    );
 
 
 document
-    .getElementById("nextMonth")
-    .addEventListener("click", function () {
+    .getElementById(
+        "nextMonth"
+    )
+    .addEventListener(
+        "click",
+        function () {
 
-        displayedMonth++;
+            displayedMonth++;
 
-        if (displayedMonth > 11) {
-            displayedMonth = 0;
-            displayedYear++;
+
+            if (
+                displayedMonth > 11
+            ) {
+
+                displayedMonth = 0;
+
+                displayedYear++;
+
+            }
+
+
+            renderCalendar();
+
         }
-
-        renderCalendar();
-
-    });
+    );
 
 
-// ===============================
-// START EVERYTHING
-// ===============================
+// =========================================
+// START
+// =========================================
 
-console.log("Krish's Cosmic Calendar loaded.");
+console.log(
+    "🚀 Krish's Cosmic Calendar loaded."
+);
+
 
 renderCalendar();
+
 
 showDate(
     today.year,
@@ -748,6 +1011,8 @@ showDate(
     today.day
 );
 
+
 renderUpcomingEvents();
+
 
 renderMoon();
