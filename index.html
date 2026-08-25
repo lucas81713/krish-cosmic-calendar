@@ -11,29 +11,28 @@
 
     <meta
         name="theme-color"
-        content="#05060d"
+        content="#020307"
     >
 
     <meta
-        name="description"
-        content="A cosmic daily calendar filled with space facts, astronomy events, and terrible puns."
+        name="apple-mobile-web-app-capable"
+        content="yes"
     >
 
-    <title>Cosmic Calendar 🚀</title>
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+    >
 
+    <title>Krish's Cosmic Calendar 🚀</title>
 
-    <!-- =====================================
-         APP ICONS
-         ===================================== -->
-
-    <!-- Apple devices -->
+    <!-- Home Screen Icons -->
     <link
         rel="apple-touch-icon"
         sizes="180x180"
         href="icon-180.png"
     >
 
-    <!-- Browser / Web App icons -->
     <link
         rel="icon"
         type="image/png"
@@ -48,110 +47,86 @@
         href="icon-512.png"
     >
 
-
-    <!-- =====================================
-         iPHONE / iPAD APP MODE
-         ===================================== -->
-
-    <meta
-        name="apple-mobile-web-app-capable"
-        content="yes"
-    >
-
-    <meta
-        name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent"
-    >
-
-    <meta
-        name="apple-mobile-web-app-title"
-        content="Cosmic Calendar"
-    >
-
-
-    <!-- =====================================
-         STYLESHEET
-         ===================================== -->
-
+    <!-- CSS -->
     <link
         rel="stylesheet"
         href="style.css"
     >
-
 </head>
 
 
 <body>
 
-
-    <!-- =====================================
-         BLACK HOLE BACKGROUND
-         ===================================== -->
-
-    <div class="black-hole"></div>
-
-
     <!-- =====================================
          TOP BAR
          ===================================== -->
 
-    <div class="top-bar">
+    <header class="top-bar">
 
-        <div>
-            ✦ COSMIC CALENDAR
+        <div class="top-title">
+            🚀 KRISH'S COSMIC CALENDAR
         </div>
 
-        <div class="top-menu">
-            ···
+        <div class="top-location">
+            MARKHAM, ONTARIO • EARTH
         </div>
 
-    </div>
+    </header>
 
 
     <!-- =====================================
          HERO
          ===================================== -->
 
-    <header class="hero">
+    <section class="hero">
 
         <h1>
-            Look Up.
+            KRISH'S<br>
+            COSMOS
         </h1>
 
         <p>
-            There's always something happening in the universe.
+            A little piece of the universe,
+            just for Krish. 🌌
         </p>
 
-    </header>
+    </section>
 
-
-    <!-- =====================================
-         MAIN CONTENT
-         ===================================== -->
 
     <main class="container">
 
 
-        <!-- =================================
+        <!-- =====================================
              DAILY FACT
-             ================================= -->
+             ===================================== -->
 
         <section class="today-card">
 
             <div class="today-header">
 
-                <div class="fact-icon">
-                    🪐
+                <div
+                    class="fact-icon"
+                    id="factIcon"
+                >
+                    🔭
                 </div>
 
-                <div class="fact-heading">
 
-                    <div class="category">
-                        TODAY'S COSMIC FACT
+                <div>
+
+                    <div
+                        class="fact-category"
+                        id="factCategory"
+                    >
+                        SPACE
                     </div>
 
-                    <h2 id="factTitle">
-                        Loading...
+
+                    <h2
+                        class="fact-title"
+                        id="factTitle"
+                    >
+                        Loading today's fact...
                     </h2>
 
                 </div>
@@ -163,128 +138,112 @@
                 class="fact-text"
                 id="factText"
             >
-                Loading today's space fact...
+                Loading...
             </p>
 
 
-            <div class="pun">
-
-                <span class="pun-icon">
-                    🚀
-                </span>
-
-                <span id="punText">
-                    Preparing a terrible space pun...
-                </span>
-
+            <div
+                class="pun"
+                id="punText"
+            >
+                Loading cosmic pun...
             </div>
 
         </section>
 
 
 
-        <!-- =================================
+        <!-- =====================================
+             CALENDAR HEADING
+             ===================================== -->
+
+        <div class="section-heading">
+
+            <div class="section-heading-icon">
+                📅
+            </div>
+
+            <h2>
+                Cosmic Calendar
+            </h2>
+
+        </div>
+
+
+
+        <!-- =====================================
              CALENDAR
-             ================================= -->
+             ===================================== -->
 
-        <section>
+        <section class="calendar-card">
 
-            <div class="date-section">
 
-                <div class="date-icon">
-                    📅
-                </div>
+            <div class="calendar-header">
 
-                <div>
+                <button
+                    id="previousMonth"
+                    aria-label="Previous month"
+                >
+                    ‹
+                </button>
 
-                    <div class="category">
-                        ASTRONOMICAL CALENDAR
-                    </div>
 
-                    <h2>
-                        What's happening?
-                    </h2>
+                <h2 id="monthTitle">
+                    Loading...
+                </h2>
 
-                </div>
+
+                <button
+                    id="nextMonth"
+                    aria-label="Next month"
+                >
+                    ›
+                </button>
 
             </div>
 
 
-            <div class="calendar-card">
 
+            <!-- Weekdays -->
 
-                <div class="calendar-header">
+            <div class="weekdays">
 
-                    <button
-                        id="previousMonth"
-                        aria-label="Previous month"
-                    >
-                        ‹
-                    </button>
+                <div>SUN</div>
+                <div>MON</div>
+                <div>TUE</div>
+                <div>WED</div>
+                <div>THU</div>
+                <div>FRI</div>
+                <div>SAT</div>
 
-
-                    <h2 id="calendarMonth">
-                        Loading...
-                    </h2>
-
-
-                    <button
-                        id="nextMonth"
-                        aria-label="Next month"
-                    >
-                        ›
-                    </button>
-
-                </div>
+            </div>
 
 
 
-                <div class="weekdays">
+            <!-- Javascript puts calendar days here -->
 
-                    <div>SUN</div>
-                    <div>MON</div>
-                    <div>TUE</div>
-                    <div>WED</div>
-                    <div>THU</div>
-                    <div>FRI</div>
-                    <div>SAT</div>
-
-                </div>
-
-
-                <div
-                    class="calendar"
-                    id="calendar"
-                >
-                </div>
-
+            <div
+                class="calendar"
+                id="calendar"
+            >
             </div>
 
         </section>
 
 
 
-        <!-- =================================
+        <!-- =====================================
              UPCOMING EVENTS
-             ================================= -->
+             ===================================== -->
 
         <section class="events-card">
 
             <div class="section-title">
-
-                <span>
-                    ☄️
-                </span>
-
-                <h2>
-                    Coming Up
-                </h2>
-
+                ☄️ Upcoming Cosmic Events
             </div>
 
 
             <div
-                class="events-container"
                 id="eventsContainer"
             >
 
@@ -298,64 +257,31 @@
 
 
 
-        <!-- =================================
+        <!-- =====================================
              MOON
-             ================================= -->
+             ===================================== -->
 
         <section class="moon-card">
 
-            <div class="moon-visual">
 
-                <span
-                    class="moon-icon"
-                    id="moonIcon"
-                >
-                    🌙
-                </span>
-
+            <div
+                class="moon-visual"
+                id="moonVisual"
+            >
+                🌕
             </div>
 
 
             <div class="moon-info">
 
-                <div class="category">
-                    TONIGHT'S MOON
+                <div class="fact-category">
+                    TODAY'S MOON
                 </div>
+
 
                 <h2 id="moonPhase">
-                    Loading...
+                    Loading moon phase...
                 </h2>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================
-             SPACE MISSION
-             ================================= -->
-
-        <section class="mission-card">
-
-            <div class="mission-icon">
-                🛰️
-            </div>
-
-
-            <div>
-
-                <div class="category">
-                    MISSION OF THE DAY
-                </div>
-
-                <h2 id="missionTitle">
-                    Loading...
-                </h2>
-
-                <p id="missionText">
-                    Loading mission information...
-                </p>
 
             </div>
 
@@ -372,13 +298,12 @@
 
     <footer>
 
-        <div>
-            Made somewhere between Earth and the Moon 🌎🌙
-        </div>
+        Made for Krish's 13th birthday 🚀
 
-        <div>
-            Keep looking up.
-        </div>
+        <br>
+
+        From one small corner of Earth
+        to the rest of the universe. 🌎✨
 
     </footer>
 
