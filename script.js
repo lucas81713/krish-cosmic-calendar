@@ -1760,3 +1760,75 @@ renderMoon();
 
 
 initializeCosmicAlerts();
+
+// =========================================
+// RANDOM SHOOTING STARS
+// Every 10–30 seconds
+// =========================================
+
+function createShootingStar() {
+
+    const star =
+        document.createElement("div");
+
+    star.className =
+        "shooting-star";
+
+    // Random starting position
+    const startX =
+        Math.random() *
+        window.innerWidth;
+
+    const startY =
+        Math.random() *
+        (window.innerHeight * 0.65);
+
+    star.style.left =
+        startX + "px";
+
+    star.style.top =
+        startY + "px";
+
+    document.body.appendChild(star);
+
+    // Start animation
+    requestAnimationFrame(() => {
+
+        star.classList.add("active");
+
+    });
+
+    // Remove after animation
+    setTimeout(() => {
+
+        star.remove();
+
+    }, 1500);
+
+}
+
+
+function scheduleShootingStar() {
+
+    // Random delay between 10 and 30 seconds
+
+    const delay =
+        Math.floor(
+            Math.random() *
+            20000
+        ) + 10000;
+
+
+    setTimeout(() => {
+
+        createShootingStar();
+
+        scheduleShootingStar();
+
+    }, delay);
+
+}
+
+
+// Start the system
+scheduleShootingStar();
