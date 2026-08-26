@@ -1,6 +1,11 @@
 /* =========================================
    KRISH'S COSMIC CALENDAR
-   FULL STYLE.CSS
+   FULL CSS
+   ========================================= */
+
+
+/* =========================================
+   RESET
    ========================================= */
 
 * {
@@ -34,126 +39,27 @@ body {
 
         radial-gradient(
             circle at 50% 0%,
-            rgba(55,65,130,0.28),
-            transparent 38%
+            rgba(45, 50, 100, 0.3),
+            transparent 40%
         ),
 
         radial-gradient(
             circle at 10% 80%,
-            rgba(40,55,130,0.16),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 90% 30%,
-            rgba(75,45,130,0.13),
+            rgba(40, 55, 120, 0.12),
             transparent 30%
         ),
 
         #02030a;
 
     overflow-x: hidden;
-
-    position: relative;
 }
 
 
 /* =========================================
-   STARFIELD
+   VERY SUBTLE STARS
    ========================================= */
 
-body::before {
-
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: -2;
-
-    background-image:
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,0.95) 0.7px,
-            transparent 1.2px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,0.8) 0.8px,
-            transparent 1.3px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(190,215,255,0.85) 0.9px,
-            transparent 1.4px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,0.9) 1.2px,
-            transparent 1.8px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(180,200,255,0.75) 1.3px,
-            transparent 2px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(255,235,200,0.65) 1px,
-            transparent 1.7px
-        );
-
-    /*
-     * Larger spacing = less dense stars
-     */
-
-    background-size:
-
-        65px 73px,
-        105px 117px,
-        145px 163px,
-        210px 235px,
-        290px 310px,
-        390px 350px;
-
-    background-position:
-
-        10px 20px,
-        30px 70px,
-        90px 15px,
-        140px 100px,
-        20px 170px,
-        200px 40px;
-
-    opacity: 0.68;
-
-    animation:
-        starsMove
-        120s
-        linear
-        infinite,
-
-        starsTwinkle
-        6s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-/* =========================================
-   SECOND STAR LAYER
-   ========================================= */
-
+body::before,
 body::after {
 
     content: "";
@@ -165,305 +71,60 @@ body::after {
     pointer-events: none;
 
     z-index: -1;
+}
+
+
+/* Only a handful of stars */
+
+body::before {
 
     background-image:
 
         radial-gradient(
             circle,
-            rgba(255,255,255,0.9) 1px,
-            transparent 1.6px
+            rgba(255,255,255,0.75) 1px,
+            transparent 1.5px
         ),
 
         radial-gradient(
             circle,
-            rgba(150,185,255,0.75) 1.1px,
-            transparent 1.8px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(255,220,180,0.7) 0.9px,
+            rgba(190,210,255,0.55) 1px,
             transparent 1.5px
         );
 
     background-size:
 
-        131px 149px,
-        271px 317px,
-        389px 421px;
+        230px 260px,
+        370px 330px;
 
     background-position:
 
-        60px 40px,
-        180px 130px,
-        30px 220px;
+        40px 70px,
+        180px 130px;
 
-    opacity: 0.42;
-
-    animation:
-        starsMoveReverse
-        150s
-        linear
-        infinite,
-
-        starsTwinkleSlow
-        9s
-        ease-in-out
-        infinite
-        alternate;
+    opacity: 0.32;
 }
 
 
-/* =========================================
-   STAR ANIMATIONS
-   ========================================= */
+/* Very few brighter stars */
 
-@keyframes starsTwinkle {
+body::after {
 
-    0% {
-        opacity: 0.50;
-    }
+    background-image:
 
-    50% {
-        opacity: 0.72;
-    }
-
-    100% {
-        opacity: 0.58;
-    }
-
-}
-
-
-@keyframes starsTwinkleSlow {
-
-    0% {
-        opacity: 0.30;
-    }
-
-    50% {
-        opacity: 0.50;
-    }
-
-    100% {
-        opacity: 0.38;
-    }
-
-}
-
-
-@keyframes starsMove {
-
-    from {
-
-        background-position:
-
-            10px 20px,
-            30px 70px,
-            90px 15px,
-            140px 100px,
-            20px 170px,
-            200px 40px;
-
-    }
-
-    to {
-
-        background-position:
-
-            70px 90px,
-            100px 130px,
-            150px 80px,
-            210px 160px,
-            100px 230px,
-            270px 100px;
-
-    }
-
-}
-
-
-@keyframes starsMoveReverse {
-
-    from {
-
-        background-position:
-
-            60px 40px,
-            180px 130px,
-            30px 220px;
-
-    }
-
-    to {
-
-        background-position:
-
-            -50px 100px,
-            90px 40px,
-            150px 280px;
-
-    }
-
-}
-
-
-/* =========================================
-   SHOOTING STAR
-   ========================================= */
-
-.shooting-star {
-
-    position: fixed;
-
-    width: 4px;
-    height: 4px;
-
-    border-radius: 50%;
-
-    background: #ffffff;
-
-    box-shadow:
-
-        0 0 6px #ffffff,
-
-        0 0 14px
-        rgba(180,210,255,0.9),
-
-        0 0 25px
-        rgba(130,160,255,0.5);
-
-    pointer-events: none;
-
-    z-index: 50;
-
-    opacity: 0;
-
-    /*
-     * DOWN + RIGHT
-     * ↘
-     */
-
-    transform:
-        rotate(35deg);
-}
-
-
-/* =========================================
-   SHOOTING STAR TRAIL
-   ========================================= */
-
-.shooting-star::after {
-
-    content: "";
-
-    position: absolute;
-
-    width:
-        var(--trail-length, 130px);
-
-    height: 2px;
-
-    /*
-     * Trail stays BEHIND the star.
-     */
-
-    right: 2px;
-
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-
-    border-radius: 50%;
-
-    background:
-
-        linear-gradient(
-            to left,
-
-            rgba(255,255,255,0.95),
-
-            rgba(180,210,255,0.55),
-
-            rgba(120,160,255,0.18),
-
-            transparent
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.8) 1.5px,
+            transparent 2px
         );
 
-    filter:
-        blur(0.6px);
-}
+    background-size:
+        520px 470px;
 
+    background-position:
+        100px 40px;
 
-/* =========================================
-   SHOOTING STAR ANIMATION
-   ========================================= */
-
-.shooting-star.active {
-
-    animation:
-
-        shootDownRight
-        1.15s
-        cubic-bezier(
-            0.15,
-            0.65,
-            0.35,
-            1
-        )
-        forwards;
-}
-
-
-@keyframes shootDownRight {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translate(
-                0,
-                0
-            )
-            rotate(35deg);
-
-    }
-
-
-    8% {
-
-        opacity: 1;
-
-    }
-
-
-    70% {
-
-        opacity: 1;
-
-    }
-
-
-    100% {
-
-        opacity: 0;
-
-        /*
-         * RIGHT + DOWN
-         * Matches the 35° angle.
-         */
-
-        transform:
-            translate(
-                420px,
-                300px
-            )
-            rotate(35deg);
-
-    }
-
+    opacity: 0.25;
 }
 
 
@@ -489,7 +150,7 @@ body::after {
         rgba(255,255,255,0.08);
 
     background:
-        rgba(2,3,10,0.72);
+        rgba(2,3,10,0.78);
 
     backdrop-filter:
         blur(18px);
@@ -538,8 +199,7 @@ body::after {
     text-align: center;
 
     padding:
-        80px 20px
-        55px;
+        80px 20px 55px;
 
     position: relative;
 }
@@ -551,20 +211,21 @@ body::after {
 
     position: absolute;
 
-    width: 420px;
-    height: 420px;
+    width: 400px;
+
+    height: 400px;
 
     left: 50%;
-    top: 10px;
+
+    top: 20px;
 
     transform:
         translateX(-50%);
 
     background:
-
         radial-gradient(
             circle,
-            rgba(74,89,180,0.15),
+            rgba(74,89,180,0.13),
             transparent 65%
         );
 
@@ -572,39 +233,6 @@ body::after {
         blur(30px);
 
     pointer-events: none;
-
-    animation:
-
-        cosmicGlow
-        7s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-@keyframes cosmicGlow {
-
-    from {
-
-        opacity: 0.45;
-
-        transform:
-            translateX(-50%)
-            scale(0.95);
-
-    }
-
-    to {
-
-        opacity: 0.8;
-
-        transform:
-            translateX(-50%)
-            scale(1.08);
-
-    }
-
 }
 
 
@@ -613,11 +241,7 @@ body::after {
     position: relative;
 
     font-size:
-        clamp(
-            42px,
-            8vw,
-            92px
-        );
+        clamp(42px, 8vw, 92px);
 
     line-height: 0.95;
 
@@ -626,11 +250,6 @@ body::after {
     letter-spacing: -3px;
 
     color: #ffffff;
-
-    text-shadow:
-
-        0 0 30px
-        rgba(150,170,255,0.15);
 }
 
 
@@ -643,8 +262,6 @@ body::after {
     color: #8d94b3;
 
     font-size: 16px;
-
-    letter-spacing: 0.3px;
 }
 
 
@@ -656,31 +273,30 @@ body::after {
 
     width:
         min(
-            100% - 32px,
+            calc(100% - 32px),
             900px
         );
 
     margin:
-        0 auto
-        70px;
+        0 auto 70px;
 }
 
 
 /* =========================================
-   CARDS
+   GENERAL CARDS
    ========================================= */
 
 .today-card,
 .calendar-card,
 .events-card,
-.moon-card {
+.moon-card,
+.notification-card {
 
     background:
-
         linear-gradient(
             145deg,
-            rgba(18,21,40,0.92),
-            rgba(7,9,20,0.92)
+            rgba(18,21,40,0.94),
+            rgba(7,9,20,0.94)
         );
 
     border:
@@ -700,7 +316,144 @@ body::after {
 
 
 /* =========================================
-   TODAY CARD
+   NOTIFICATIONS
+   ========================================= */
+
+.notification-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.notification-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    min-width: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        rgba(90,105,220,0.12);
+
+    font-size: 25px;
+}
+
+
+.notification-info {
+
+    flex: 1;
+}
+
+
+.notification-info h2 {
+
+    font-size: 17px;
+
+    color: #ffffff;
+
+    margin-bottom: 5px;
+}
+
+
+.notification-info p {
+
+    color: #858ca6;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.notification-button {
+
+    border: none;
+
+    padding:
+        11px 15px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(95,110,220,0.2);
+
+    border:
+        1px solid
+        rgba(120,135,240,0.25);
+
+    color: #dfe3ff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        0.2s ease;
+}
+
+
+.notification-button:hover {
+
+    background:
+        rgba(105,120,240,0.3);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.notification-button:active {
+
+    transform:
+        scale(0.96);
+}
+
+
+.notification-button.enabled {
+
+    background:
+        rgba(60,160,110,0.15);
+
+    border-color:
+        rgba(90,190,140,0.3);
+
+    color: #a9e8c7;
+}
+
+
+.notification-button:disabled {
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================
+   TODAY'S FACT
    ========================================= */
 
 .today-card {
@@ -712,51 +465,6 @@ body::after {
     position: relative;
 
     overflow: hidden;
-}
-
-
-.today-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    right: -100px;
-    top: -100px;
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(89,110,220,0.12),
-            transparent 70%
-        );
-
-    pointer-events: none;
-
-    animation:
-
-        cardGlow
-        6s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-@keyframes cardGlow {
-
-    from {
-        opacity: 0.35;
-    }
-
-    to {
-        opacity: 0.8;
-    }
-
 }
 
 
@@ -773,6 +481,7 @@ body::after {
 .fact-icon {
 
     width: 68px;
+
     height: 68px;
 
     min-width: 68px;
@@ -813,11 +522,7 @@ body::after {
 .fact-title {
 
     font-size:
-        clamp(
-            20px,
-            4vw,
-            30px
-        );
+        clamp(20px,4vw,30px);
 
     line-height: 1.2;
 
@@ -922,6 +627,7 @@ body::after {
 .calendar-header button {
 
     width: 42px;
+
     height: 42px;
 
     border:
@@ -937,14 +643,10 @@ body::after {
 
     font-size: 28px;
 
-    line-height: 1;
-
     cursor: pointer;
 
     transition:
-
-        background 0.2s ease,
-        transform 0.2s ease;
+        0.2s ease;
 }
 
 
@@ -958,23 +660,12 @@ body::after {
 }
 
 
-.calendar-header button:active {
-
-    transform:
-        scale(0.95);
-}
-
-
-/* =========================================
-   WEEKDAYS
-   ========================================= */
-
 .weekdays {
 
     display: grid;
 
     grid-template-columns:
-        repeat(7, 1fr);
+        repeat(7,1fr);
 
     gap: 7px;
 
@@ -998,16 +689,12 @@ body::after {
 }
 
 
-/* =========================================
-   CALENDAR GRID
-   ========================================= */
-
 .calendar {
 
     display: grid;
 
     grid-template-columns:
-        repeat(7, 1fr);
+        repeat(7,1fr);
 
     gap: 7px;
 }
@@ -1033,10 +720,7 @@ body::after {
     position: relative;
 
     transition:
-
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+        0.2s ease;
 }
 
 
@@ -1061,15 +745,13 @@ body::after {
     border-color:
         transparent;
 
-    cursor:
-        default;
+    cursor: default;
 }
 
 
 .day.empty:hover {
 
-    transform:
-        none;
+    transform: none;
 }
 
 
@@ -1086,7 +768,6 @@ body::after {
 .day.today {
 
     background:
-
         linear-gradient(
             145deg,
             rgba(83,100,210,0.28),
@@ -1097,7 +778,6 @@ body::after {
         rgba(125,145,255,0.65);
 
     box-shadow:
-
         0 0 25px
         rgba(80,100,230,0.12);
 }
@@ -1109,18 +789,16 @@ body::after {
 }
 
 
-/* =========================================
-   EVENT DOT
-   ========================================= */
-
 .event-dot {
 
     width: 8px;
+
     height: 8px;
 
     position: absolute;
 
     bottom: 10px;
+
     left: 10px;
 
     border-radius: 50%;
@@ -1128,52 +806,18 @@ body::after {
     background: #8c9aff;
 
     box-shadow:
-
         0 0 10px
         rgba(130,145,255,0.7);
-
-    animation:
-
-        eventPulse
-        2.5s
-        ease-in-out
-        infinite;
 }
 
 
 .event-dot.eclipse {
 
-    background:
-        #c39aff;
+    background: #c39aff;
 
     box-shadow:
-
         0 0 12px
         rgba(180,130,255,0.9);
-}
-
-
-@keyframes eventPulse {
-
-    0%,
-    100% {
-
-        transform:
-            scale(1);
-
-        opacity:
-            0.7;
-    }
-
-    50% {
-
-        transform:
-            scale(1.3);
-
-        opacity:
-            1;
-    }
-
 }
 
 
@@ -1211,8 +855,7 @@ body::after {
 
     gap: 20px;
 
-    padding:
-        17px 0;
+    padding: 17px 0;
 
     border-bottom:
         1px solid
@@ -1222,8 +865,7 @@ body::after {
 
 .event:last-child {
 
-    border-bottom:
-        none;
+    border-bottom: none;
 }
 
 
@@ -1302,6 +944,7 @@ body::after {
 .moon-visual {
 
     width: 82px;
+
     height: 82px;
 
     min-width: 82px;
@@ -1317,7 +960,6 @@ body::after {
     font-size: 48px;
 
     background:
-
         radial-gradient(
             circle at 35% 30%,
             rgba(255,255,255,0.13),
@@ -1325,38 +967,8 @@ body::after {
         );
 
     box-shadow:
-
         0 0 35px
         rgba(190,200,255,0.08);
-
-    animation:
-
-        moonGlow
-        5s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-@keyframes moonGlow {
-
-    from {
-
-        box-shadow:
-            0 0 20px
-            rgba(190,200,255,0.05);
-
-    }
-
-    to {
-
-        box-shadow:
-            0 0 45px
-            rgba(190,200,255,0.16);
-
-    }
-
 }
 
 
@@ -1377,9 +989,7 @@ footer {
     text-align: center;
 
     padding:
-        30px
-        20px
-        50px;
+        30px 20px 50px;
 
     color: #555c76;
 
@@ -1417,9 +1027,7 @@ footer {
     .hero {
 
         padding:
-            60px
-            15px
-            40px;
+            60px 15px 40px;
     }
 
 
@@ -1444,6 +1052,26 @@ footer {
     }
 
 
+    .notification-card {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+
+    .notification-info {
+
+        min-width: 0;
+    }
+
+
+    .notification-button {
+
+        width: 100%;
+    }
+
+
     .today-card {
 
         padding: 22px;
@@ -1461,6 +1089,7 @@ footer {
     .fact-icon {
 
         width: 54px;
+
         height: 54px;
 
         min-width: 54px;
@@ -1491,12 +1120,7 @@ footer {
     }
 
 
-    .calendar {
-
-        gap: 4px;
-    }
-
-
+    .calendar,
     .weekdays {
 
         gap: 4px;
@@ -1522,9 +1146,11 @@ footer {
     .event-dot {
 
         width: 6px;
+
         height: 6px;
 
         bottom: 7px;
+
         left: 7px;
     }
 
@@ -1538,6 +1164,7 @@ footer {
     .moon-visual {
 
         width: 65px;
+
         height: 65px;
 
         min-width: 65px;
@@ -1583,6 +1210,7 @@ footer {
     .calendar-header button {
 
         width: 36px;
+
         height: 36px;
 
         font-size: 23px;
@@ -1597,19 +1225,11 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
+    * {
 
-        animation:
-            none !important;
+        scroll-behavior: auto !important;
 
-        transition:
-            none !important;
-
-        scroll-behavior:
-            auto !important;
-
+        transition: none !important;
     }
 
 }
