@@ -9,11 +9,14 @@
     padding: 0;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
+
     min-height: 100vh;
 
     font-family:
@@ -28,21 +31,25 @@ body {
     color: #f5f7ff;
 
     background:
+
         radial-gradient(
             circle at 50% 0%,
-            rgba(55, 65, 130, 0.28),
+            rgba(55,65,130,0.28),
             transparent 38%
         ),
+
         radial-gradient(
             circle at 10% 80%,
-            rgba(40, 55, 130, 0.16),
+            rgba(40,55,130,0.16),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 90% 30%,
-            rgba(75, 45, 130, 0.13),
+            rgba(75,45,130,0.13),
             transparent 30%
         ),
+
         #02030a;
 
     overflow-x: hidden;
@@ -56,6 +63,7 @@ body {
    ========================================= */
 
 body::before {
+
     content: "";
 
     position: fixed;
@@ -67,8 +75,6 @@ body::before {
     z-index: -2;
 
     background-image:
-
-        /* Small distant stars */
 
         radial-gradient(
             circle,
@@ -87,8 +93,6 @@ body::before {
             rgba(190,215,255,0.85) 0.9px,
             transparent 1.4px
         ),
-
-        /* Medium stars */
 
         radial-gradient(
             circle,
@@ -109,12 +113,11 @@ body::before {
         );
 
     /*
-       Larger numbers = fewer stars.
-       This keeps the sky detailed
-       without becoming too dense.
-    */
+     * Larger spacing = less dense stars
+     */
 
     background-size:
+
         65px 73px,
         105px 117px,
         145px 163px,
@@ -123,6 +126,7 @@ body::before {
         390px 350px;
 
     background-position:
+
         10px 20px,
         30px 70px,
         90px 15px,
@@ -133,8 +137,16 @@ body::before {
     opacity: 0.68;
 
     animation:
-        starsMove 120s linear infinite,
-        starsTwinkle 6s ease-in-out infinite alternate;
+        starsMove
+        120s
+        linear
+        infinite,
+
+        starsTwinkle
+        6s
+        ease-in-out
+        infinite
+        alternate;
 }
 
 
@@ -143,6 +155,7 @@ body::before {
    ========================================= */
 
 body::after {
+
     content: "";
 
     position: fixed;
@@ -174,11 +187,13 @@ body::after {
         );
 
     background-size:
+
         131px 149px,
         271px 317px,
         389px 421px;
 
     background-position:
+
         60px 40px,
         180px 130px,
         30px 220px;
@@ -186,8 +201,16 @@ body::after {
     opacity: 0.42;
 
     animation:
-        starsMoveReverse 150s linear infinite,
-        starsTwinkleSlow 9s ease-in-out infinite alternate;
+        starsMoveReverse
+        150s
+        linear
+        infinite,
+
+        starsTwinkleSlow
+        9s
+        ease-in-out
+        infinite
+        alternate;
 }
 
 
@@ -232,23 +255,29 @@ body::after {
 @keyframes starsMove {
 
     from {
+
         background-position:
+
             10px 20px,
             30px 70px,
             90px 15px,
             140px 100px,
             20px 170px,
             200px 40px;
+
     }
 
     to {
+
         background-position:
+
             70px 90px,
             100px 130px,
             150px 80px,
             210px 160px,
             100px 230px,
             270px 100px;
+
     }
 
 }
@@ -257,17 +286,23 @@ body::after {
 @keyframes starsMoveReverse {
 
     from {
+
         background-position:
+
             60px 40px,
             180px 130px,
             30px 220px;
+
     }
 
     to {
+
         background-position:
+
             -50px 100px,
             90px 40px,
             150px 280px;
+
     }
 
 }
@@ -278,6 +313,7 @@ body::after {
    ========================================= */
 
 .shooting-star {
+
     position: fixed;
 
     width: 4px;
@@ -288,8 +324,14 @@ body::after {
     background: #ffffff;
 
     box-shadow:
+
         0 0 6px #ffffff,
-        0 0 14px rgba(180,210,255,0.9);
+
+        0 0 14px
+        rgba(180,210,255,0.9),
+
+        0 0 25px
+        rgba(130,160,255,0.5);
 
     pointer-events: none;
 
@@ -298,11 +340,12 @@ body::after {
     opacity: 0;
 
     /*
-       The star and trail both point
-       toward the upper-right.
-    */
+     * DOWN + RIGHT
+     * ↘
+     */
 
-    transform: rotate(-35deg);
+    transform:
+        rotate(35deg);
 }
 
 
@@ -311,27 +354,45 @@ body::after {
    ========================================= */
 
 .shooting-star::after {
+
     content: "";
 
     position: absolute;
 
-    width: 130px;
+    width:
+        var(--trail-length, 130px);
+
     height: 2px;
 
+    /*
+     * Trail stays BEHIND the star.
+     */
+
     right: 2px;
-    top: 1px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
 
     border-radius: 50%;
 
     background:
+
         linear-gradient(
             to left,
-            rgba(255,255,255,0.9),
-            rgba(180,210,255,0.4),
+
+            rgba(255,255,255,0.95),
+
+            rgba(180,210,255,0.55),
+
+            rgba(120,160,255,0.18),
+
             transparent
         );
 
-    filter: blur(0.5px);
+    filter:
+        blur(0.6px);
 }
 
 
@@ -342,50 +403,64 @@ body::after {
 .shooting-star.active {
 
     animation:
-        shootAcrossSky
-        1.2s
-        ease-out
-        forwards;
 
+        shootDownRight
+        1.15s
+        cubic-bezier(
+            0.15,
+            0.65,
+            0.35,
+            1
+        )
+        forwards;
 }
 
 
-@keyframes shootAcrossSky {
+@keyframes shootDownRight {
 
     0% {
 
         opacity: 0;
 
         transform:
-            translate(0, 0)
-            rotate(-35deg);
+            translate(
+                0,
+                0
+            )
+            rotate(35deg);
 
     }
 
-    10% {
+
+    8% {
 
         opacity: 1;
 
     }
 
-    75% {
+
+    70% {
 
         opacity: 1;
 
     }
+
 
     100% {
 
         opacity: 0;
 
         /*
-           Moves right AND upward,
-           matching the diagonal direction.
-        */
+         * RIGHT + DOWN
+         * Matches the 35° angle.
+         */
 
         transform:
-            translate(420px, -300px)
-            rotate(-35deg);
+            translate(
+                420px,
+                300px
+            )
+            rotate(35deg);
 
     }
 
@@ -397,6 +472,7 @@ body::after {
    ========================================= */
 
 .top-bar {
+
     width: 100%;
 
     padding:
@@ -430,6 +506,7 @@ body::after {
 
 
 .top-title {
+
     font-size: 14px;
 
     font-weight: 800;
@@ -441,6 +518,7 @@ body::after {
 
 
 .top-location {
+
     font-size: 11px;
 
     font-weight: 700;
@@ -456,16 +534,19 @@ body::after {
    ========================================= */
 
 .hero {
+
     text-align: center;
 
     padding:
-        80px 20px 55px;
+        80px 20px
+        55px;
 
     position: relative;
 }
 
 
 .hero::before {
+
     content: "";
 
     position: absolute;
@@ -476,20 +557,24 @@ body::after {
     left: 50%;
     top: 10px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     background:
+
         radial-gradient(
             circle,
             rgba(74,89,180,0.15),
             transparent 65%
         );
 
-    filter: blur(30px);
+    filter:
+        blur(30px);
 
     pointer-events: none;
 
     animation:
+
         cosmicGlow
         7s
         ease-in-out
@@ -524,10 +609,15 @@ body::after {
 
 
 .hero h1 {
+
     position: relative;
 
     font-size:
-        clamp(42px, 8vw, 92px);
+        clamp(
+            42px,
+            8vw,
+            92px
+        );
 
     line-height: 0.95;
 
@@ -538,12 +628,14 @@ body::after {
     color: #ffffff;
 
     text-shadow:
+
         0 0 30px
         rgba(150,170,255,0.15);
 }
 
 
 .hero p {
+
     position: relative;
 
     margin-top: 25px;
@@ -557,10 +649,11 @@ body::after {
 
 
 /* =========================================
-   MAIN CONTAINER
+   MAIN
    ========================================= */
 
 .container {
+
     width:
         min(
             100% - 32px,
@@ -574,7 +667,7 @@ body::after {
 
 
 /* =========================================
-   GENERAL CARDS
+   CARDS
    ========================================= */
 
 .today-card,
@@ -583,6 +676,7 @@ body::after {
 .moon-card {
 
     background:
+
         linear-gradient(
             145deg,
             rgba(18,21,40,0.92),
@@ -602,12 +696,11 @@ body::after {
 
         inset 0 1px 0
         rgba(255,255,255,0.025);
-
 }
 
 
 /* =========================================
-   TODAY'S FACT
+   TODAY CARD
    ========================================= */
 
 .today-card {
@@ -619,7 +712,6 @@ body::after {
     position: relative;
 
     overflow: hidden;
-
 }
 
 
@@ -636,6 +728,7 @@ body::after {
     top: -100px;
 
     background:
+
         radial-gradient(
             circle,
             rgba(89,110,220,0.12),
@@ -645,12 +738,12 @@ body::after {
     pointer-events: none;
 
     animation:
+
         cardGlow
         6s
         ease-in-out
         infinite
         alternate;
-
 }
 
 
@@ -674,7 +767,6 @@ body::after {
     align-items: center;
 
     gap: 20px;
-
 }
 
 
@@ -701,7 +793,6 @@ body::after {
     border:
         1px solid
         rgba(130,145,255,0.15);
-
 }
 
 
@@ -716,7 +807,6 @@ body::after {
     color: #7581d8;
 
     margin-bottom: 6px;
-
 }
 
 
@@ -732,7 +822,6 @@ body::after {
     line-height: 1.2;
 
     color: #ffffff;
-
 }
 
 
@@ -745,7 +834,6 @@ body::after {
     line-height: 1.7;
 
     color: #aeb4ca;
-
 }
 
 
@@ -766,7 +854,6 @@ body::after {
     font-size: 14px;
 
     font-style: italic;
-
 }
 
 
@@ -783,14 +870,12 @@ body::after {
     gap: 13px;
 
     margin-bottom: 18px;
-
 }
 
 
 .section-heading-icon {
 
     font-size: 24px;
-
 }
 
 
@@ -799,7 +884,6 @@ body::after {
     font-size: 24px;
 
     color: #ffffff;
-
 }
 
 
@@ -812,7 +896,6 @@ body::after {
     padding: 22px;
 
     margin-bottom: 35px;
-
 }
 
 
@@ -825,7 +908,6 @@ body::after {
     justify-content: space-between;
 
     margin-bottom: 22px;
-
 }
 
 
@@ -834,7 +916,6 @@ body::after {
     font-size: 20px;
 
     color: #ffffff;
-
 }
 
 
@@ -861,9 +942,9 @@ body::after {
     cursor: pointer;
 
     transition:
+
         background 0.2s ease,
         transform 0.2s ease;
-
 }
 
 
@@ -874,7 +955,6 @@ body::after {
 
     transform:
         scale(1.05);
-
 }
 
 
@@ -882,7 +962,6 @@ body::after {
 
     transform:
         scale(0.95);
-
 }
 
 
@@ -900,7 +979,6 @@ body::after {
     gap: 7px;
 
     margin-bottom: 7px;
-
 }
 
 
@@ -917,7 +995,6 @@ body::after {
     color: #666d8b;
 
     padding: 8px 0;
-
 }
 
 
@@ -933,7 +1010,6 @@ body::after {
         repeat(7, 1fr);
 
     gap: 7px;
-
 }
 
 
@@ -957,10 +1033,10 @@ body::after {
     position: relative;
 
     transition:
+
         background 0.2s ease,
         border-color 0.2s ease,
         transform 0.2s ease;
-
 }
 
 
@@ -974,7 +1050,6 @@ body::after {
 
     transform:
         translateY(-2px);
-
 }
 
 
@@ -988,7 +1063,6 @@ body::after {
 
     cursor:
         default;
-
 }
 
 
@@ -996,7 +1070,6 @@ body::after {
 
     transform:
         none;
-
 }
 
 
@@ -1007,13 +1080,13 @@ body::after {
     font-weight: 700;
 
     color: #b8bdd0;
-
 }
 
 
 .day.today {
 
     background:
+
         linear-gradient(
             145deg,
             rgba(83,100,210,0.28),
@@ -1024,16 +1097,15 @@ body::after {
         rgba(125,145,255,0.65);
 
     box-shadow:
+
         0 0 25px
         rgba(80,100,230,0.12);
-
 }
 
 
 .day.today .day-number {
 
     color: #ffffff;
-
 }
 
 
@@ -1056,15 +1128,16 @@ body::after {
     background: #8c9aff;
 
     box-shadow:
+
         0 0 10px
         rgba(130,145,255,0.7);
 
     animation:
+
         eventPulse
         2.5s
         ease-in-out
         infinite;
-
 }
 
 
@@ -1074,9 +1147,9 @@ body::after {
         #c39aff;
 
     box-shadow:
+
         0 0 12px
         rgba(180,130,255,0.9);
-
 }
 
 
@@ -1090,7 +1163,6 @@ body::after {
 
         opacity:
             0.7;
-
     }
 
     50% {
@@ -1100,7 +1172,6 @@ body::after {
 
         opacity:
             1;
-
     }
 
 }
@@ -1115,7 +1186,6 @@ body::after {
     padding: 25px;
 
     margin-bottom: 30px;
-
 }
 
 
@@ -1128,7 +1198,6 @@ body::after {
     margin-bottom: 20px;
 
     color: #ffffff;
-
 }
 
 
@@ -1148,7 +1217,6 @@ body::after {
     border-bottom:
         1px solid
         rgba(255,255,255,0.06);
-
 }
 
 
@@ -1156,7 +1224,6 @@ body::after {
 
     border-bottom:
         none;
-
 }
 
 
@@ -1167,7 +1234,6 @@ body::after {
     font-weight: 700;
 
     color: #e8eaf3;
-
 }
 
 
@@ -1178,7 +1244,6 @@ body::after {
     font-size: 12px;
 
     color: #6f7692;
-
 }
 
 
@@ -1201,7 +1266,6 @@ body::after {
 
     background:
         rgba(90,105,220,0.1);
-
 }
 
 
@@ -1214,7 +1278,6 @@ body::after {
     color: #686f8b;
 
     font-size: 14px;
-
 }
 
 
@@ -1233,7 +1296,6 @@ body::after {
     padding: 28px;
 
     margin-bottom: 30px;
-
 }
 
 
@@ -1255,6 +1317,7 @@ body::after {
     font-size: 48px;
 
     background:
+
         radial-gradient(
             circle at 35% 30%,
             rgba(255,255,255,0.13),
@@ -1262,16 +1325,17 @@ body::after {
         );
 
     box-shadow:
+
         0 0 35px
         rgba(190,200,255,0.08);
 
     animation:
+
         moonGlow
         5s
         ease-in-out
         infinite
         alternate;
-
 }
 
 
@@ -1301,7 +1365,6 @@ body::after {
     font-size: 24px;
 
     color: #ffffff;
-
 }
 
 
@@ -1323,7 +1386,6 @@ footer {
     font-size: 12px;
 
     line-height: 1.8;
-
 }
 
 
@@ -1337,21 +1399,18 @@ footer {
 
         padding:
             15px 17px;
-
     }
 
 
     .top-title {
 
         font-size: 11px;
-
     }
 
 
     .top-location {
 
         font-size: 8px;
-
     }
 
 
@@ -1361,7 +1420,6 @@ footer {
             60px
             15px
             40px;
-
     }
 
 
@@ -1370,14 +1428,12 @@ footer {
         font-size: 48px;
 
         letter-spacing: -2px;
-
     }
 
 
     .hero p {
 
         font-size: 14px;
-
     }
 
 
@@ -1385,7 +1441,6 @@ footer {
 
         width:
             calc(100% - 20px);
-
     }
 
 
@@ -1394,14 +1449,12 @@ footer {
         padding: 22px;
 
         border-radius: 20px;
-
     }
 
 
     .today-header {
 
         gap: 14px;
-
     }
 
 
@@ -1415,21 +1468,18 @@ footer {
         font-size: 27px;
 
         border-radius: 14px;
-
     }
 
 
     .fact-title {
 
         font-size: 19px;
-
     }
 
 
     .fact-text {
 
         font-size: 14px;
-
     }
 
 
@@ -1438,21 +1488,18 @@ footer {
         padding: 12px;
 
         border-radius: 19px;
-
     }
 
 
     .calendar {
 
         gap: 4px;
-
     }
 
 
     .weekdays {
 
         gap: 4px;
-
     }
 
 
@@ -1463,14 +1510,12 @@ footer {
         padding: 7px;
 
         border-radius: 9px;
-
     }
 
 
     .day-number {
 
         font-size: 12px;
-
     }
 
 
@@ -1481,14 +1526,12 @@ footer {
 
         bottom: 7px;
         left: 7px;
-
     }
 
 
     .moon-card {
 
         padding: 22px;
-
     }
 
 
@@ -1500,14 +1543,12 @@ footer {
         min-width: 65px;
 
         font-size: 38px;
-
     }
 
 
     .moon-info h2 {
 
         font-size: 19px;
-
     }
 
 }
@@ -1522,7 +1563,6 @@ footer {
     .hero h1 {
 
         font-size: 40px;
-
     }
 
 
@@ -1531,14 +1571,12 @@ footer {
         min-height: 50px;
 
         padding: 6px;
-
     }
 
 
     .calendar-header h2 {
 
         font-size: 17px;
-
     }
 
 
@@ -1548,7 +1586,6 @@ footer {
         height: 36px;
 
         font-size: 23px;
-
     }
 
 }
