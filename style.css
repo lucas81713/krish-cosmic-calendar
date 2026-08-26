@@ -1,6 +1,6 @@
 /* =========================================
    KRISH'S COSMIC CALENDAR
-   STARFIELD + SHOOTING STARS
+   FULL STYLE.CSS
    ========================================= */
 
 * {
@@ -30,17 +30,17 @@ body {
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(55, 65, 130, 0.30),
+            rgba(55, 65, 130, 0.28),
             transparent 38%
         ),
         radial-gradient(
             circle at 10% 80%,
-            rgba(40, 55, 130, 0.18),
+            rgba(40, 55, 130, 0.16),
             transparent 30%
         ),
         radial-gradient(
             circle at 90% 30%,
-            rgba(75, 45, 130, 0.15),
+            rgba(75, 45, 130, 0.13),
             transparent 30%
         ),
         #02030a;
@@ -68,7 +68,8 @@ body::before {
 
     background-image:
 
-        /* Tiny stars */
+        /* Small distant stars */
+
         radial-gradient(
             circle,
             rgba(255,255,255,0.95) 0.7px,
@@ -88,6 +89,7 @@ body::before {
         ),
 
         /* Medium stars */
+
         radial-gradient(
             circle,
             rgba(255,255,255,0.9) 1.2px,
@@ -106,13 +108,19 @@ body::before {
             transparent 1.7px
         );
 
+    /*
+       Larger numbers = fewer stars.
+       This keeps the sky detailed
+       without becoming too dense.
+    */
+
     background-size:
-        47px 53px,
-        73px 89px,
-        101px 127px,
-        167px 181px,
-        223px 197px,
-        307px 271px;
+        65px 73px,
+        105px 117px,
+        145px 163px,
+        210px 235px,
+        290px 310px,
+        390px 350px;
 
     background-position:
         10px 20px,
@@ -122,7 +130,7 @@ body::before {
         20px 170px,
         200px 40px;
 
-    opacity: 0.72;
+    opacity: 0.68;
 
     animation:
         starsMove 120s linear infinite,
@@ -175,7 +183,7 @@ body::after {
         180px 130px,
         30px 220px;
 
-    opacity: 0.48;
+    opacity: 0.42;
 
     animation:
         starsMoveReverse 150s linear infinite,
@@ -190,15 +198,15 @@ body::after {
 @keyframes starsTwinkle {
 
     0% {
-        opacity: 0.52;
+        opacity: 0.50;
     }
 
     50% {
-        opacity: 0.78;
+        opacity: 0.72;
     }
 
     100% {
-        opacity: 0.62;
+        opacity: 0.58;
     }
 
 }
@@ -207,15 +215,15 @@ body::after {
 @keyframes starsTwinkleSlow {
 
     0% {
-        opacity: 0.32;
+        opacity: 0.30;
     }
 
     50% {
-        opacity: 0.55;
+        opacity: 0.50;
     }
 
     100% {
-        opacity: 0.42;
+        opacity: 0.38;
     }
 
 }
@@ -272,85 +280,113 @@ body::after {
 .shooting-star {
     position: fixed;
 
-    width: 3px;
-    height: 3px;
+    width: 4px;
+    height: 4px;
 
     border-radius: 50%;
 
-    background: white;
+    background: #ffffff;
 
     box-shadow:
-        0 0 6px white,
-        0 0 12px rgba(180,210,255,0.9);
+        0 0 6px #ffffff,
+        0 0 14px rgba(180,210,255,0.9);
 
     pointer-events: none;
 
-    z-index: 5;
+    z-index: 50;
 
     opacity: 0;
+
+    /*
+       The star and trail both point
+       toward the upper-right.
+    */
 
     transform: rotate(-35deg);
 }
 
+
+/* =========================================
+   SHOOTING STAR TRAIL
+   ========================================= */
 
 .shooting-star::after {
     content: "";
 
     position: absolute;
 
-    width: 120px;
+    width: 130px;
     height: 2px;
 
     right: 2px;
     top: 1px;
 
-    transform-origin: right center;
+    border-radius: 50%;
 
     background:
         linear-gradient(
             to left,
             rgba(255,255,255,0.9),
-            rgba(170,200,255,0.35),
+            rgba(180,210,255,0.4),
             transparent
         );
 
-    filter:
-        blur(0.5px);
+    filter: blur(0.5px);
 }
 
+
+/* =========================================
+   SHOOTING STAR ANIMATION
+   ========================================= */
 
 .shooting-star.active {
+
     animation:
-        shoot 1.1s ease-out forwards;
+        shootAcrossSky
+        1.2s
+        ease-out
+        forwards;
+
 }
 
 
-@keyframes shoot {
+@keyframes shootAcrossSky {
 
     0% {
+
         opacity: 0;
 
         transform:
             translate(0, 0)
-            rotate(-35deg)
-            scale(0.7);
+            rotate(-35deg);
+
     }
 
     10% {
+
         opacity: 1;
+
     }
 
     75% {
+
         opacity: 1;
+
     }
 
     100% {
+
         opacity: 0;
 
+        /*
+           Moves right AND upward,
+           matching the diagonal direction.
+        */
+
         transform:
-            translate(420px, 300px)
-            rotate(-35deg)
-            scale(1);
+            translate(420px, -300px)
+            rotate(-35deg);
+
     }
 
 }
@@ -363,7 +399,8 @@ body::after {
 .top-bar {
     width: 100%;
 
-    padding: 18px 28px;
+    padding:
+        18px 28px;
 
     display: flex;
 
@@ -378,9 +415,11 @@ body::after {
     background:
         rgba(2,3,10,0.72);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(18px);
 
-    -webkit-backdrop-filter: blur(18px);
+    -webkit-backdrop-filter:
+        blur(18px);
 
     position: sticky;
 
@@ -451,26 +490,34 @@ body::after {
     pointer-events: none;
 
     animation:
-        cosmicGlow 7s ease-in-out infinite alternate;
+        cosmicGlow
+        7s
+        ease-in-out
+        infinite
+        alternate;
 }
 
 
 @keyframes cosmicGlow {
 
     from {
+
         opacity: 0.45;
 
         transform:
             translateX(-50%)
             scale(0.95);
+
     }
 
     to {
+
         opacity: 0.8;
 
         transform:
             translateX(-50%)
             scale(1.08);
+
     }
 
 }
@@ -504,29 +551,37 @@ body::after {
     color: #8d94b3;
 
     font-size: 16px;
+
+    letter-spacing: 0.3px;
 }
 
 
 /* =========================================
-   CONTAINER
+   MAIN CONTAINER
    ========================================= */
 
 .container {
-    width: min(100% - 32px, 900px);
+    width:
+        min(
+            100% - 32px,
+            900px
+        );
 
     margin:
-        0 auto 70px;
+        0 auto
+        70px;
 }
 
 
 /* =========================================
-   CARDS
+   GENERAL CARDS
    ========================================= */
 
 .today-card,
 .calendar-card,
 .events-card,
 .moon-card {
+
     background:
         linear-gradient(
             145deg,
@@ -541,18 +596,22 @@ body::after {
     border-radius: 24px;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.35),
+
+        0 20px 60px
+        rgba(0,0,0,0.35),
 
         inset 0 1px 0
         rgba(255,255,255,0.025);
+
 }
 
 
 /* =========================================
-   TODAY CARD
+   TODAY'S FACT
    ========================================= */
 
 .today-card {
+
     padding: 30px;
 
     margin-bottom: 45px;
@@ -560,19 +619,67 @@ body::after {
     position: relative;
 
     overflow: hidden;
+
+}
+
+
+.today-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -100px;
+    top: -100px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(89,110,220,0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    animation:
+        cardGlow
+        6s
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+
+@keyframes cardGlow {
+
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+
 }
 
 
 .today-header {
+
     display: flex;
 
     align-items: center;
 
     gap: 20px;
+
 }
 
 
 .fact-icon {
+
     width: 68px;
     height: 68px;
 
@@ -594,10 +701,12 @@ body::after {
     border:
         1px solid
         rgba(130,145,255,0.15);
+
 }
 
 
 .fact-category {
+
     font-size: 11px;
 
     font-weight: 900;
@@ -607,20 +716,28 @@ body::after {
     color: #7581d8;
 
     margin-bottom: 6px;
+
 }
 
 
 .fact-title {
+
     font-size:
-        clamp(20px, 4vw, 30px);
+        clamp(
+            20px,
+            4vw,
+            30px
+        );
 
     line-height: 1.2;
 
     color: #ffffff;
+
 }
 
 
 .fact-text {
+
     margin-top: 22px;
 
     font-size: 16px;
@@ -628,13 +745,16 @@ body::after {
     line-height: 1.7;
 
     color: #aeb4ca;
+
 }
 
 
 .pun {
+
     margin-top: 20px;
 
-    padding: 14px 16px;
+    padding:
+        14px 16px;
 
     border-radius: 12px;
 
@@ -646,6 +766,7 @@ body::after {
     font-size: 14px;
 
     font-style: italic;
+
 }
 
 
@@ -654,6 +775,7 @@ body::after {
    ========================================= */
 
 .section-heading {
+
     display: flex;
 
     align-items: center;
@@ -661,18 +783,23 @@ body::after {
     gap: 13px;
 
     margin-bottom: 18px;
+
 }
 
 
 .section-heading-icon {
+
     font-size: 24px;
+
 }
 
 
 .section-heading h2 {
+
     font-size: 24px;
 
     color: #ffffff;
+
 }
 
 
@@ -681,13 +808,16 @@ body::after {
    ========================================= */
 
 .calendar-card {
+
     padding: 22px;
 
     margin-bottom: 35px;
+
 }
 
 
 .calendar-header {
+
     display: flex;
 
     align-items: center;
@@ -695,17 +825,21 @@ body::after {
     justify-content: space-between;
 
     margin-bottom: 22px;
+
 }
 
 
 .calendar-header h2 {
+
     font-size: 20px;
 
     color: #ffffff;
+
 }
 
 
 .calendar-header button {
+
     width: 42px;
     height: 42px;
 
@@ -722,24 +856,33 @@ body::after {
 
     font-size: 28px;
 
+    line-height: 1;
+
     cursor: pointer;
 
     transition:
         background 0.2s ease,
         transform 0.2s ease;
+
 }
 
 
 .calendar-header button:hover {
+
     background:
         rgba(100,115,220,0.2);
 
-    transform: scale(1.05);
+    transform:
+        scale(1.05);
+
 }
 
 
 .calendar-header button:active {
-    transform: scale(0.95);
+
+    transform:
+        scale(0.95);
+
 }
 
 
@@ -748,6 +891,7 @@ body::after {
    ========================================= */
 
 .weekdays {
+
     display: grid;
 
     grid-template-columns:
@@ -756,10 +900,12 @@ body::after {
     gap: 7px;
 
     margin-bottom: 7px;
+
 }
 
 
 .weekdays div {
+
     text-align: center;
 
     font-size: 10px;
@@ -771,6 +917,7 @@ body::after {
     color: #666d8b;
 
     padding: 8px 0;
+
 }
 
 
@@ -779,16 +926,19 @@ body::after {
    ========================================= */
 
 .calendar {
+
     display: grid;
 
     grid-template-columns:
         repeat(7, 1fr);
 
     gap: 7px;
+
 }
 
 
 .day {
+
     min-height: 76px;
 
     border-radius: 13px;
@@ -810,10 +960,12 @@ body::after {
         background 0.2s ease,
         border-color 0.2s ease,
         transform 0.2s ease;
+
 }
 
 
 .day:hover {
+
     background:
         rgba(95,110,210,0.12);
 
@@ -822,33 +974,45 @@ body::after {
 
     transform:
         translateY(-2px);
+
 }
 
 
 .day.empty {
-    background: transparent;
 
-    border-color: transparent;
+    background:
+        transparent;
 
-    cursor: default;
+    border-color:
+        transparent;
+
+    cursor:
+        default;
+
 }
 
 
 .day.empty:hover {
-    transform: none;
+
+    transform:
+        none;
+
 }
 
 
 .day-number {
+
     font-size: 14px;
 
     font-weight: 700;
 
     color: #b8bdd0;
+
 }
 
 
 .day.today {
+
     background:
         linear-gradient(
             145deg,
@@ -862,11 +1026,14 @@ body::after {
     box-shadow:
         0 0 25px
         rgba(80,100,230,0.12);
+
 }
 
 
 .day.today .day-number {
+
     color: #ffffff;
+
 }
 
 
@@ -875,6 +1042,7 @@ body::after {
    ========================================= */
 
 .event-dot {
+
     width: 8px;
     height: 8px;
 
@@ -892,16 +1060,23 @@ body::after {
         rgba(130,145,255,0.7);
 
     animation:
-        eventPulse 2.5s ease-in-out infinite;
+        eventPulse
+        2.5s
+        ease-in-out
+        infinite;
+
 }
 
 
 .event-dot.eclipse {
-    background: #c39aff;
+
+    background:
+        #c39aff;
 
     box-shadow:
         0 0 12px
         rgba(180,130,255,0.9);
+
 }
 
 
@@ -909,15 +1084,23 @@ body::after {
 
     0%,
     100% {
-        transform: scale(1);
 
-        opacity: 0.7;
+        transform:
+            scale(1);
+
+        opacity:
+            0.7;
+
     }
 
     50% {
-        transform: scale(1.3);
 
-        opacity: 1;
+        transform:
+            scale(1.3);
+
+        opacity:
+            1;
+
     }
 
 }
@@ -928,13 +1111,16 @@ body::after {
    ========================================= */
 
 .events-card {
+
     padding: 25px;
 
     margin-bottom: 30px;
+
 }
 
 
 .section-title {
+
     font-size: 20px;
 
     font-weight: 800;
@@ -942,10 +1128,12 @@ body::after {
     margin-bottom: 20px;
 
     color: #ffffff;
+
 }
 
 
 .event {
+
     display: flex;
 
     align-items: center;
@@ -954,38 +1142,48 @@ body::after {
 
     gap: 20px;
 
-    padding: 17px 0;
+    padding:
+        17px 0;
 
     border-bottom:
         1px solid
         rgba(255,255,255,0.06);
+
 }
 
 
 .event:last-child {
-    border-bottom: none;
+
+    border-bottom:
+        none;
+
 }
 
 
 .event-name {
+
     font-size: 15px;
 
     font-weight: 700;
 
     color: #e8eaf3;
+
 }
 
 
 .event-date {
+
     margin-top: 5px;
 
     font-size: 12px;
 
     color: #6f7692;
+
 }
 
 
 .countdown {
+
     flex-shrink: 0;
 
     font-size: 10px;
@@ -996,16 +1194,19 @@ body::after {
 
     color: #8794f5;
 
-    padding: 8px 10px;
+    padding:
+        8px 10px;
 
     border-radius: 8px;
 
     background:
         rgba(90,105,220,0.1);
+
 }
 
 
 .loading {
+
     padding: 20px;
 
     text-align: center;
@@ -1013,6 +1214,7 @@ body::after {
     color: #686f8b;
 
     font-size: 14px;
+
 }
 
 
@@ -1021,6 +1223,7 @@ body::after {
    ========================================= */
 
 .moon-card {
+
     display: flex;
 
     align-items: center;
@@ -1030,10 +1233,12 @@ body::after {
     padding: 28px;
 
     margin-bottom: 30px;
+
 }
 
 
 .moon-visual {
+
     width: 82px;
     height: 82px;
 
@@ -1061,31 +1266,42 @@ body::after {
         rgba(190,200,255,0.08);
 
     animation:
-        moonGlow 5s ease-in-out infinite alternate;
+        moonGlow
+        5s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
 
 @keyframes moonGlow {
 
     from {
+
         box-shadow:
             0 0 20px
             rgba(190,200,255,0.05);
+
     }
 
     to {
+
         box-shadow:
             0 0 45px
             rgba(190,200,255,0.16);
+
     }
 
 }
 
 
 .moon-info h2 {
+
     font-size: 24px;
 
     color: #ffffff;
+
 }
 
 
@@ -1094,16 +1310,20 @@ body::after {
    ========================================= */
 
 footer {
+
     text-align: center;
 
     padding:
-        30px 20px 50px;
+        30px
+        20px
+        50px;
 
     color: #555c76;
 
     font-size: 12px;
 
     line-height: 1.8;
+
 }
 
 
@@ -1114,58 +1334,79 @@ footer {
 @media (max-width: 650px) {
 
     .top-bar {
+
         padding:
             15px 17px;
+
     }
 
 
     .top-title {
+
         font-size: 11px;
+
     }
 
 
     .top-location {
+
         font-size: 8px;
+
     }
 
 
     .hero {
+
         padding:
-            60px 15px 40px;
+            60px
+            15px
+            40px;
+
     }
 
 
     .hero h1 {
+
         font-size: 48px;
 
         letter-spacing: -2px;
+
     }
 
 
     .hero p {
+
         font-size: 14px;
+
     }
 
 
     .container {
+
         width:
             calc(100% - 20px);
+
     }
 
 
     .today-card {
+
         padding: 22px;
 
         border-radius: 20px;
+
     }
 
 
     .today-header {
+
         gap: 14px;
+
     }
 
 
     .fact-icon {
+
         width: 54px;
         height: 54px;
 
@@ -1174,76 +1415,99 @@ footer {
         font-size: 27px;
 
         border-radius: 14px;
+
     }
 
 
     .fact-title {
+
         font-size: 19px;
+
     }
 
 
     .fact-text {
+
         font-size: 14px;
+
     }
 
 
     .calendar-card {
+
         padding: 12px;
 
         border-radius: 19px;
+
     }
 
 
     .calendar {
+
         gap: 4px;
+
     }
 
 
     .weekdays {
+
         gap: 4px;
+
     }
 
 
     .day {
+
         min-height: 57px;
 
         padding: 7px;
 
         border-radius: 9px;
+
     }
 
 
     .day-number {
+
         font-size: 12px;
+
     }
 
 
     .event-dot {
+
         width: 6px;
         height: 6px;
 
         bottom: 7px;
         left: 7px;
+
     }
 
 
     .moon-card {
+
         padding: 22px;
+
     }
 
 
     .moon-visual {
+
         width: 65px;
         height: 65px;
 
         min-width: 65px;
 
         font-size: 38px;
+
     }
 
 
     .moon-info h2 {
+
         font-size: 19px;
+
     }
 
 }
@@ -1256,27 +1520,35 @@ footer {
 @media (max-width: 400px) {
 
     .hero h1 {
+
         font-size: 40px;
+
     }
 
 
     .day {
+
         min-height: 50px;
 
         padding: 6px;
+
     }
 
 
     .calendar-header h2 {
+
         font-size: 17px;
+
     }
 
 
     .calendar-header button {
+
         width: 36px;
         height: 36px;
 
         font-size: 23px;
+
     }
 
 }
@@ -1291,11 +1563,16 @@ footer {
     *,
     *::before,
     *::after {
-        animation: none !important;
 
-        transition: none !important;
+        animation:
+            none !important;
 
-        scroll-behavior: auto !important;
+        transition:
+            none !important;
+
+        scroll-behavior:
+            auto !important;
+
     }
 
 }
