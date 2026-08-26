@@ -1,11 +1,5 @@
 /* =========================================
    KRISH'S COSMIC CALENDAR
-   FULL CSS
-   ========================================= */
-
-
-/* =========================================
-   RESET
    ========================================= */
 
 * {
@@ -28,39 +22,36 @@ body {
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
         sans-serif;
 
-    color: #f5f7ff;
+    color: #f4f7ff;
 
     background:
-
         radial-gradient(
-            circle at 50% 0%,
-            rgba(45, 50, 100, 0.3),
-            transparent 40%
+            circle at 20% 15%,
+            rgba(70, 90, 160, 0.14),
+            transparent 28%
         ),
 
         radial-gradient(
-            circle at 10% 80%,
-            rgba(40, 55, 120, 0.12),
+            circle at 80% 70%,
+            rgba(80, 60, 150, 0.10),
             transparent 30%
         ),
 
-        #02030a;
+        #03040b;
 
     overflow-x: hidden;
+
+    position: relative;
 }
 
 
 /* =========================================
-   VERY SUBTLE STARS
+   STAR FIELD
    ========================================= */
 
-body::before,
-body::after {
+body::before {
 
     content: "";
 
@@ -71,60 +62,30 @@ body::after {
     pointer-events: none;
 
     z-index: -1;
-}
 
-
-/* Only a handful of stars */
-
-body::before {
+    opacity: 0.8;
 
     background-image:
 
         radial-gradient(
             circle,
-            rgba(255,255,255,0.75) 1px,
+            rgba(255,255,255,0.85) 1px,
             transparent 1.5px
         ),
 
         radial-gradient(
             circle,
-            rgba(190,210,255,0.55) 1px,
+            rgba(180,200,255,0.6) 1px,
             transparent 1.5px
         );
 
     background-size:
-
-        230px 260px,
-        370px 330px;
-
-    background-position:
-
-        40px 70px,
-        180px 130px;
-
-    opacity: 0.32;
-}
-
-
-/* Very few brighter stars */
-
-body::after {
-
-    background-image:
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,0.8) 1.5px,
-            transparent 2px
-        );
-
-    background-size:
-        520px 470px;
+        140px 160px,
+        230px 210px;
 
     background-position:
-        100px 40px;
-
-    opacity: 0.25;
+        20px 30px,
+        100px 80px;
 }
 
 
@@ -137,26 +98,29 @@ body::after {
     width: 100%;
 
     padding:
-        18px 28px;
+        18px
+        7vw;
 
     display: flex;
 
+    justify-content: space-between;
+
     align-items: center;
 
-    justify-content: space-between;
+    gap: 20px;
 
     border-bottom:
         1px solid
         rgba(255,255,255,0.08);
 
     background:
-        rgba(2,3,10,0.78);
+        rgba(3,4,11,0.72);
 
     backdrop-filter:
-        blur(18px);
+        blur(15px);
 
     -webkit-backdrop-filter:
-        blur(18px);
+        blur(15px);
 
     position: sticky;
 
@@ -173,8 +137,6 @@ body::after {
     font-weight: 800;
 
     letter-spacing: 1.5px;
-
-    color: #ffffff;
 }
 
 
@@ -182,11 +144,11 @@ body::after {
 
     font-size: 11px;
 
-    font-weight: 700;
+    color: #8993aa;
 
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
 
-    color: #858ba8;
+    text-align: right;
 }
 
 
@@ -196,89 +158,69 @@ body::after {
 
 .hero {
 
-    text-align: center;
+    max-width: 1000px;
+
+    margin:
+        80px auto 55px;
 
     padding:
-        80px 20px 55px;
+        0 25px;
 
-    position: relative;
-}
-
-
-.hero::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 400px;
-
-    height: 400px;
-
-    left: 50%;
-
-    top: 20px;
-
-    transform:
-        translateX(-50%);
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(74,89,180,0.13),
-            transparent 65%
-        );
-
-    filter:
-        blur(30px);
-
-    pointer-events: none;
+    text-align: center;
 }
 
 
 .hero h1 {
 
-    position: relative;
-
     font-size:
-        clamp(42px, 8vw, 92px);
+        clamp(38px, 8vw, 78px);
 
-    line-height: 0.95;
+    line-height: 0.94;
+
+    letter-spacing:
+        -3px;
 
     font-weight: 900;
 
-    letter-spacing: -3px;
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #b9c7ff
+        );
 
-    color: #ffffff;
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
 }
 
 
 .hero p {
 
-    position: relative;
-
     margin-top: 25px;
 
-    color: #8d94b3;
+    color: #8f99b3;
 
     font-size: 16px;
+
+    line-height: 1.6;
 }
 
 
 /* =========================================
-   MAIN
+   MAIN CONTAINER
    ========================================= */
 
 .container {
 
-    width:
-        min(
-            calc(100% - 32px),
-            900px
-        );
+    width: min(
+        920px,
+        calc(100% - 32px)
+    );
 
-    margin:
-        0 auto 70px;
+    margin: auto;
 }
 
 
@@ -289,182 +231,38 @@ body::after {
 .today-card,
 .calendar-card,
 .events-card,
-.moon-card,
-.notification-card {
+.moon-card {
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(18,21,40,0.94),
-            rgba(7,9,20,0.94)
-        );
+        rgba(10,12,24,0.78);
 
     border:
         1px solid
-        rgba(255,255,255,0.08);
+        rgba(255,255,255,0.09);
 
     border-radius: 24px;
 
     box-shadow:
+        0 20px 70px
+        rgba(0,0,0,0.35);
 
-        0 20px 60px
-        rgba(0,0,0,0.35),
+    backdrop-filter:
+        blur(18px);
 
-        inset 0 1px 0
-        rgba(255,255,255,0.025);
+    -webkit-backdrop-filter:
+        blur(18px);
 }
 
 
 /* =========================================
-   NOTIFICATIONS
-   ========================================= */
-
-.notification-card {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    padding: 20px;
-
-    margin-bottom: 25px;
-}
-
-
-.notification-icon {
-
-    width: 52px;
-
-    height: 52px;
-
-    min-width: 52px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 15px;
-
-    background:
-        rgba(90,105,220,0.12);
-
-    font-size: 25px;
-}
-
-
-.notification-info {
-
-    flex: 1;
-}
-
-
-.notification-info h2 {
-
-    font-size: 17px;
-
-    color: #ffffff;
-
-    margin-bottom: 5px;
-}
-
-
-.notification-info p {
-
-    color: #858ca6;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-
-.notification-button {
-
-    border: none;
-
-    padding:
-        11px 15px;
-
-    border-radius: 11px;
-
-    background:
-        rgba(95,110,220,0.2);
-
-    border:
-        1px solid
-        rgba(120,135,240,0.25);
-
-    color: #dfe3ff;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    cursor: pointer;
-
-    white-space: nowrap;
-
-    transition:
-        0.2s ease;
-}
-
-
-.notification-button:hover {
-
-    background:
-        rgba(105,120,240,0.3);
-
-    transform:
-        translateY(-1px);
-}
-
-
-.notification-button:active {
-
-    transform:
-        scale(0.96);
-}
-
-
-.notification-button.enabled {
-
-    background:
-        rgba(60,160,110,0.15);
-
-    border-color:
-        rgba(90,190,140,0.3);
-
-    color: #a9e8c7;
-}
-
-
-.notification-button:disabled {
-
-    opacity: 0.5;
-
-    cursor: not-allowed;
-
-    transform: none;
-}
-
-
-/* =========================================
-   TODAY'S FACT
+   TODAY CARD
    ========================================= */
 
 .today-card {
 
-    padding: 30px;
+    padding: 28px;
 
-    margin-bottom: 45px;
-
-    position: relative;
-
-    overflow: hidden;
+    margin-bottom: 55px;
 }
 
 
@@ -474,59 +272,59 @@ body::after {
 
     align-items: center;
 
-    gap: 20px;
+    gap: 18px;
 }
 
 
 .fact-icon {
 
-    width: 68px;
+    width: 60px;
 
-    height: 68px;
-
-    min-width: 68px;
+    height: 60px;
 
     display: flex;
 
-    align-items: center;
-
     justify-content: center;
 
-    font-size: 34px;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    font-size: 32px;
 
     border-radius: 18px;
 
     background:
-        rgba(80,95,190,0.12);
+        rgba(255,255,255,0.07);
 
     border:
         1px solid
-        rgba(130,145,255,0.15);
+        rgba(255,255,255,0.08);
 }
 
 
 .fact-category {
 
-    font-size: 11px;
+    font-size: 10px;
 
-    font-weight: 900;
+    font-weight: 800;
 
     letter-spacing: 2px;
 
-    color: #7581d8;
+    color: #7884a2;
 
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 
 
 .fact-title {
 
     font-size:
-        clamp(20px,4vw,30px);
+        clamp(19px, 3vw, 26px);
 
     line-height: 1.2;
 
-    color: #ffffff;
+    font-weight: 800;
 }
 
 
@@ -534,29 +332,29 @@ body::after {
 
     margin-top: 22px;
 
-    font-size: 16px;
+    color: #aeb7cc;
 
     line-height: 1.7;
 
-    color: #aeb4ca;
+    font-size: 15px;
 }
 
 
 .pun {
 
-    margin-top: 20px;
+    margin-top: 18px;
 
     padding:
-        14px 16px;
+        13px 16px;
 
     border-radius: 12px;
 
     background:
-        rgba(255,255,255,0.035);
+        rgba(255,255,255,0.045);
 
-    color: #8f96b5;
+    color: #858fa9;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-style: italic;
 }
@@ -572,7 +370,7 @@ body::after {
 
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
 
     margin-bottom: 18px;
 }
@@ -580,20 +378,20 @@ body::after {
 
 .section-heading-icon {
 
-    font-size: 24px;
+    font-size: 22px;
 }
 
 
 .section-heading h2 {
 
-    font-size: 24px;
+    font-size: 22px;
 
-    color: #ffffff;
+    font-weight: 800;
 }
 
 
 /* =========================================
-   CALENDAR
+   CALENDAR CARD
    ========================================= */
 
 .calendar-card {
@@ -606,13 +404,16 @@ body::after {
 
 .calendar-header {
 
-    display: flex;
+    display: grid;
+
+    grid-template-columns:
+        45px 1fr 45px;
 
     align-items: center;
 
-    justify-content: space-between;
+    text-align: center;
 
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 
@@ -620,7 +421,7 @@ body::after {
 
     font-size: 20px;
 
-    color: #ffffff;
+    font-weight: 800;
 }
 
 
@@ -630,16 +431,14 @@ body::after {
 
     height: 42px;
 
-    border:
-        1px solid
-        rgba(255,255,255,0.1);
+    border: none;
 
     border-radius: 12px;
 
     background:
-        rgba(255,255,255,0.045);
+        rgba(255,255,255,0.06);
 
-    color: #ffffff;
+    color: white;
 
     font-size: 28px;
 
@@ -653,19 +452,30 @@ body::after {
 .calendar-header button:hover {
 
     background:
-        rgba(100,115,220,0.2);
+        rgba(255,255,255,0.12);
 
     transform:
         scale(1.05);
 }
 
 
+.calendar-header button:active {
+
+    transform:
+        scale(0.95);
+}
+
+
+/* =========================================
+   WEEKDAYS
+   ========================================= */
+
 .weekdays {
 
     display: grid;
 
     grid-template-columns:
-        repeat(7,1fr);
+        repeat(7, 1fr);
 
     gap: 7px;
 
@@ -677,24 +487,28 @@ body::after {
 
     text-align: center;
 
+    color: #68728d;
+
     font-size: 10px;
 
     font-weight: 800;
 
     letter-spacing: 1px;
 
-    color: #666d8b;
-
     padding: 8px 0;
 }
 
+
+/* =========================================
+   CALENDAR GRID
+   ========================================= */
 
 .calendar {
 
     display: grid;
 
     grid-template-columns:
-        repeat(7,1fr);
+        repeat(7, 1fr);
 
     gap: 7px;
 }
@@ -702,35 +516,37 @@ body::after {
 
 .day {
 
-    min-height: 76px;
+    min-height: 70px;
 
     border-radius: 13px;
 
-    border:
-        1px solid
-        rgba(255,255,255,0.055);
+    padding: 10px;
 
     background:
-        rgba(255,255,255,0.025);
+        rgba(255,255,255,0.035);
 
-    padding: 10px;
+    border:
+        1px solid
+        rgba(255,255,255,0.045);
 
     cursor: pointer;
 
     position: relative;
 
     transition:
-        0.2s ease;
+        background 0.2s ease,
+        transform 0.2s ease,
+        border 0.2s ease;
 }
 
 
 .day:hover {
 
     background:
-        rgba(95,110,210,0.12);
+        rgba(255,255,255,0.08);
 
     border-color:
-        rgba(120,135,240,0.3);
+        rgba(255,255,255,0.12);
 
     transform:
         translateY(-2px);
@@ -752,34 +568,41 @@ body::after {
 .day.empty:hover {
 
     transform: none;
+
+    background:
+        transparent;
+
+    border-color:
+        transparent;
 }
 
 
 .day-number {
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 700;
 
-    color: #b8bdd0;
+    color: #c4cbdb;
 }
 
 
+/* =========================================
+   TODAY
+   ========================================= */
+
 .day.today {
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(83,100,210,0.28),
-            rgba(40,48,110,0.22)
-        );
+    border:
+        1px solid
+        rgba(130,150,255,0.8);
 
-    border-color:
-        rgba(125,145,255,0.65);
+    background:
+        rgba(100,120,255,0.13);
 
     box-shadow:
-        0 0 25px
-        rgba(80,100,230,0.12);
+        inset 0 0 20px
+        rgba(100,120,255,0.05);
 }
 
 
@@ -789,35 +612,41 @@ body::after {
 }
 
 
+/* =========================================
+   EVENT DOT
+   ========================================= */
+
 .event-dot {
-
-    width: 8px;
-
-    height: 8px;
 
     position: absolute;
 
-    bottom: 10px;
+    width: 7px;
 
-    left: 10px;
+    height: 7px;
 
     border-radius: 50%;
 
-    background: #8c9aff;
+    left: 10px;
+
+    bottom: 10px;
+
+    background:
+        #91a5ff;
 
     box-shadow:
-        0 0 10px
-        rgba(130,145,255,0.7);
+        0 0 8px
+        rgba(145,165,255,0.7);
 }
 
 
 .event-dot.eclipse {
 
-    background: #c39aff;
+    background:
+        #d4a8ff;
 
     box-shadow:
-        0 0 12px
-        rgba(180,130,255,0.9);
+        0 0 9px
+        rgba(212,168,255,0.8);
 }
 
 
@@ -829,19 +658,17 @@ body::after {
 
     padding: 25px;
 
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 
 .section-title {
 
-    font-size: 20px;
+    font-size: 19px;
 
     font-weight: 800;
 
-    margin-bottom: 20px;
-
-    color: #ffffff;
+    margin-bottom: 18px;
 }
 
 
@@ -853,29 +680,30 @@ body::after {
 
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 15px;
 
     padding: 17px 0;
 
     border-bottom:
         1px solid
-        rgba(255,255,255,0.06);
+        rgba(255,255,255,0.07);
 }
 
 
 .event:last-child {
 
-    border-bottom: none;
+    border-bottom:
+        none;
 }
 
 
 .event-name {
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: 700;
 
-    color: #e8eaf3;
+    color: #e8ebf4;
 }
 
 
@@ -883,9 +711,13 @@ body::after {
 
     margin-top: 5px;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    color: #6f7692;
+    color: #707b95;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
 }
 
 
@@ -893,33 +725,31 @@ body::after {
 
     flex-shrink: 0;
 
-    font-size: 10px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-    color: #8794f5;
-
     padding:
-        8px 10px;
+        7px 10px;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     background:
-        rgba(90,105,220,0.1);
+        rgba(255,255,255,0.06);
+
+    color: #9ba8ff;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
 }
 
 
 .loading {
 
-    padding: 20px;
+    color: #737d96;
 
-    text-align: center;
+    font-size: 13px;
 
-    color: #686f8b;
-
-    font-size: 14px;
+    padding: 15px 0;
 }
 
 
@@ -929,25 +759,25 @@ body::after {
 
 .moon-card {
 
+    padding: 25px;
+
     display: flex;
 
     align-items: center;
 
-    gap: 25px;
+    gap: 22px;
 
-    padding: 28px;
-
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 
 .moon-visual {
 
-    width: 82px;
+    width: 75px;
 
-    height: 82px;
+    height: 75px;
 
-    min-width: 82px;
+    border-radius: 50%;
 
     display: flex;
 
@@ -955,28 +785,18 @@ body::after {
 
     justify-content: center;
 
-    border-radius: 50%;
-
     font-size: 48px;
 
     background:
-        radial-gradient(
-            circle at 35% 30%,
-            rgba(255,255,255,0.13),
-            rgba(255,255,255,0.02)
-        );
-
-    box-shadow:
-        0 0 35px
-        rgba(190,200,255,0.08);
+        rgba(255,255,255,0.04);
 }
 
 
 .moon-info h2 {
 
-    font-size: 24px;
+    font-size: 20px;
 
-    color: #ffffff;
+    font-weight: 800;
 }
 
 
@@ -989,9 +809,9 @@ footer {
     text-align: center;
 
     padding:
-        30px 20px 50px;
+        30px 20px 45px;
 
-    color: #555c76;
+    color: #58627b;
 
     font-size: 12px;
 
@@ -1003,45 +823,43 @@ footer {
    MOBILE
    ========================================= */
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
 
     .top-bar {
 
         padding:
-            15px 17px;
+            15px 18px;
+
     }
 
 
     .top-title {
 
         font-size: 11px;
+
     }
 
 
     .top-location {
 
-        font-size: 8px;
+        display: none;
+
     }
 
 
     .hero {
 
-        padding:
-            60px 15px 40px;
+        margin:
+            55px auto 40px;
+
     }
 
 
     .hero h1 {
 
-        font-size: 48px;
+        letter-spacing:
+            -2px;
 
-        letter-spacing: -2px;
-    }
-
-
-    .hero p {
-
-        font-size: 14px;
     }
 
 
@@ -1049,161 +867,78 @@ footer {
 
         width:
             calc(100% - 20px);
-    }
 
-
-    .notification-card {
-
-        align-items: flex-start;
-
-        flex-wrap: wrap;
-    }
-
-
-    .notification-info {
-
-        min-width: 0;
-    }
-
-
-    .notification-button {
-
-        width: 100%;
     }
 
 
     .today-card {
 
-        padding: 22px;
+        padding: 21px;
 
         border-radius: 20px;
-    }
 
-
-    .today-header {
-
-        gap: 14px;
-    }
-
-
-    .fact-icon {
-
-        width: 54px;
-
-        height: 54px;
-
-        min-width: 54px;
-
-        font-size: 27px;
-
-        border-radius: 14px;
-    }
-
-
-    .fact-title {
-
-        font-size: 19px;
-    }
-
-
-    .fact-text {
-
-        font-size: 14px;
     }
 
 
     .calendar-card {
 
-        padding: 12px;
+        padding: 13px;
 
-        border-radius: 19px;
+        border-radius: 20px;
+
     }
 
 
-    .calendar,
+    .calendar {
+
+        gap: 4px;
+
+    }
+
+
     .weekdays {
 
         gap: 4px;
+
     }
 
 
     .day {
 
-        min-height: 57px;
+        min-height: 53px;
 
         padding: 7px;
 
         border-radius: 9px;
+
     }
 
 
     .day-number {
 
-        font-size: 12px;
+        font-size: 11px;
+
     }
 
 
     .event-dot {
 
-        width: 6px;
+        width: 5px;
 
-        height: 6px;
+        height: 5px;
+
+        left: 7px;
 
         bottom: 7px;
 
-        left: 7px;
     }
 
 
-    .moon-card {
+    .calendar-header {
 
-        padding: 22px;
-    }
+        grid-template-columns:
+            38px 1fr 38px;
 
-
-    .moon-visual {
-
-        width: 65px;
-
-        height: 65px;
-
-        min-width: 65px;
-
-        font-size: 38px;
-    }
-
-
-    .moon-info h2 {
-
-        font-size: 19px;
-    }
-
-}
-
-
-/* =========================================
-   VERY SMALL PHONES
-   ========================================= */
-
-@media (max-width: 400px) {
-
-    .hero h1 {
-
-        font-size: 40px;
-    }
-
-
-    .day {
-
-        min-height: 50px;
-
-        padding: 6px;
-    }
-
-
-    .calendar-header h2 {
-
-        font-size: 17px;
     }
 
 
@@ -1214,22 +949,60 @@ footer {
         height: 36px;
 
         font-size: 23px;
+
+    }
+
+
+    .calendar-header h2 {
+
+        font-size: 17px;
+
+    }
+
+
+    .events-card,
+    .moon-card {
+
+        border-radius: 20px;
+
+    }
+
+
+    .moon-card {
+
+        padding: 20px;
+
     }
 
 }
 
 
 /* =========================================
-   REDUCE MOTION
+   VERY SMALL PHONES
    ========================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 380px) {
 
-    * {
+    .day {
 
-        scroll-behavior: auto !important;
+        min-height: 45px;
 
-        transition: none !important;
+        padding: 6px;
+
+    }
+
+
+    .weekdays div {
+
+        font-size: 8px;
+
+    }
+
+
+    .day-number {
+
+        font-size: 10px;
+
     }
 
 }
