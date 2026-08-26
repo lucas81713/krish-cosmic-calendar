@@ -22,7 +22,7 @@
         href="icon-180.png"
     >
 
-    <!-- Chrome -->
+    <!-- Chrome / Android -->
     <link
         rel="icon"
         type="image/png"
@@ -49,6 +49,7 @@
 
 <body>
 
+
     <!-- =====================================
          TOP BAR
          ===================================== -->
@@ -64,6 +65,7 @@
         </div>
 
     </header>
+
 
 
     <!-- =====================================
@@ -85,11 +87,52 @@
     </section>
 
 
+
     <!-- =====================================
          MAIN
          ===================================== -->
 
     <main class="container">
+
+
+        <!-- =====================================
+             NOTIFICATIONS
+             ===================================== -->
+
+        <section class="notification-card">
+
+            <div class="notification-icon">
+                🔔
+            </div>
+
+            <div class="notification-info">
+
+                <div class="fact-category">
+                    COSMIC ALERTS
+                </div>
+
+                <h2>
+                    Don't miss a cosmic event
+                </h2>
+
+                <p>
+                    Get notifications about upcoming
+                    eclipses, meteor showers, and other
+                    astronomical events.
+                </p>
+
+            </div>
+
+            <button
+                id="notificationButton"
+                class="notification-button"
+                type="button"
+            >
+                🔔 Enable
+            </button>
+
+        </section>
+
 
 
         <!-- =====================================
@@ -148,47 +191,6 @@
         </section>
 
 
-        <!-- =====================================
-             NOTIFICATIONS
-             ===================================== -->
-
-        <section class="notification-card">
-
-            <div class="notification-icon">
-                🔔
-            </div>
-
-
-            <div class="notification-info">
-
-                <div class="fact-category">
-                    COSMIC ALERTS
-                </div>
-
-
-                <h2>
-                    Get your daily cosmic reminder
-                </h2>
-
-
-                <p>
-                    Get notified about upcoming
-                    eclipses, meteor showers,
-                    supermoons and more.
-                </p>
-
-            </div>
-
-
-            <button
-                id="cosmicNotificationButton"
-                type="button"
-            >
-                🔔 ENABLE COSMIC ALERTS
-            </button>
-
-        </section>
-
 
         <!-- =====================================
              CALENDAR TITLE
@@ -207,6 +209,7 @@
         </div>
 
 
+
         <!-- =====================================
              CALENDAR
              ===================================== -->
@@ -219,12 +222,15 @@
                 <button
                     id="previousMonth"
                     aria-label="Previous month"
+                    type="button"
                 >
                     ‹
                 </button>
 
 
-                <h2 id="calendarMonth">
+                <!-- IMPORTANT:
+                     This matches the JS -->
+                <h2 id="monthTitle">
                     Loading...
                 </h2>
 
@@ -232,6 +238,7 @@
                 <button
                     id="nextMonth"
                     aria-label="Next month"
+                    type="button"
                 >
                     ›
                 </button>
@@ -239,7 +246,8 @@
             </div>
 
 
-            <!-- DAYS -->
+
+            <!-- DAYS OF WEEK -->
 
             <div class="weekdays">
 
@@ -254,14 +262,15 @@
             </div>
 
 
-            <!-- CALENDAR DAYS -->
 
             <div
                 class="calendar"
                 id="calendar"
             ></div>
 
+
         </section>
+
 
 
         <!-- =====================================
@@ -286,15 +295,18 @@
         </section>
 
 
+
         <!-- =====================================
              MOON PHASE
              ===================================== -->
 
         <section class="moon-card">
 
+            <!-- IMPORTANT:
+                 This matches the JS -->
             <div
                 class="moon-visual"
-                id="moonIcon"
+                id="moonVisual"
             >
                 🌕
             </div>
@@ -319,6 +331,7 @@
     </main>
 
 
+
     <!-- =====================================
          FOOTER
          ===================================== -->
@@ -335,9 +348,6 @@
     </footer>
 
 
-    <!-- =====================================
-         JAVASCRIPT
-         ===================================== -->
 
     <script src="script.js"></script>
 
