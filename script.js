@@ -208,20 +208,29 @@ function getMarkhamDate() {
         }
     ).formatToParts(new Date());
 
+
     const result = {};
+
 
     parts.forEach(part => {
 
         if (part.type !== "literal") {
+
             result[part.type] = part.value;
+
         }
 
     });
 
+
     return {
+
         year: Number(result.year),
+
         month: Number(result.month),
+
         day: Number(result.day)
+
     };
 
 }
@@ -229,7 +238,9 @@ function getMarkhamDate() {
 
 const today = getMarkhamDate();
 
+
 let displayedYear = today.year;
+
 let displayedMonth = today.month - 1;
 
 
@@ -272,8 +283,10 @@ function renderCalendar() {
     const calendar =
         document.getElementById("calendar");
 
+
+    // FIXED: HTML uses "monthTitle"
     const monthTitle =
-        document.getElementById("calendarMonth");
+        document.getElementById("monthTitle");
 
 
     if (!calendar || !monthTitle) {
@@ -331,10 +344,14 @@ function renderCalendar() {
         const empty =
             document.createElement("div");
 
+
         empty.className =
             "day empty";
 
-        calendar.appendChild(empty);
+
+        calendar.appendChild(
+            empty
+        );
 
     }
 
@@ -350,19 +367,26 @@ function renderCalendar() {
         const cell =
             document.createElement("div");
 
-        cell.className = "day";
+
+        cell.className =
+            "day";
 
 
         const number =
             document.createElement("div");
 
+
         number.className =
             "day-number";
+
 
         number.textContent =
             day;
 
-        cell.appendChild(number);
+
+        cell.appendChild(
+            number
+        );
 
 
         const key =
@@ -376,12 +400,19 @@ function renderCalendar() {
         // Today
 
         if (
+
             displayedYear === today.year &&
-            displayedMonth === today.month - 1 &&
+
+            displayedMonth ===
+                today.month - 1 &&
+
             day === today.day
+
         ) {
 
-            cell.classList.add("today");
+            cell.classList.add(
+                "today"
+            );
 
         }
 
@@ -392,10 +423,13 @@ function renderCalendar() {
             getEventsForDate(key);
 
 
-        if (events.length > 0) {
+        if (
+            events.length > 0
+        ) {
 
             const dot =
                 document.createElement("div");
+
 
             dot.className =
                 "event-dot";
@@ -415,7 +449,9 @@ function renderCalendar() {
             }
 
 
-            cell.appendChild(dot);
+            cell.appendChild(
+                dot
+            );
 
         }
 
@@ -434,7 +470,9 @@ function renderCalendar() {
         );
 
 
-        calendar.appendChild(cell);
+        calendar.appendChild(
+            cell
+        );
 
     }
 
@@ -445,7 +483,11 @@ function renderCalendar() {
 // SHOW DATE
 // =========================================
 
-function showDate(year, month, day) {
+function showDate(
+    year,
+    month,
+    day
+) {
 
     const key =
         dateKey(
@@ -467,7 +509,9 @@ function showDate(year, month, day) {
         );
 
 
-    // Date
+    // =====================================
+    // DATE
+    // =====================================
 
     const todayDateElement =
         document.getElementById(
@@ -491,7 +535,9 @@ function showDate(year, month, day) {
     }
 
 
-    // Day of year
+    // =====================================
+    // DAY OF YEAR
+    // =====================================
 
     const start =
         new Date(
@@ -516,12 +562,15 @@ function showDate(year, month, day) {
         ];
 
 
-    // Fact icon
+    // =====================================
+    // FACT ICON
+    // =====================================
 
     const factIcon =
         document.getElementById(
             "factIcon"
         );
+
 
     if (factIcon) {
 
@@ -531,12 +580,15 @@ function showDate(year, month, day) {
     }
 
 
-    // Fact category
+    // =====================================
+    // FACT CATEGORY
+    // =====================================
 
     const factCategory =
         document.getElementById(
             "factCategory"
         );
+
 
     if (factCategory) {
 
@@ -546,12 +598,15 @@ function showDate(year, month, day) {
     }
 
 
-    // Fact title
+    // =====================================
+    // FACT TITLE
+    // =====================================
 
     const factTitle =
         document.getElementById(
             "factTitle"
         );
+
 
     if (factTitle) {
 
@@ -561,12 +616,15 @@ function showDate(year, month, day) {
     }
 
 
-    // Fact text
+    // =====================================
+    // FACT TEXT
+    // =====================================
 
     const factText =
         document.getElementById(
             "factText"
         );
+
 
     if (factText) {
 
@@ -576,12 +634,15 @@ function showDate(year, month, day) {
     }
 
 
-    // Pun
+    // =====================================
+    // PUN
+    // =====================================
 
     const punText =
         document.getElementById(
             "punText"
         );
+
 
     if (punText) {
 
@@ -591,9 +652,13 @@ function showDate(year, month, day) {
     }
 
 
-    // Astronomy event override
+    // =====================================
+    // ASTRONOMY EVENT OVERRIDE
+    // =====================================
 
-    if (events.length > 0) {
+    if (
+        events.length > 0
+    ) {
 
         const event =
             events[0];
@@ -651,28 +716,36 @@ function showDate(year, month, day) {
 
 function getEventPun(type) {
 
-    if (type === "eclipse") {
+    if (
+        type === "eclipse"
+    ) {
 
         return "Looks like the Moon is trying to steal the spotlight.";
 
     }
 
 
-    if (type === "meteor") {
+    if (
+        type === "meteor"
+    ) {
 
         return "These rocks are really making an entrance.";
 
     }
 
 
-    if (type === "moon") {
+    if (
+        type === "moon"
+    ) {
 
         return "That's one small step for the Moon...";
 
     }
 
 
-    if (type === "season") {
+    if (
+        type === "season"
+    ) {
 
         return "The Earth is really changing its angle on things.";
 
@@ -742,8 +815,11 @@ function renderUpcomingEvents() {
 
 
                 return {
+
                     ...event,
+
                     difference
+
                 };
 
             })
@@ -753,10 +829,15 @@ function renderUpcomingEvents() {
                     event.difference >= 0
             )
 
-            .slice(0, 5);
+            .slice(
+                0,
+                5
+            );
 
 
-    if (upcoming.length === 0) {
+    if (
+        upcoming.length === 0
+    ) {
 
         container.innerHTML = `
             <div class="loading">
@@ -932,35 +1013,73 @@ function getMoonInfo() {
         );
 
 
-    if (phase < 1.85)
-        return ["🌑", "New Moon"];
+    if (
+        phase < 1.85
+    )
+        return [
+            "🌑",
+            "New Moon"
+        ];
 
 
-    if (phase < 7.38)
-        return ["🌒", "Waxing Crescent"];
+    if (
+        phase < 7.38
+    )
+        return [
+            "🌒",
+            "Waxing Crescent"
+        ];
 
 
-    if (phase < 9.23)
-        return ["🌓", "First Quarter"];
+    if (
+        phase < 9.23
+    )
+        return [
+            "🌓",
+            "First Quarter"
+        ];
 
 
-    if (phase < 14.77)
-        return ["🌔", "Waxing Gibbous"];
+    if (
+        phase < 14.77
+    )
+        return [
+            "🌔",
+            "Waxing Gibbous"
+        ];
 
 
-    if (phase < 16.61)
-        return ["🌕", "Full Moon"];
+    if (
+        phase < 16.61
+    )
+        return [
+            "🌕",
+            "Full Moon"
+        ];
 
 
-    if (phase < 22.15)
-        return ["🌖", "Waning Gibbous"];
+    if (
+        phase < 22.15
+    )
+        return [
+            "🌖",
+            "Waning Gibbous"
+        ];
 
 
-    if (phase < 24)
-        return ["🌗", "Last Quarter"];
+    if (
+        phase < 24
+    )
+        return [
+            "🌗",
+            "Last Quarter"
+        ];
 
 
-    return ["🌘", "Waning Crescent"];
+    return [
+        "🌘",
+        "Waning Crescent"
+    ];
 
 }
 
@@ -977,9 +1096,10 @@ function renderMoon() {
         );
 
 
+    // FIXED: HTML uses "moonVisual"
     const moonVisual =
         document.getElementById(
-            "moonIcon"
+            "moonVisual"
         );
 
 
