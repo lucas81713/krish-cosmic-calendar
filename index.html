@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -43,16 +42,12 @@
         rel="stylesheet"
         href="style.css"
     >
-
 </head>
 
 
 <body>
 
-
-    <!-- =====================================
-         TOP BAR
-         ===================================== -->
+    <!-- TOP BAR -->
 
     <header class="top-bar">
 
@@ -67,10 +62,7 @@
     </header>
 
 
-
-    <!-- =====================================
-         HERO
-         ===================================== -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -87,57 +79,11 @@
     </section>
 
 
-
-    <!-- =====================================
-         MAIN
-         ===================================== -->
+    <!-- MAIN -->
 
     <main class="container">
 
-
-        <!-- =====================================
-             NOTIFICATIONS
-             ===================================== -->
-
-        <section class="notification-card">
-
-            <div class="notification-icon">
-                🔔
-            </div>
-
-            <div class="notification-info">
-
-                <div class="fact-category">
-                    COSMIC ALERTS
-                </div>
-
-                <h2>
-                    Don't miss a cosmic event
-                </h2>
-
-                <p>
-                    Get notifications about upcoming
-                    eclipses, meteor showers, and other
-                    astronomical events.
-                </p>
-
-            </div>
-
-            <button
-                id="notificationButton"
-                class="notification-button"
-                type="button"
-            >
-                🔔 Enable
-            </button>
-
-        </section>
-
-
-
-        <!-- =====================================
-             TODAY'S FACT
-             ===================================== -->
+        <!-- TODAY'S FACT -->
 
         <section class="today-card">
 
@@ -150,7 +96,6 @@
                     🔭
                 </div>
 
-
                 <div>
 
                     <div
@@ -159,7 +104,6 @@
                     >
                         SPACE
                     </div>
-
 
                     <h2
                         class="fact-title"
@@ -172,14 +116,12 @@
 
             </div>
 
-
             <p
                 class="fact-text"
                 id="factText"
             >
                 Loading...
             </p>
-
 
             <div
                 class="pun"
@@ -191,10 +133,7 @@
         </section>
 
 
-
-        <!-- =====================================
-             CALENDAR TITLE
-             ===================================== -->
+        <!-- CALENDAR TITLE -->
 
         <div class="section-heading">
 
@@ -209,42 +148,31 @@
         </div>
 
 
-
-        <!-- =====================================
-             CALENDAR
-             ===================================== -->
+        <!-- CALENDAR -->
 
         <section class="calendar-card">
-
 
             <div class="calendar-header">
 
                 <button
                     id="previousMonth"
                     aria-label="Previous month"
-                    type="button"
                 >
                     ‹
                 </button>
 
-
-                <!-- IMPORTANT:
-                     This matches the JS -->
-                <h2 id="monthTitle">
+                <h2 id="calendarMonth">
                     Loading...
                 </h2>
-
 
                 <button
                     id="nextMonth"
                     aria-label="Next month"
-                    type="button"
                 >
                     ›
                 </button>
 
             </div>
-
 
 
             <!-- DAYS OF WEEK -->
@@ -262,27 +190,23 @@
             </div>
 
 
+            <!-- JAVASCRIPT CREATES DAYS -->
 
             <div
                 class="calendar"
                 id="calendar"
             ></div>
 
-
         </section>
 
 
-
-        <!-- =====================================
-             UPCOMING EVENTS
-             ===================================== -->
+        <!-- UPCOMING EVENTS -->
 
         <section class="events-card">
 
             <div class="section-title">
                 ☄️ Upcoming Cosmic Events
             </div>
-
 
             <div id="eventsContainer">
 
@@ -295,29 +219,22 @@
         </section>
 
 
-
-        <!-- =====================================
-             MOON PHASE
-             ===================================== -->
+        <!-- MOON PHASE -->
 
         <section class="moon-card">
 
-            <!-- IMPORTANT:
-                 This matches the JS -->
             <div
                 class="moon-visual"
-                id="moonVisual"
+                id="moonIcon"
             >
                 🌕
             </div>
-
 
             <div class="moon-info">
 
                 <div class="fact-category">
                     TODAY'S MOON
                 </div>
-
 
                 <h2 id="moonPhase">
                     Loading moon phase...
@@ -327,14 +244,10 @@
 
         </section>
 
-
     </main>
 
 
-
-    <!-- =====================================
-         FOOTER
-         ===================================== -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -348,6 +261,7 @@
     </footer>
 
 
+    <!-- JAVASCRIPT -->
 
     <script src="script.js"></script>
 
