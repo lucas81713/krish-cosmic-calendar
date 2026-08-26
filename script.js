@@ -198,70 +198,48 @@ const astronomyEvents = [
 
 function getMarkhamDate() {
 
-    const parts =
-        new Intl.DateTimeFormat(
-            "en-CA",
-            {
-                timeZone: TIME_ZONE,
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit"
-            }
-        ).formatToParts(new Date());
-
+    const parts = new Intl.DateTimeFormat(
+        "en-CA",
+        {
+            timeZone: TIME_ZONE,
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }
+    ).formatToParts(new Date());
 
     const result = {};
-
 
     parts.forEach(part => {
 
         if (part.type !== "literal") {
-
-            result[part.type] =
-                part.value;
-
+            result[part.type] = part.value;
         }
 
     });
 
-
     return {
 
-        year:
-            Number(result.year),
-
-        month:
-            Number(result.month),
-
-        day:
-            Number(result.day)
+        year: Number(result.year),
+        month: Number(result.month),
+        day: Number(result.day)
 
     };
 
 }
 
 
-const today =
-    getMarkhamDate();
+const today = getMarkhamDate();
 
-
-let displayedYear =
-    today.year;
-
-
-let displayedMonth =
-    today.month - 1;
+let displayedYear = today.year;
+let displayedMonth = today.month - 1;
 
 
 // =========================================
 // DATE KEY
 // =========================================
 
-function dateKey(
-    year,
-    month,
-    day
-) {
+function dateKey(year, month, day) {
 
     return (
         year +
@@ -281,8 +259,7 @@ function dateKey(
 function getEventsForDate(key) {
 
     return astronomyEvents.filter(
-        event =>
-            event.date === key
+        event => event.date === key
     );
 
 }
@@ -295,21 +272,13 @@ function getEventsForDate(key) {
 function renderCalendar() {
 
     const calendar =
-        document.getElementById(
-            "calendar"
-        );
-
+        document.getElementById("calendar");
 
     const monthTitle =
-        document.getElementById(
-            "calendarMonth"
-        );
+        document.getElementById("calendarMonth") ||
+        document.getElementById("monthTitle");
 
-
-    if (
-        !calendar ||
-        !monthTitle
-    ) {
+    if (!calendar || !monthTitle) {
 
         console.error(
             "Calendar elements were not found."
@@ -319,9 +288,7 @@ function renderCalendar() {
 
     }
 
-
-    calendar.innerHTML =
-        "";
+    calendar.innerHTML = "";
 
 
     const firstDay =
@@ -354,6 +321,8 @@ function renderCalendar() {
         );
 
 
+    // Empty cells
+
     for (
         let i = 0;
         i < firstDay;
@@ -361,21 +330,17 @@ function renderCalendar() {
     ) {
 
         const empty =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         empty.className =
             "day empty";
 
-
-        calendar.appendChild(
-            empty
-        );
+        calendar.appendChild(empty);
 
     }
 
+
+    // Days
 
     for (
         let day = 1;
@@ -384,32 +349,21 @@ function renderCalendar() {
     ) {
 
         const cell =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-
-        cell.className =
-            "day";
+        cell.className = "day";
 
 
         const number =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         number.className =
             "day-number";
 
-
         number.textContent =
             day;
 
-
-        cell.appendChild(
-            number
-        );
+        cell.appendChild(number);
 
 
         const key =
@@ -420,41 +374,29 @@ function renderCalendar() {
             );
 
 
+        // Today
+
         if (
-
-            displayedYear ===
-                today.year &&
-
-            displayedMonth ===
-                today.month - 1 &&
-
-            day ===
-                today.day
-
+            displayedYear === today.year &&
+            displayedMonth === today.month - 1 &&
+            day === today.day
         ) {
 
-            cell.classList.add(
-                "today"
-            );
+            cell.classList.add("today");
 
         }
 
 
+        // Events
+
         const events =
-            getEventsForDate(
-                key
-            );
+            getEventsForDate(key);
 
 
-        if (
-            events.length > 0
-        ) {
+        if (events.length > 0) {
 
             const dot =
-                document.createElement(
-                    "div"
-                );
-
+                document.createElement("div");
 
             dot.className =
                 "event-dot";
@@ -463,8 +405,7 @@ function renderCalendar() {
             if (
                 events.some(
                     event =>
-                        event.type ===
-                        "eclipse"
+                        event.type === "eclipse"
                 )
             ) {
 
@@ -474,10 +415,7 @@ function renderCalendar() {
 
             }
 
-
-            cell.appendChild(
-                dot
-            );
+            cell.appendChild(dot);
 
         }
 
@@ -496,9 +434,7 @@ function renderCalendar() {
         );
 
 
-        calendar.appendChild(
-            cell
-        );
+        calendar.appendChild(cell);
 
     }
 
@@ -509,11 +445,7 @@ function renderCalendar() {
 // SHOW DATE
 // =========================================
 
-function showDate(
-    year,
-    month,
-    day
-) {
+function showDate(year, month, day) {
 
     const key =
         dateKey(
@@ -524,9 +456,7 @@ function showDate(
 
 
     const events =
-        getEventsForDate(
-            key
-        );
+        getEventsForDate(key);
 
 
     const date =
@@ -537,15 +467,15 @@ function showDate(
         );
 
 
+    // Date
+
     const todayDateElement =
         document.getElementById(
             "todayDate"
         );
 
 
-    if (
-        todayDateElement
-    ) {
+    if (todayDateElement) {
 
         todayDateElement.textContent =
             date.toLocaleDateString(
@@ -561,6 +491,8 @@ function showDate(
     }
 
 
+    // Day of year
+
     const start =
         new Date(
             year,
@@ -573,8 +505,7 @@ function showDate(
         Math.floor(
             (
                 date - start
-            ) /
-            86400000
+            ) / 86400000
         );
 
 
@@ -585,94 +516,129 @@ function showDate(
         ];
 
 
+    // Fact icon
+
     const factIcon =
         document.getElementById(
             "factIcon"
         );
 
+    if (factIcon) {
+
+        factIcon.textContent =
+            fact.icon;
+
+    }
+
+
+    // Fact category
 
     const factCategory =
         document.getElementById(
             "factCategory"
         );
 
+    if (factCategory) {
+
+        factCategory.textContent =
+            fact.category;
+
+    }
+
+
+    // Fact title
 
     const factTitle =
         document.getElementById(
             "factTitle"
         );
 
+    if (factTitle) {
+
+        factTitle.textContent =
+            fact.title;
+
+    }
+
+
+    // Fact text
 
     const factText =
         document.getElementById(
             "factText"
         );
 
+    if (factText) {
+
+        factText.textContent =
+            fact.text;
+
+    }
+
+
+    // Pun
 
     const punText =
         document.getElementById(
             "punText"
         );
 
+    if (punText) {
 
-    if (factIcon)
-        factIcon.textContent =
-            fact.icon;
-
-
-    if (factCategory)
-        factCategory.textContent =
-            fact.category;
-
-
-    if (factTitle)
-        factTitle.textContent =
-            fact.title;
-
-
-    if (factText)
-        factText.textContent =
-            fact.text;
-
-
-    if (punText)
         punText.textContent =
             fact.pun;
 
+    }
 
-    if (
-        events.length > 0
-    ) {
+
+    // Astronomy event override
+
+    if (events.length > 0) {
 
         const event =
             events[0];
 
 
-        if (factIcon)
+        if (factIcon) {
+
             factIcon.textContent =
                 event.emoji;
 
+        }
 
-        if (factCategory)
+
+        if (factCategory) {
+
             factCategory.textContent =
                 "ASTRONOMICAL EVENT";
 
+        }
 
-        if (factTitle)
+
+        if (factTitle) {
+
             factTitle.textContent =
                 event.name;
 
+        }
 
-        if (factText)
+
+        if (factText) {
+
             factText.textContent =
                 event.description;
 
+        }
 
-        if (punText)
+
+        if (punText) {
+
             punText.textContent =
                 getEventPun(
                     event.type
                 );
+
+        }
 
     }
 
@@ -685,36 +651,28 @@ function showDate(
 
 function getEventPun(type) {
 
-    if (
-        type === "eclipse"
-    ) {
+    if (type === "eclipse") {
 
         return "Looks like the Moon is trying to steal the spotlight.";
 
     }
 
 
-    if (
-        type === "meteor"
-    ) {
+    if (type === "meteor") {
 
         return "These rocks are really making an entrance.";
 
     }
 
 
-    if (
-        type === "moon"
-    ) {
+    if (type === "moon") {
 
         return "That's one small step for the Moon...";
 
     }
 
 
-    if (
-        type === "season"
-    ) {
+    if (type === "season") {
 
         return "The Earth is really changing its angle on things.";
 
@@ -738,12 +696,14 @@ function renderUpcomingEvents() {
         );
 
 
-    if (!container)
+    if (!container) {
+
         return;
 
+    }
 
-    container.innerHTML =
-        "";
+
+    container.innerHTML = "";
 
 
     const todayDate =
@@ -777,8 +737,7 @@ function renderUpcomingEvents() {
                         (
                             eventDate -
                             todayDate
-                        ) /
-                        86400000
+                        ) / 86400000
                     );
 
 
@@ -788,16 +747,16 @@ function renderUpcomingEvents() {
                 };
 
             })
+
             .filter(
                 event =>
                     event.difference >= 0
             )
+
             .slice(0, 5);
 
 
-    if (
-        upcoming.length === 0
-    ) {
+    if (upcoming.length === 0) {
 
         container.innerHTML = `
             <div class="loading">
@@ -810,101 +769,105 @@ function renderUpcomingEvents() {
     }
 
 
-    upcoming.forEach(
-        event => {
+    upcoming.forEach(event => {
 
-            const element =
-                document.createElement(
-                    "div"
-                );
-
-
-            element.className =
-                "event";
-
-
-            let countdown;
-
-
-            if (
-                event.difference === 0
-            ) {
-
-                countdown =
-                    "TODAY";
-
-            }
-
-            else if (
-                event.difference === 1
-            ) {
-
-                countdown =
-                    "TOMORROW";
-
-            }
-
-            else {
-
-                countdown =
-                    event.difference +
-                    " DAYS";
-
-            }
-
-
-            const parts =
-                event.date
-                    .split("-")
-                    .map(Number);
-
-
-            const date =
-                new Date(
-                    parts[0],
-                    parts[1] - 1,
-                    parts[2]
-                );
-
-
-            const formatted =
-                date.toLocaleDateString(
-                    "en-US",
-                    {
-                        month: "short",
-                        day: "numeric"
-                    }
-                );
-
-
-            element.innerHTML = `
-
-                <div>
-
-                    <div class="event-name">
-                        ${event.emoji}
-                        ${event.name}
-                    </div>
-
-                    <div class="event-date">
-                        ${formatted}
-                    </div>
-
-                </div>
-
-                <div class="countdown">
-                    ${countdown}
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                element
+        const element =
+            document.createElement(
+                "div"
             );
 
+
+        element.className =
+            "event";
+
+
+        let countdown;
+
+
+        if (
+            event.difference === 0
+        ) {
+
+            countdown =
+                "TODAY";
+
         }
-    );
+
+        else if (
+            event.difference === 1
+        ) {
+
+            countdown =
+                "TOMORROW";
+
+        }
+
+        else {
+
+            countdown =
+                event.difference +
+                " DAYS";
+
+        }
+
+
+        const parts =
+            event.date
+                .split("-")
+                .map(Number);
+
+
+        const date =
+            new Date(
+                parts[0],
+                parts[1] - 1,
+                parts[2]
+            );
+
+
+        const formatted =
+            date.toLocaleDateString(
+                "en-US",
+                {
+                    month: "short",
+                    day: "numeric"
+                }
+            );
+
+
+        element.innerHTML = `
+
+            <div>
+
+                <div class="event-name">
+
+                    ${event.emoji}
+                    ${event.name}
+
+                </div>
+
+                <div class="event-date">
+
+                    ${formatted}
+
+                </div>
+
+            </div>
+
+            <div class="countdown">
+
+                ${countdown}
+
+            </div>
+
+        `;
+
+
+        container.appendChild(
+            element
+        );
+
+    });
 
 }
 
@@ -945,8 +908,7 @@ function getMoonPhase(
         (
             current -
             knownNewMoon
-        ) /
-        86400000;
+        ) / 86400000;
 
 
     return (
@@ -955,8 +917,7 @@ function getMoonPhase(
             synodicMonth
         ) +
         synodicMonth
-    ) %
-    synodicMonth;
+    ) % synodicMonth;
 
 }
 
@@ -1019,6 +980,9 @@ function renderMoon() {
     const moonVisual =
         document.getElementById(
             "moonIcon"
+        ) ||
+        document.getElementById(
+            "moonVisual"
         );
 
 
@@ -1066,6 +1030,7 @@ if (previousMonth) {
             ) {
 
                 displayedMonth = 11;
+
                 displayedYear--;
 
             }
@@ -1099,6 +1064,7 @@ if (nextMonth) {
             ) {
 
                 displayedMonth = 0;
+
                 displayedYear++;
 
             }
@@ -1108,628 +1074,6 @@ if (nextMonth) {
 
         }
     );
-
-}
-
-
-// =========================================
-// NOTIFICATION SYSTEM
-// =========================================
-
-const ALERT_TIME_ZONE =
-    "America/Toronto";
-
-
-async function registerCosmicServiceWorker() {
-
-    if (
-        !("serviceWorker" in navigator)
-    ) {
-
-        return null;
-
-    }
-
-
-    try {
-
-        const registration =
-            await navigator.serviceWorker.register(
-                "cosmic-sw.js"
-            );
-
-
-        console.log(
-            "🌌 Cosmic notification system ready."
-        );
-
-
-        return registration;
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Service worker error:",
-            error
-        );
-
-
-        return null;
-
-    }
-
-}
-
-
-// =========================================
-// MARKHAM TIME
-// =========================================
-
-function getMarkhamTimeParts() {
-
-    const parts =
-        new Intl.DateTimeFormat(
-            "en-CA",
-            {
-                timeZone:
-                    ALERT_TIME_ZONE,
-
-                year:
-                    "numeric",
-
-                month:
-                    "2-digit",
-
-                day:
-                    "2-digit",
-
-                hour:
-                    "2-digit",
-
-                minute:
-                    "2-digit",
-
-                second:
-                    "2-digit",
-
-                hour12:
-                    false
-            }
-        ).formatToParts(
-            new Date()
-        );
-
-
-    const result = {};
-
-
-    parts.forEach(
-        part => {
-
-            if (
-                part.type !== "literal"
-            ) {
-
-                result[part.type] =
-                    part.value;
-
-            }
-
-        }
-    );
-
-
-    return result;
-
-}
-
-
-// =========================================
-// DATE KEY
-// =========================================
-
-function getAlertDateKey() {
-
-    const time =
-        getMarkhamTimeParts();
-
-
-    return (
-        time.year +
-        "-" +
-        time.month +
-        "-" +
-        time.day
-    );
-
-}
-
-
-// =========================================
-// NEXT EVENT
-// =========================================
-
-function getNextEvent() {
-
-    const now =
-        getMarkhamTimeParts();
-
-
-    const current =
-        new Date(
-            Number(now.year),
-            Number(now.month) - 1,
-            Number(now.day)
-        );
-
-
-    let closest =
-        null;
-
-
-    astronomyEvents.forEach(
-        event => {
-
-            const parts =
-                event.date
-                    .split("-")
-                    .map(Number);
-
-
-            const eventDate =
-                new Date(
-                    parts[0],
-                    parts[1] - 1,
-                    parts[2]
-                );
-
-
-            const difference =
-                Math.round(
-                    (
-                        eventDate -
-                        current
-                    ) /
-                    86400000
-                );
-
-
-            if (
-                difference < 0
-            )
-                return;
-
-
-            if (
-                !closest ||
-                difference <
-                closest.difference
-            ) {
-
-                closest = {
-                    ...event,
-                    difference
-                };
-
-            }
-
-        }
-    );
-
-
-    return closest;
-
-}
-
-
-// =========================================
-// NOTIFICATION MESSAGE
-// =========================================
-
-function getCosmicAlertMessage() {
-
-    const event =
-        getNextEvent();
-
-
-    if (!event) {
-
-        return {
-
-            title:
-                "🌌 GOOD MORNING, KRISH",
-
-            body:
-                "No major cosmic events are coming up. Keep looking up! 🔭"
-
-        };
-
-    }
-
-
-    if (
-        event.difference === 0
-    ) {
-
-        return {
-
-            title:
-                "🚨 COSMIC ALERT",
-
-            body:
-                `${event.name} TODAY! ${event.emoji} Look up!`
-
-        };
-
-    }
-
-
-    if (
-        event.difference === 1
-    ) {
-
-        return {
-
-            title:
-                "🚀 COSMIC ALERT",
-
-            body:
-                `${event.name} is TOMORROW! ${event.emoji}`
-
-        };
-
-    }
-
-
-    return {
-
-        title:
-            "🚀 COSMIC ALERT",
-
-        body:
-            `${event.name} in ${event.difference} days! ${event.emoji}`
-
-    };
-
-}
-
-
-// =========================================
-// SEND NOTIFICATION
-// =========================================
-
-async function sendCosmicAlert() {
-
-    if (
-        Notification.permission !==
-        "granted"
-    ) {
-
-        return;
-
-    }
-
-
-    const registration =
-        await navigator.serviceWorker.getRegistration(
-            "cosmic-sw.js"
-        );
-
-
-    if (!registration) {
-
-        return;
-
-    }
-
-
-    const message =
-        getCosmicAlertMessage();
-
-
-    await registration.showNotification(
-        message.title,
-        {
-
-            body:
-                message.body,
-
-            icon:
-                "icon-192.png",
-
-            badge:
-                "icon-192.png",
-
-            tag:
-                "cosmic-daily-alert",
-
-            data:
-                {
-                    url:
-                        "./"
-                }
-
-        }
-    );
-
-}
-
-
-// =========================================
-// SCHEDULE 7 AM
-// =========================================
-
-function scheduleCosmicAlert() {
-
-    if (
-        localStorage.getItem(
-            "cosmicAlertsEnabled"
-        ) !== "true"
-    ) {
-
-        return;
-
-    }
-
-
-    clearTimeout(
-        window.cosmicAlertTimer
-    );
-
-
-    const now =
-        new Date();
-
-
-    const markham =
-        getMarkhamTimeParts();
-
-
-    const hour =
-        Number(markham.hour);
-
-
-    const minute =
-        Number(markham.minute);
-
-
-    let minutesUntil7;
-
-
-    if (
-        hour < 7
-    ) {
-
-        minutesUntil7 =
-            (
-                7 - hour
-            ) *
-            60 -
-            minute;
-
-    }
-
-    else {
-
-        minutesUntil7 =
-            (
-                24 - hour + 7
-            ) *
-            60 -
-            minute;
-
-    }
-
-
-    const milliseconds =
-        Math.max(
-            minutesUntil7 *
-            60 *
-            1000,
-            1000
-        );
-
-
-    window.cosmicAlertTimer =
-        setTimeout(
-            async function () {
-
-                const todayKey =
-                    getAlertDateKey();
-
-
-                const lastSent =
-                    localStorage.getItem(
-                        "lastCosmicAlert"
-                    );
-
-
-                if (
-                    lastSent !==
-                    todayKey
-                ) {
-
-                    await sendCosmicAlert();
-
-
-                    localStorage.setItem(
-                        "lastCosmicAlert",
-                        todayKey
-                    );
-
-                }
-
-
-                scheduleCosmicAlert();
-
-            },
-            milliseconds
-        );
-
-}
-
-
-// =========================================
-// ENABLE ALERTS
-// =========================================
-
-async function enableCosmicAlerts() {
-
-    if (
-        !("Notification" in window)
-    ) {
-
-        alert(
-            "This browser does not support notifications."
-        );
-
-        return;
-
-    }
-
-
-    const registration =
-        await registerCosmicServiceWorker();
-
-
-    if (!registration) {
-
-        alert(
-            "Cosmic Alerts couldn't be installed."
-        );
-
-        return;
-
-    }
-
-
-    const permission =
-        await Notification.requestPermission();
-
-
-    if (
-        permission !== "granted"
-    ) {
-
-        alert(
-            "You'll need to allow notifications for Cosmic Alerts."
-        );
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "cosmicAlertsEnabled",
-        "true"
-    );
-
-
-    const button =
-        document.getElementById(
-            "cosmicNotificationButton"
-        );
-
-
-    if (button) {
-
-        button.textContent =
-            "🔔 COSMIC ALERTS ENABLED ✓";
-
-
-        button.classList.add(
-            "enabled"
-        );
-
-    }
-
-
-    // Test notification
-    await registration.showNotification(
-        "🚀 Cosmic Alerts Enabled!",
-        {
-
-            body:
-                "Your daily cosmic reminders are ready.",
-
-            icon:
-                "icon-192.png",
-
-            badge:
-                "icon-192.png",
-
-            tag:
-                "cosmic-alert-test"
-
-        }
-    );
-
-
-    scheduleCosmicAlert();
-
-}
-
-
-// =========================================
-// INITIALIZE ALERTS
-// =========================================
-
-async function initializeCosmicAlerts() {
-
-    const button =
-        document.getElementById(
-            "cosmicNotificationButton"
-        );
-
-
-    if (!button) {
-
-        return;
-
-    }
-
-
-    button.addEventListener(
-        "click",
-        enableCosmicAlerts
-    );
-
-
-    const enabled =
-        localStorage.getItem(
-            "cosmicAlertsEnabled"
-        );
-
-
-    if (
-        enabled === "true"
-    ) {
-
-        button.textContent =
-            "🔔 COSMIC ALERTS ENABLED ✓";
-
-
-        button.classList.add(
-            "enabled"
-        );
-
-
-        await registerCosmicServiceWorker();
-
-
-        if (
-            Notification.permission ===
-            "granted"
-        ) {
-
-            scheduleCosmicAlert();
-
-        }
-
-    }
 
 }
 
@@ -1759,71 +1103,152 @@ renderUpcomingEvents();
 renderMoon();
 
 
-initializeCosmicAlerts();
-
 // =========================================
-// RANDOM SHOOTING STARS
-// Every 10–30 seconds
+// SHOOTING STARS 🌠
 // =========================================
+//
+// Frequency:
+// One shooting star every 3–7 seconds.
+//
+// Direction:
+// DOWN + RIGHT ↘
+//
 
 function createShootingStar() {
 
     const star =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     star.className =
         "shooting-star";
 
-    // Random starting position
+
+    /*
+     * Start somewhere in the
+     * upper portion of the screen.
+     */
+
     const startX =
         Math.random() *
-        window.innerWidth;
+        window.innerWidth *
+        0.75;
+
 
     const startY =
         Math.random() *
-        (window.innerHeight * 0.65);
+        window.innerHeight *
+        0.45;
+
 
     star.style.left =
         startX + "px";
 
+
     star.style.top =
         startY + "px";
 
-    document.body.appendChild(star);
 
-    // Start animation
+    /*
+     * Slightly randomize the
+     * shooting star size.
+     */
+
+    const size =
+        3 +
+        Math.random() * 2;
+
+
+    star.style.width =
+        size + "px";
+
+
+    star.style.height =
+        size + "px";
+
+
+    /*
+     * Slightly randomize
+     * the trail length.
+     */
+
+    const trailLength =
+        90 +
+        Math.random() * 80;
+
+
+    star.style.setProperty(
+        "--trail-length",
+        trailLength + "px"
+    );
+
+
+    document.body.appendChild(
+        star
+    );
+
+
+    /*
+     * Start animation on the
+     * next frame.
+     */
+
     requestAnimationFrame(() => {
 
-        star.classList.add("active");
+        star.classList.add(
+            "active"
+        );
 
     });
 
-    // Remove after animation
+
+    /*
+     * Remove it after it
+     * finishes travelling.
+     */
+
     setTimeout(() => {
 
         star.remove();
 
-    }, 1500);
+    }, 1600);
 
 }
 
 
-function scheduleShootingStar() {
+// =========================================
+// RANDOM 3–7 SECOND TIMER
+// =========================================
 
-    // Random delay between 10 and 30 seconds
+function scheduleNextShootingStar() {
+
+    const minimum =
+        3000;
+
+
+    const maximum =
+        7000;
+
 
     const delay =
         Math.floor(
             Math.random() *
-            20000
-        ) + 10000;
+            (
+                maximum -
+                minimum +
+                1
+            )
+        ) +
+        minimum;
 
 
     setTimeout(() => {
 
         createShootingStar();
 
-        scheduleShootingStar();
+        scheduleNextShootingStar();
 
     }, delay);
 
@@ -1831,4 +1256,5 @@ function scheduleShootingStar() {
 
 
 // Start the system
-scheduleShootingStar();
+
+scheduleNextShootingStar();
