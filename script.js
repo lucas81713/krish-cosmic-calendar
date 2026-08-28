@@ -122,6 +122,12 @@ const dailyFacts = [
 // =========================================
 // ASTRONOMICAL EVENTS
 // =========================================
+//
+// time = main time to display
+// timeLabel = what the time represents
+//
+// All times are for Markham / Eastern Time.
+// =========================================
 
 const astronomyEvents = [
 
@@ -130,7 +136,9 @@ const astronomyEvents = [
         name: "Partial Lunar Eclipse",
         emoji: "🌑",
         type: "eclipse",
-        description: "A partial lunar eclipse occurs."
+        time: "10:33 PM",
+        timeLabel: "Partial eclipse begins",
+        description: "A partial lunar eclipse begins."
     },
 
     {
@@ -138,7 +146,9 @@ const astronomyEvents = [
         name: "Partial Lunar Eclipse",
         emoji: "🌑",
         type: "eclipse",
-        description: "The lunar eclipse continues."
+        time: "12:12 AM",
+        timeLabel: "Maximum eclipse",
+        description: "The lunar eclipse reaches its maximum."
     },
 
     {
@@ -146,6 +156,8 @@ const astronomyEvents = [
         name: "September Equinox",
         emoji: "🍂",
         type: "season",
+        time: null,
+        timeLabel: "Exact time",
         description: "The Sun crosses the celestial equator."
     },
 
@@ -154,6 +166,8 @@ const astronomyEvents = [
         name: "Orionid Meteor Shower",
         emoji: "☄️",
         type: "meteor",
+        time: "After midnight",
+        timeLabel: "Best viewing",
         description: "The Orionids reach their peak."
     },
 
@@ -162,6 +176,8 @@ const astronomyEvents = [
         name: "Leonid Meteor Shower",
         emoji: "☄️",
         type: "meteor",
+        time: "After midnight",
+        timeLabel: "Best viewing",
         description: "The Leonids reach their peak."
     },
 
@@ -170,6 +186,8 @@ const astronomyEvents = [
         name: "Supermoon",
         emoji: "🌕",
         type: "moon",
+        time: null,
+        timeLabel: "Full Moon",
         description: "A full Moon occurs close to the Moon's closest approach to Earth."
     },
 
@@ -178,6 +196,8 @@ const astronomyEvents = [
         name: "Geminid Meteor Shower",
         emoji: "☄️",
         type: "meteor",
+        time: "After midnight",
+        timeLabel: "Best viewing",
         description: "The Geminids reach their peak."
     },
 
@@ -186,6 +206,8 @@ const astronomyEvents = [
         name: "December Solstice",
         emoji: "❄️",
         type: "season",
+        time: null,
+        timeLabel: "Exact time",
         description: "Winter officially begins in the Northern Hemisphere."
     }
 
@@ -219,11 +241,9 @@ function getMarkhamDate() {
     });
 
     return {
-
         year: Number(result.year),
         month: Number(result.month),
         day: Number(result.day)
-
     };
 
 }
@@ -289,7 +309,6 @@ function renderCalendar() {
 
     calendar.innerHTML = "";
 
-
     const firstDay =
         new Date(
             displayedYear,
@@ -297,14 +316,12 @@ function renderCalendar() {
             1
         ).getDay();
 
-
     const daysInMonth =
         new Date(
             displayedYear,
             displayedMonth + 1,
             0
         ).getDate();
-
 
     monthTitle.textContent =
         new Date(
@@ -376,11 +393,9 @@ function renderCalendar() {
         // Today
 
         if (
-
             displayedYear === today.year &&
             displayedMonth === today.month - 1 &&
             day === today.day
-
         ) {
 
             cell.classList.add("today");
@@ -388,7 +403,7 @@ function renderCalendar() {
         }
 
 
-        // Astronomical events
+        // Events
 
         const events =
             getEventsForDate(key);
@@ -421,8 +436,6 @@ function renderCalendar() {
 
         }
 
-
-        // Click date
 
         cell.addEventListener(
             "click",
@@ -471,7 +484,7 @@ function showDate(year, month, day) {
         );
 
 
-    // Selected date
+    // Date
 
     const todayDateElement =
         document.getElementById(
@@ -520,67 +533,82 @@ function showDate(year, month, day) {
         ];
 
 
+    // Fact icon
+
     const factIcon =
         document.getElementById(
             "factIcon"
         );
 
+    if (factIcon) {
+
+        factIcon.textContent =
+            fact.icon;
+
+    }
+
+
+    // Fact category
 
     const factCategory =
         document.getElementById(
             "factCategory"
         );
 
+    if (factCategory) {
+
+        factCategory.textContent =
+            fact.category;
+
+    }
+
+
+    // Fact title
 
     const factTitle =
         document.getElementById(
             "factTitle"
         );
 
+    if (factTitle) {
+
+        factTitle.textContent =
+            fact.title;
+
+    }
+
+
+    // Fact text
 
     const factText =
         document.getElementById(
             "factText"
         );
 
+    if (factText) {
+
+        factText.textContent =
+            fact.text;
+
+    }
+
+
+    // Pun
 
     const punText =
         document.getElementById(
             "punText"
         );
 
-
-    if (factIcon) {
-        factIcon.textContent =
-            fact.icon;
-    }
-
-
-    if (factCategory) {
-        factCategory.textContent =
-            fact.category;
-    }
-
-
-    if (factTitle) {
-        factTitle.textContent =
-            fact.title;
-    }
-
-
-    if (factText) {
-        factText.textContent =
-            fact.text;
-    }
-
-
     if (punText) {
+
         punText.textContent =
             fact.pun;
+
     }
 
 
-    // Event override
+    // Astronomy event override
 
     if (events.length > 0) {
 
@@ -589,34 +617,65 @@ function showDate(year, month, day) {
 
 
         if (factIcon) {
+
             factIcon.textContent =
                 event.emoji;
+
         }
 
 
         if (factCategory) {
+
             factCategory.textContent =
                 "ASTRONOMICAL EVENT";
+
         }
 
 
         if (factTitle) {
+
             factTitle.textContent =
                 event.name;
+
         }
 
 
         if (factText) {
+
             factText.textContent =
                 event.description;
+
         }
 
 
         if (punText) {
-            punText.textContent =
+
+            let eventPun =
                 getEventPun(
                     event.type
                 );
+
+
+            // Add event time
+
+            if (event.time) {
+
+                eventPun +=
+                    " • " +
+                    event.timeLabel +
+                    ": " +
+                    event.time;
+
+            }
+
+
+            if (punText) {
+
+                punText.textContent =
+                    eventPun;
+
+            }
+
         }
 
     }
@@ -676,7 +735,9 @@ function renderUpcomingEvents() {
 
 
     if (!container) {
+
         return;
+
     }
 
 
@@ -724,10 +785,12 @@ function renderUpcomingEvents() {
                 };
 
             })
+
             .filter(
                 event =>
                     event.difference >= 0
             )
+
             .slice(0, 5);
 
 
@@ -810,6 +873,22 @@ function renderUpcomingEvents() {
             );
 
 
+        // Event time
+
+        let timeHTML = "";
+
+
+        if (event.time) {
+
+            timeHTML = `
+                <div class="event-time">
+                    ${event.timeLabel}: ${event.time}
+                </div>
+            `;
+
+        }
+
+
         element.innerHTML = `
 
             <div>
@@ -826,6 +905,8 @@ function renderUpcomingEvents() {
                     ${formatted}
 
                 </div>
+
+                ${timeHTML}
 
             </div>
 
@@ -1002,6 +1083,7 @@ if (previousMonth) {
             ) {
 
                 displayedMonth = 11;
+
                 displayedYear--;
 
             }
@@ -1035,6 +1117,7 @@ if (nextMonth) {
             ) {
 
                 displayedMonth = 0;
+
                 displayedYear++;
 
             }
